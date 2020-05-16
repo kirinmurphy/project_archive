@@ -1,0 +1,1423 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>Front End Primer :: HTML & CSS Tips and Tricks</title>
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1;">  
+
+<!--[if IE]> 
+<script>  
+ document.createElement("header");  
+ document.createElement("footer");  
+ document.createElement("nav");  
+ document.createElement("section");  
+ document.createElement("article");
+</script>  
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet" href="lib/fonts.css">
+<link rel="stylesheet/less" href="main.css" type="text/css" />
+<!-- <link rel="stylesheet/less" href="../formbuilder/main.css" type="text/css" /> -->
+<script src="lib/less-1.1.3.min.js"></script>
+
+</head>
+<body>
+
+
+
+<div id="pagewrap">
+<article class="first" data-newcategory="true">
+	<h1>The Web Browser</h1>
+    <h2>The Window Object</h2>
+	<div class="img"><img src="img/window_object.gif" alt="Window Object Image"/></div>
+	<div class="articleInner">
+		<p>Every time you open a new browser window (or tab), you create a new <strong>Window Object.</strong>  The window object has a number of child objects that include properties of the window, including the Document Object.  </p> 
+		<p>When an HTML file is loaded into a browser, it becomes the <strong>Document Object</strong> of its parent Window Object   </p>    
+	</div>
+</article>
+
+<article>
+    <h1>The Web Browser</h1>
+    <h2>Window Properties</h2>
+    <div class="img"><img src="img/window_object.gif" alt="Window Object Image" /></div>
+	<div class="articleInner">
+		<p>The window is the top level object that holds the javascript accessible properties and methods of the browser, screen and loaded document.</p>
+		<ul>
+		    <li>window.document</li>
+		    <li>window.location.href</li>
+            <li>window.localStorage</li>
+		    <li>window.console.log()</li>
+		    <li>window.setTimeout()</li>
+		</ul>    
+
+		<p class="comments">Not necessary to include the window reference when using its property or methods.
+		<br><i> window.document == document <br/> window.setTimeout() == setTimeout()</i> </p>
+	</div>
+</article>
+
+
+<article>
+    <h1>The Web Browser</h1>
+    <h2>The DOM</h2>
+    <div class="img"><img src="img/dom_tree.jpg" alt="DOM Tree Image"/></div>
+	<div class="articleInner">
+        <p>The DOM, or <strong>Document Object Model</strong> primarily defines the rules for how a document should be structured.  Most simply, the DOM interprets documents built as a nested tree structure, and accepts both HTML and XML documents.</p>
+
+        <p>While ultimately <strong>DOM elements</strong> (from HTML) turn into pixels on the screen, the core of HTML is the relationships between the elements:</p>
+
+        <ul>
+            <li><strong>Parents:</strong> The direct container of another element.</li>
+            <li><strong>Descendants:</strong> Any elements within a parent.</li>
+            <li><strong>Siblings:</strong> Elements that share the same parent.</li>
+            <li><strong>Children:</strong> The direct descendants of a parent.</li>
+            <li><strong>Ancestors:</strong> Any level container that includes the element.</li> 
+        </ul>
+	</div>
+</article>
+
+
+
+<article>
+	<h1>The Web Browser</h1>
+    <h2>The Screen</h2>
+    <div class="img"><img src="img/rendering_tree.jpg" alt="Browser Viewport" /></div>
+	<div class="articleInner">
+		<p>Two main things happen when a browser loads a document:</p> 
+	    <ul>
+	        <li>It builds the DOM tree, and then </li>
+	        <li>Renders the View.</li>
+	    </ul> 
+		
+		<p><b>HTML should be written to describe the organization of the data, not how it will look on the screen.</b>  <br/>
+	    CSS should take care of the rest.  
+		</p>
+	</div>
+</article>
+
+
+<article data-newcategory="true">
+    <h1>HTML</h1>
+    <h2>HTML Basics</h2>
+
+<pre>
+&lt;!DOCTYPE html&gt;  <span class="comments">&lt;-- <a href="http://www.w3schools.com/html5/tag_doctype.asp">HTML5 Document Type</a> --&gt;</span>
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="yourCSSFile.css" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    <span class="comments">&lt;-- Content --&gt;</span>
+    &lt;script src="yourJSFile.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+            
+</article>
+
+<article>
+    <h1>HTML</h1>
+    <h2>Why HTML sucked</h2>
+    <ul>
+    	<li>Too many ways to do the same thing</li>
+    	<li>No Separation of Concerns</li>
+        <li>Data Structure conflicts with Presentation Structure</li>
+    </ul>
+</article>
+
+
+<article>
+    <h1>HTML</h1>
+	<h2>Attribute Overload</h2>
+<pre>
+&lt;a href=&quot;javscript:specialFunction()&quot; style=&quot;display:block; width:80px; 
+  height:30px;&quot; class=&quot;leftButton blueBackground&quot; 
+  onclick=&quot;this.getParent().style.display = 'none'; return false;&quot;&gt;Close Button&lt;/a&gt;
+</pre>
+	<p>Too much goin on</p>
+    <ul>
+        <li>Content, Presentation and Behavior all jumbled up in one thing</li>
+        <li>Not DRY - Style Properties and Javascript must be repeated for every instance of this markup. Hard to manage and adds to file size.</li>
+        <li>Not Semantic - Class names relating to display and not data make things less clear.</li>
+    </ul>
+
+</article>
+
+
+<article>
+    <h1>HTML</h1>
+	<h2>What do we do?</h2>
+<pre>
+&lt;<strong>a</strong> href=&quot;javscript:<strong>specialFunction</strong>()&quot; style=&quot;display:block; width:80px; 
+  height:30px;&quot; class=&quot;leftButton blueBackground&quot; 
+  onclick=&quot;this.getParent().style.display = 'none'; return false;&quot;&gt;<strong>Close Button</strong>&lt;/a&gt;
+</pre>
+    <ul>
+        <li>Use descripitive <strong>selectors</strong> to Keep Presentation (CSS) &amp; Behavior (Javacsript) out of HTML. <br/>
+            We can describe this elements as:
+            <ol>
+                <li>a link (a) tag</li>
+                <li>a close button that hides its parent on click</li>
+                <li>something that fires a "special function"</li>
+            </ol>
+            
+            </li>
+        <li>Include the styles and javascript that reference these selectors in cacheable external files. </li>
+    </ul>
+
+</article>
+
+<article>
+    <h1>HTML</h1>
+    <h2>Simplify and Reuse</h2>
+    <p>Separate style and behavior from document structure. </p>
+<pre>
+&lt;<strong>a</strong> href=&quot;#&quot; id=&quot;<strong>special_close</strong>&quot; class=&quot;<strong>close</strong>&quot;&gt;Link Text&lt;/a&gt;
+</pre>
+
+<p>Now CSS &amp; Javascript that reference these selectors can be reusable.</p>
+<pre>
+<span class="comments">// CSS  </span>
+<strong>a</strong> { background-color:blue; }
+<strong>.close</strong> { float:left; display:block; width:80px; height:30px;   }
+ 
+<span class="comments"> // Javascript / jQuery </span>
+$('<strong>.close</strong>').click(function() { 
+  $(this).parent().hide()  
+  if ( $(this).attr('id') === '<strong>special_close</strong>' ) {  specialFunction(); } 
+  return false;  
+ });</pre>
+</article>
+
+<article data-newcategory="true">
+	<h1>Semantics</h1>
+	<h2>So what's left?</h2>
+	<p><strong>Semantic</strong> HTML.
+	<br/>Most important thing about writing good front end code. </p>
+	<p><strong>Selector names should describe content and structure, NOT its presentation.</strong> </p>
+
+	<p>Why? Because:</p>
+	<ul>
+        <li>Colors and placement may change but structure remains the same.</li>
+        <li>Selectors with logical relationships are easier to understand for other humans.</li>
+        <li> CSS and JS is also more logical. </li>
+    </ul>
+</article>
+
+
+<article>
+<h1>Semantics</h1>
+<h2>XML == HTML</h2>
+<p>XML: </p>
+<pre>
+&lt;<strong>album</strong>&gt;
+    &lt;<strong>artists</strong>&gt;
+        &lt;<strong>artist</strong>&gt;artistname&lt;/artist&gt;
+        ...
+    &lt;/artists&gt;
+    &lt;<strong>name</strong>&gt;Album Name&lt;/name&gt;
+    &lt;<strong>playlist</strong>&gt;
+        &lt;<strong>song</strong>&gt;Song 1&lt;/song&gt;
+        &lt;song&gt;Song 2&lt;/song&gt;
+        ...
+    &lt;/playlist&gt;
+&lt;/album&gt;
+</pre>
+</article>
+
+<article>
+<h1>Semantics</h1>
+<h2>HTML == XML </h2>
+<p>HTML:  </p>
+<pre>
+&lt;div class=&quot;<strong>album</strong>&quot;&gt;
+    &lt;div class=&quot;<strong>artists</strong>&quot;&gt;
+        &lt;span class=&quot;<strong>artist</strong>&quot;&gt;Artist Name&lt;/span&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class=&quot;<strong>name</strong>&quot;&gt;Album Name&lt;/div&gt;
+    &lt;ol class=&quot;<strong>playlist</strong>&quot;&gt;
+        &lt;li class="<strong>song</strong>"&gt;Song 1&lt;/li&gt;
+        &lt;li class="song" &gt;Song 2&lt;/li&gt;
+        ...
+    &lt;/ol&gt;
+&lt;/div&gt;
+</pre>
+    <p>Primary difference is that now you have a presentation attribute associated with each element.</p>
+    <p class="comments">Not absolutely necessary to include a class for each artist &lt;span&gt; or song &lt;li&gt; since they are arrays that can be described by their parent container. </p> 
+    
+    <p class="comments">A class would be needed if either elements had child elements of the same tag type. </p> 
+</article>
+
+<article>
+<h1>Semantics</h1>
+<h2>JSON == XML == HTML </h2>
+<p>JSON:</p>
+<pre>
+var <strong>album</strong> = {
+    <strong>artists</strong>: ['Artist 1', ...],
+    <strong>name</strong>: 'Album Name',
+    <strong>playlist</strong>: [ 'Song 1', 'Song 2', .... ]
+}
+</pre>
+<p> </p>
+</article>
+
+
+<article>
+	<h1>Semantics</h1>
+	<h2>Don't Just Use DIVs (&amp; ULs)</h2> 
+	<p>Many semantic elements can be used to differentiate from a generic &lt;div&gt; or &lt;span&gt; element.
+	<br/>Eliminate excessive classnames by giving tags a consistent specific purpose.</p>
+	<ul>
+	   <li>dedicate special purposes for inline elements within a particular parent: <br/> &lt;span&gt;, &lt;strong&gt;, &lt;em&gt;</li>
+	   <li>&lt;dl&gt;s - Definition Lists, perfect for key value pair relationships</li>
+	   <li>HTML5 tags: &lt;header&gt;, &lt;nav&gt;, &lt;footer&gt;, &lt;article&gt;</li>
+	</ul>
+	<p>Get to know your lesser known <a href="w3schools.com/tags/default.asp" target="_blank"> HTML tags</a>.
+	</p>
+
+</article>
+
+
+
+
+<article>
+	<h1>Semantics</h1>
+    <h2>Tests for Semantics</h2>
+    	<ul>
+        	<li>Selectors should explain content even without HTML:
+					<div style="padding:5px 0 5px 50px; font-weight:bold;">
+                    	Album<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Artists<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Artist 1<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Playlist<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Song 1<br/>
+                    </div>
+            </li>
+            <li>Class name makes sense in Javscript as well as CSS:
+<pre>
+$('.blue_button').click(); <span class="comments"> // no context for Javascript/jQuery</span>
+$('.close_button').click(); <span class="comments"> // has logical purpose in jQuery function</span>
+</pre>
+            </li>
+            <li>Class name makes sense as a property of a parent element: <br/>
+<pre>
+.popup_window .blue_button <span class="comments"> // no relationship btw parent and child</span>
+.popup_window .close_button <span class="comments"> // logical relationship</span>
+</pre>
+           	</li>
+        </ul>
+        <p>Optimally, you should be able to understand what markup
+            means without looking at the screen.</p>
+</article>
+
+<article>
+	<h1>Semantics</h1>
+	<h2>Dont's</h2>
+	<ul>
+    	<li><strong>Presentational Class Names</strong> mean nothing.  If layout/color changes in CSS, classes will have no relevance: <strong>.blueBackground, leftColumn</strong> </li>
+    	<li><strong>Tag names in classes</strong> are redundant and do not describe meaning.  Also it is possible you want to change the tag or use the class on several different tags:  <strong>.fieldset_small, .divContent</strong> 
+        </li>
+        <li><strong>Keep abbreviations to a minimum.</strong> Slightly longer class names are worth it if they are easier to understand for other humans. </li>
+    </ul>
+</article>
+
+
+
+
+<article data-newcategory="true">
+	<h1>Selectors</h1>
+    <h2>What is CSS?</h2>
+    <p>Basically CSS is just a set of key:value pairs, or more specifically <strong>scope:value</strong> pairs.</p>
+    <p>or in CSS syntax: </p>
+<pre>selector scope { attributes }</pre>
+    
+    <p>The <strong>selector scope</strong> is one or an arrangement of #id's, .classes and HTML tag names used to identify which elements to apply attributes to.</p>
+<pre>.class { attributes } 
+#id .class tagName { attributes }</pre>
+    
+    <p>selector scope + { attributes } = a <strong>CSS rule</strong>.</p>
+    <p>A browser parses a collection of CSS rules and applies <strong>cascading styles</strong> based on the order of the rules and specificity of their selector scope.</p>
+
+</article>
+<article>
+	<h1>Selectors</h1>
+    <h2>Why CSS Sucked</h2>
+    <ul>
+        <li><strong>Style rules are not intuitive</strong></li>
+        <li><strong>Creating selector scope is complicated</strong>: easy to accidentally overwrite styles.</li>
+        <li><strong>Cascading rules get messy</strong>: rules include not only order of inclusion, but also level of specificity.</li>
+        <li><strong>No Child Selectors</strong>: not possible to access only direct child elements, could only access all descendant elements.</li>
+    </ul>
+</article>
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Which selector(s) to use?</h2>
+    <p>Three options for creating accurate <strong>selector scope</strong>:</p>
+    <ul>
+    	<li>Global Selectors: relative to all matched elements
+<pre>
+a { <span class="comments">// global attributes for all links</span> }
+</pre>
+        </li>
+        <li>Descendant Selectors: encapsulates styles for matched elements within a parent.
+<pre>
+.parent a { <span class="comments">// link attributes only within .parent</span> }
+<span class="comments">spaces between selectors indicate nesting</span>
+</pre>
+        </li>
+        <li>Chaining Selectors: inherits any attributes from base classes plus unique attributes. 
+<pre>
+.parent.configclass a { <span class="comments">// link attributes within .parent only with second config class.</span> } 
+<span class="comments">no space between classes/id's require all selectors to be present for rule to apply.</span>
+</pre>
+        </li>
+    </ul>
+    <p>If styles are scoped with the correct selectors, modifications and scalability become much much easier.</p>
+</article>
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Overly specific selectors</h2>
+    <p>Say we want to add a 10 pixel bottom margin to each content section in a sidebar.<br/>
+    We can apply the CSS Rules directly to the IDs:</p>
+    <pre>
+&lt;div id=&quot;sidebar&quot;&gt;
+  &lt;div id=&quot;<strong>user_details</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;<strong>rss_feeds</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;<strong>links</strong>&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+<strong>#user_details</strong>,
+<strong>#rss_feeds</strong>,
+<strong>#links</strong> { margin-bottom:10px; }  <span class="comments">// Wrong </span>
+</pre>
+  <p>But if we add more items in the sidebar later, we have to change the CSS.<br/>
+      This creates an unnecessary dependency on the markup structure.</p>
+
+</article>
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Overly generic selectors</h2>
+    <p>Say we want to add a 10 pixel bottom margin to each content section in a sidebar.<br/>
+        We can apply the CSS Rules To the Child HTML &lt;div&gt; elements:</p>
+    <pre>
+&lt;div id=&quot;<strong>sidebar</strong>&quot;&gt;
+  &lt;<strong>div</strong> id=&quot;user_details&quot;&gt;...&lt;/div&gt;
+  &lt;<strong>div</strong> id=&quot;rss_feeds&quot;&gt;...&lt;/div&gt;
+  &lt;<strong>div</strong> id=&quot;links&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+<strong>#sidebar div</strong> { margin-bottom:10px; } <span class="comments">// Wrong </span>
+</pre>
+ 	<p>But then all descendants of #sidebar (every element in it) will get the margin, not just the direct children .</p>
+
+</article>
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Just unique enough selectors</h2>
+    <p>Say we want to add a 10 pixel bottom margin to each content section in a sidebar.<br/>
+        We can create a new common class and apply the CSS rules to that class:</p>
+    <pre>
+&lt;div id=&quot;sidebar&quot;&gt;
+  &lt;div id=&quot;user_details&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;rss_feeds&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;links&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+<strong>.module</strong> { margin-bottom:10px; }  <span class="comments">// Right! </span>
+</pre>
+<p>This is the correct approach because the margin attribute is relative to the <strong>type</strong> of content section, not the unique sections.</p>
+</article>
+
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Descendant selectors</h2>
+    <p>Now, is the class relative to a parent element?
+        <br/>We can append the CSS rule to include the #sidebar parent element</p>
+    <pre>
+&lt;div id=&quot;<strong>sidebar</strong>&quot;&gt;
+  &lt;div id=&quot;user_details&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;rss_feeds&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+  &lt;div id=&quot;links&quot; class=&quot;<strong>module</strong>&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+<strong>#sidebar .module</strong> { margin-bottom:10px; }
+</pre>
+ 	<p>Now CSS rule is scoped only to <strong>#sidebar</strong>, allowing us to use class <strong>.module</strong> anywhere else with no conflicts.</p>
+
+</article>
+
+<article>
+	<h1>Selectors</h1>
+    <h2>Chaining configurable classes</h2>
+    <p>Now what if we want to remove the bottom border on the last one?</p>
+    <pre class="selectors">
+&lt;div id=&quot;sidebar&quot; &gt;
+  &lt;div id=&quot;user_details&quot;  class=&quot;module&quot; &gt;...&lt;/div&gt;
+  &lt;div id=&quot;rss_feeds&quot;  class=&quot;module&quot; &gt;...&lt;/div&gt;
+  &lt;div id=&quot;links&quot;  class=&quot;<strong>module last</strong>&quot; &gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+#links { margin-bottom:0px; }
+<span class="comments">No! Same problem, what if #links isn't always last?</span>
+#sidebar .module_last { copied attributes of .module + margin-bottom:0px; }
+<span class="comments">No! Now we have two class names to consider and repeated code</span>
+#sidebar <strong>.module.last</strong> { margin-bottom:0px; }    
+<span class="comments">Yes!</span>
+</pre>
+</article>
+
+
+<article>
+    <h1>Selectors</h1>
+    <h2>Scoping vs. Styling</h2>
+    <p>Often a selector will be used to style itself in the context of it's parent, <br/>
+        but also as a hook to style its inner contents.</p>
+
+<pre>
+#sidebar <strong>.module</strong> { margin-bottom:10px; }
+<span class="comments">// Defining an elements purpose relative to its parent.</span>
+
+#rssfeed<strong>.module</strong> .description { font-size:11px; }
+<span class="comments">// Hook to style an inner element within a certain scope
+// For example, #rss_feed may exist elsewhere in the site, 
+// but within the module only, we want to make the description text smaller.</span>    
+</pre>
+<p class="comments">It is perfectly acceptable to use a selector repeatedly within different contexts.</p>
+</article>
+
+<article>
+    <h1>Selectors</h1>
+    <h2>Cascading by Order</h2>
+    <p>Last rule is the rule.</p>
+<pre>
+23   .module { <del>font-size:14px;</del> }
+...
+112  .module { font-size:12px; }  <span class="comments">// this rule will apply to .module</span>
+</pre>
+</article>
+
+<article>
+    <h1>Selectors</h1>
+    <h2>Cascading by Specificity</h2>
+    <p>But more specific rules take precedence regardless of the ordering.</p>
+<pre>
+23   #sidebar .module { font-size:14px; }   <span class="comments">// this rule will apply to .module</span>
+...
+112  .module { <del>font-size:12px;</del> }
+</pre>
+</article>
+
+<article>
+    <h1>Selectors</h1>
+    <h2>Cascading using !important</h2>
+    <p><strong>!important</strong> will enforce the rule even if a subsequent rule is applied.</p>
+<pre>
+23   .module { font-size:14px !important; }  <span class="comments">// this rule will apply to .module</span>
+...
+112  .module { <del>font-size:12px;</del> }  
+</pre>
+    <p><strong>Stay away from using this.</strong> This will complicate your cascading rules and make things much harder to manage. Figure out why the ordering is overwriting the style.</p>
+    <p>Only real use should be to overwrite some proprietary CSS when you don't have access to the original stylesheets.</p>
+
+
+</article>
+
+
+
+<article>
+    <h1>Selectors</h1>
+    <h2>Dont's</h2>
+    <p>Avoid redundant class names that can be scoped with existing selectors.</p>
+    <pre class="selectors">
+&lt;div class=&quot;article&quot;&gt;
+    &lt;h2 <span>class=&quot;article_header&quot;</span>&gt;Title&lt;/h2&gt;
+&lt;/div&gt;    
+
+.article_header { attributes }  <span class="comments">// Wrong</span>
+</pre>
+<p>The h2 can be described relative to the parent, so <strong>.article_header</strong> is not necessary.  </p>
+<pre>
+.article h2 { attributes }  <span class="comments">// Right</span>
+</pre>
+
+<p>As long as a tag type has a <strong>single purpose</strong> within a parent container, use a descendant selector instead of adding a new class.</p>
+</article>
+
+
+
+
+
+
+
+
+
+<article data-newcategory="true">
+	<h1>LESS CSS</h1>
+    <h2>Super CSS</h2>
+    <p><a href="http://lesscss.org/" target="_blank">LESS CSS</a> is a framework that supplies programmatic functionality on top of native CSS.  Less syntax gets compiled down to flat CSS when run through the LESS compiler.<br/>
+    </p>
+    <p>LESS is available for most web languages including a
+        <a href="http://fadeyev.net/2010/06/19/lessjs-will-obsolete-css/" target="_blank">Javascript implementation</a>.
+    </p>
+    <p>
+        To use the Javascript implementation, include your <strong><del>CSS</del> LESS</strong> files and the JS script in the head of your document.
+    </p>
+    <pre>
+&lt;head&gt;
+    ...
+    &lt;link rel="stylesheet<strong>/less</strong>" href="yourLESSFile<strong>.less</strong>" type="text/css" /&gt;
+    &lt;script src="lib/less-1.1.3.min.js"&gt;&lt;/script&gt;  <span class="comments">// include <strong>after</strong> all less files</span>
+    ...
+&lt;/head&gt;</pre>
+
+</article>
+<article>
+	<h1>LESS CSS</h1>
+    <h2>Create scope easily</h2>
+    <p>Much easier to encapsulate styles by applying scope through nesting CSS rules.  Instead of repeating parent selectors for each rule, selectors are in a similar structure as the corresponding HTML.</p>
+
+<pre>
+#sidebar { <span class="comments">attributes</span> 
+    .module { <span class="comments">attributes</span> 
+        &.last { <span class="comments">attributes for last module</span>  }
+        &:hover { <span class="comments">attributes when hovering on module</span>  }
+    }
+
+    #rss_feeds { <span class="comments">only attributes within #sidebar</span> 
+        &.detailview { <span class="comments">custom attributes for a detailview state of rss_feed within sidebar</span> }
+    }
+}
+</pre>
+
+    <p>The flat CSS output of this would be:</p>
+<pre>
+#sidebar { <span class="comments">attributes</span> }   
+#sidebar .module { <span class="comments">attributes</span> }
+#sidebar .module.last { <span class="comments">attributes</span> }
+#sidebar .module:hover { <span class="comments">attributes</span> } 
+#sidebar #rss_feed { <span class="comments">attributes</span> }
+#sidebar #rss_feed.detailview { <span class="comments">attributes</span> }
+</pre>
+
+</article>
+
+<article>
+    <h1>LESS CSS</h1>
+    <h2>Using the ampersand</h2>
+
+    <p>&amp; - represents a way to style all variations of a parent element within its own scope. </p> 
+<pre>
+.module { attributes
+    &.last { attributes }
+    &:hover { attributes }
+}
+
+<span class="comments">// is the same as</span>
+.module { attributes }
+.module.last { attributes }
+.module:hover { attributes }
+</pre>
+
+</article>
+
+
+
+<article>
+	<h1>LESS CSS</h1>
+    <h2>Variables and Mixins</h2>
+    <p>Variables</p>
+<pre>@color: #4D926F;
+#header { color: @color; }</pre>
+
+    <p><strong>Mixins:</strong> Groups a bunch of styles togeter into a single re-usable declaration. <br/>
+    <span class="comments">Excellent for new CSS3 styles that require browser specific rules.</span></p>
+<pre>.boxShadow(@dims:0 0 10px, @color:#999) {  <span class="comments">// can include default args (#999)</span>
+    box-shadow: @dims @color; <span class="comments">// Opera, FFX4</span>
+    -moz-box-shadow:@dims @color; <span class="comments">// FFX3.5</span>
+    -webkit-box-shadow:@dims @color; <span class="comments">// Safari/Chrome/WebKit</span>
+}
+
+#popup { .boxShadow(); } <span class="comments">// takes default arguments</span>
+#popup { .boxShadow(2px 2px 5px, #000); } <span class="comments">// overwrites default arguments</span>
+</pre>
+</article>
+
+
+<article>
+    <h1>LESS CSS</h1>
+    <h2>More Mixins</h2>
+
+    <p>Can also be used to group common styles, states, and behaviors together.<br/>
+    <span class="comments">The left/right and menu toggle buttons below are different selectors, but we can apply common styles from the same mixin.</span></p>
+<pre>
+.buttonStyle() { background:#888; line-height:30px; border-radius:6px; 
+    color:#bbb; cursor:pointer;
+    
+    &:active { background:#000; }
+    &:hover { color:#fff; }
+    &.disabled { color:#777; background:#6b6b6b; cursor:default; }
+}
+
+.pagination a { ... @buttonStyle(); ... }
+#toggleMenu { ... @buttonStyle(); ... }
+</pre> 
+</p>
+</article>
+
+<article>
+	<h1>LESS CSS</h1>
+    <h2>Using mixins across files</h2>
+    <p>If you have multiple CSS files, you don't want to repeat your mixins in each file.  Fortunately you can share them across different CSS files by placing this import statement at the top of each file.</p>
+<pre>
+@import "commonmixins";
+</pre>
+    <p>This will look for <strong>commonmixins.less</strong> in your files and import into each referenced file.</p>
+</article>
+
+<!-- <article>
+	<h1>LESS CSS</h1>
+    <h2>Cascading challenges</h2>
+
+    <p>Even with LESS, we still need to be sure that our nested selectors are specific enough.</p>
+
+<pre>
+&lt;div id="sidebar" class="theme2"&gt;
+  &lt;div id="rss_feeds" class="detailview"&gt; ... &lt;/div&gt;
+&lt;/div&gt;
+
+#sidebar { 
+    #rss_feeds {  
+        &.detailview { 
+            a { font-size:12px; <span class="comments">// These attributes will be applied.</span>  }
+        }
+    }
+    &.theme2 #rss_feeds { 
+       a { <del>font-size:14px;</del> }    
+    }
+}</pre>
+<p>The first style gets applied because the selectors are more specific.  Same in flat CSS:</p>
+<pre>
+#sidebar #rss_feeds.detailview a { font-size:12px; }
+#sidebar.theme2 #rss_feeds a { <del>font-size:14px;</del>  }
+</pre>
+
+</article> -->
+
+
+<article data-newcategory="true">
+    <h1>Layout Attributes</h1>
+    <h2>Inline Elements</h2>
+    <p>All elements have a default <strong>display</strong> property, either block or inline.
+        <br/><strong>Inline</strong> elements are generally used for <strong>content</strong>.
+    </p>
+    <ul>
+        <li>Inline elements start on the same line as the previous element and wraps to the next line as needed.</li>
+        <li>An inline element takes the width of it's inner contents.</li>
+        <li>Float, clear, width, height, overflow &amp; <strong>vertical</strong> margin/padding don't apply to inline elements.</li>
+        <li>Inline elements can only contain other inline elements.</li> 
+    </ul>
+
+    <div class="examplewrapper">
+        <div id="inline" class="example">
+            <span>spans, <a href="#">links</a>, <strong>strong tags</strong>, <em>em tags</em> and 
+                <img src="img/inline_smiley.png" alt="smiley face"/> images are all inline elements.  
+            </span>
+        </div>
+    </div>
+    
+<pre>&lt;div id="inline" class="example"&gt;
+    &lt;span>spans, &lt;em&gt;em (emphasis) tags&lt;/em&gt;, &lt;a href="#"&gt;links&lt;/a&gt;, &lt;strong&gt;
+        strong tags&lt;/strong&gt; and &lt;img src="img/inline_smiley.png" &gt; 
+        images are all inline elements.
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Block Elements</h2>
+    <p>All elements have a default <strong>display</strong> property, either block or inline.
+        <br/><strong>Block</strong> elements are used for <strong>sections</strong>.
+    </p>
+    <ul>
+        <li>Unstyled block level elements start at the top left corner of a parent or below the bottom left corner of the previous sibling.</li>
+        <li>Unstyled block level elements consume the width of the parent element. </li>
+        <li>Float, clear, width, height, overflow &amp; vertical margin/padding only apply to block elements.</li>
+        <li>Block level elements can contain any child element type.</li> 
+    </ul>
+
+    <div class="examplewrapper">
+        <div class="example">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+        </div>
+    </div>
+
+<pre>
+&lt;div class="example"&gt;
+    &lt;div class="block1"&gt;.block1&lt;/div&gt;
+    &lt;div class="block2"&gt;.block2&lt;/div&gt;
+&lt;/div&gt;
+
+.example { width:400px; ... 
+    .block1, .block2 { ... <span class="comments">(no widths set)</span> }
+}
+</pre>
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Floating Blocks</h2>
+    <p><strong>Floats</strong> change block elements to appear directly next to the previous block (either LTR or RTL).  Use for dynamically sized content.  The elements' boundaries impact and are impacted by the boundaries of its siblings.</p>
+
+    <p>Floating changes a block's default width from 100% of its parent to the size of its contents.</p>
+
+    <div class="examplewrapper">
+        <div class="floated example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+            <div class="block3">.block3</div>
+        </div>
+        <div class="exampledesc toggleFloatButtons">
+            <select>
+                <option class="setLeftFloat" data-floattype="left">float all left</option>
+                <option class="setRightFloat" data-floattype="right">float all right</option>
+                <option class="splitFloats" data-floattype="split">split floats</option>
+            </select>
+        </div>
+    </div>
+
+<pre>
+.floated.example { 
+    .block1 { float:<strong class="floatType">left</strong>; ... } 
+    .block2 { float:<strong class="floatType">left</strong>; ... }
+    .block3 { float:<strong class="floatType">left</strong>; ... }
+}
+</pre>
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Clearing Floats</h2>
+    <p><strong>One of the biggest layout problems comes from not clearing floats.</strong>  <br>
+    When you float a block, the <strong>float state</strong> stays open until you <strong>clear</strong> the float. 
+    </p>
+    <p>Clear the float on the next non-floated block to return to the normal page flow.</p>
+
+    <div class="examplewrapper toggleSpace">
+        <div class="cleared example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+        </div>
+        <div class="exampledesc">
+            <button class="toggleClearingFloats">Add/Remove clear attribute</button>
+            <div class="comments">Without clearing the float, the next unfloated block will ignore the real estate of the floated ones.</div>
+
+        </div>
+    </div>
+<pre>
+.cleared.example { ...
+    .block1 { float:left; ... }
+    .block2 { float:none; <strong>clear:<span class="clearType">left</span>;</strong> ... }
+}
+</pre>
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Floating Cleared Blocks</h2>
+    <p>Clearing a float returns the next block back to the normal page flow.  <br/>
+    You can also start a new float set on the same cleared block.</p>
+
+    <div class="examplewrapper toggleSpace">
+        <div class="clearedAndFloated example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+            <div class="block3">.block3</div>
+        </div>
+        <div id="toggleFloatedClears" class="exampledesc">
+            <div class="formrow">
+                <label>block1 float:</label>
+                <select data-floattarget="block1">
+                    <option data-floattype="left" selected>left</option>
+                    <option data-floattype="right">right</option>
+                    <option data-floattype="none">none</option>
+                </select>
+            </div>
+            <div class="formrow">
+                <label>block2 clear:</label>
+                <select data-cleartarget="block2">
+                    <option data-cleartype="left" selected>left</option>
+                    <option data-cleartype="right">right</option>
+                    <option data-cleartype="none">none</option>
+                </select>
+            </div>
+            <div class="formrow">
+                <label>block 3 clear:</label>
+                <select data-clearTarget="block3">
+                    <option data-cleartype="left">left</option>
+                    <option data-cleartype="right" selected>right</option>
+                    <option data-cleartype="none">none</option>
+                </select>
+            </div>
+        </div>
+    </div>
+<pre>
+.clearedAndFloated.example { ...
+    .block1 { float:<span class="floatType" data-toggledby="block1">left</span>; }
+    .block2 { float:right; clear:<span class="clearType" data-toggledby="block2">left</span>; }
+    .block3 { float:left;  clear:<span class="clearType" data-toggledby="block3">right</span>; }
+}
+</pre>
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Clearing Floats with CSS3</h2>
+    
+    <p>The CSS3 <strong><a target="_blank" href="http://www.w3schools.com/cssref/sel_after.asp">:after</a></strong> pseudo-attribute provides a way to clear any floats not cleared directly.</p>
+    
+    <div class="examplewrapper">
+        <div class="css3 floated example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+        </div>
+        <div class="exampledesc">
+            <button class="toggleCSS3ClrClass">Add/Remove .clr class</button>
+            <div class="comments">With no clearing at all, the parent ignores the real estate of its inner contents.</div>
+        </div>
+    </div>
+
+<pre>
+&lt;div  class="css3 floated example<strong class="clrClass"> clr</strong>"&gt; ... &lt;/div&gt;
+
+.css3.floated {
+    .block1, .block2 { float:left; ... <span class="comments">(no clears)</span> }    
+} 
+<strong>.clr:after</strong> { content:"."; display:block; height:0; clear:both; visibility:hidden; } 
+<strong>.clr</strong> { zoom:1; display:block; } <span class="comments">// IE6/7 fix</span>
+</pre>
+
+    <p class="comments">Floating the parent has a side effect of also clearing any uncleared floats within the element, but this should never be done as a replacement for the other clearing methods.</p>
+
+</article>
+
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Float Height Craziness</h2>
+    
+    <p>Mixed heights on floated elements will have some undesired effects.</p>
+    
+    <div class="examplewrapper">
+        <div class="crazyfloats example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+            <div class="block3">.block3</div>
+            <div class="block4">.block4</div>
+            <div class="block5">.block5</div>
+        </div>
+    </div>
+
+<pre>
+.crazyfloats {
+    div { float:left; height:30px; }
+    .block3 { height:20px; }
+}
+</pre>
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Relative Positioning</h2>
+    <p><strong>position:relative</strong> moves an element from it's original position in the page flow.</p>
+    
+    <div class="examplewrapper toggleSpace"> 
+        <div class="relativePosition example clr">
+            <div class="block1">.block1</div>
+            <div class="block2">.block2</div>
+        </div>
+        <div class="exampledesc">
+            <button class="toggleFloatOnRelativePositionedElement">Add/remove float on blocks</button>
+            <div class="comments">Relative positioning has the same effect on a floated block.</div>
+        </div>
+    </div>
+
+<pre>
+.relativePosition .block1 { <strong>position:relative; top:20px; left:20px; <span class="addFloat" style="display:none">float:left; </span></strong>}<strong class="addFloat" style="display:none"><br/>.block2 { float:left; }</strong>
+</pre>
+
+    <p>Notice that the position change has <strong>no effect on the parent and sibling elements.</strong> <br/> 
+        Acts almost as a separate layer above the rest of the content. </p>
+</article>
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Absolute Positioning</h2>
+    <p>Positions an item from the corners of the <strong>document</strong> or <strong>relatively positioned parent element.</strong></p>
+
+    <div class="examplewrapper">
+        <div class="absolutePosition example">
+            <div class="block1">.block1</div>
+        </div>
+    </div>
+    
+<pre>&lt;div class="absolutePosition example"&gt;
+    &lt;div class="block1"&gt;.block1&lt;/div&gt;
+&lt;/div&gt; 
+
+.absolutePosition { <strong>position:relative;</strong> height:80px;
+    .block1 { <strong>position:absolute; top:5px; right:5px;</strong> }
+}</pre> 
+    <p>This will place the child div 5px away from the parent's top right corner.</p>
+    <p><strong>Best used for fixed sized content that isn't affected by the placement of its siblings.</strong></p>
+</article>
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Fixed Positioning</h2>
+    <p>Fixed positioning will position an element relative to the corners of the screen (not the document). 
+    The element does not move when scrolling.</p>
+
+    <p>The pagination controls below use fixed positioning to stay at the bottom of the screen.</p>
+
+<pre>
+#navdock { position:fixed; bottom:0; right:0; z-index:1000; ... }
+</pre>
+
+</article>
+
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Avoiding Overlap with Absolute Positioning</h2>
+    <p>Since an absolutely positioned element is removed from the page flow, it can potentially overlap its sibling elements.</p>
+
+    <div class="examplewrapper">
+        <div class="absolutePositionWithPadding example">
+            Sample text that we don't want to be hitting the absolutely positioned element.
+            <div class="block1">.block1</div>
+        </div>
+        <div class="exampledesc">
+            <button id="togglePaddingForPositionedElements">Add/Remove Padding</button>
+            <div class="comments">Adding padding to the parent guarantees you will not have overlap if content grows.</div>
+        </div>
+    </div>
+<pre>
+&lt;div class="absolutePositionWithPadding example"&gt;
+    &lt;div class="block1"&gt;.block1&lt;/div&gt;
+&lt;/div&gt;
+    
+.absolutePositionWithPadding { position:relative; <strong>padding-right:<span class="removePadding">0px</span>;</strong> ...
+    .block1 { position:absolute; top:10px; <strong>right:10px; width:70px;</strong> ... }
+}</pre> 
+    <p class="comments">This is also how the slide content is displayed without being overlapped by the menu on the left (except using margins).</p>
+</article>
+
+
+
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Setting size with positioning</h2>
+    <p>Setting both horizontal or vertical position values sets the element width or height relative to it's parent.<br/>
+        </p>
+
+    <div class="examplewrapper toggleSpace">
+        <div class="setHeightWithPositioning example">
+            <div class="block1">.block1</div>
+        </div>
+        <div class="exampledesc">
+            <button id="changeHeightOfParent">Change parent height</button>
+            <button id="setFixedHeight">Add/Remove block1 fixed height</button>
+            <div class="comments">If a width/height value is set to anything but 'auto', the second position value (bottom or right) will be ignored.</div>
+        </div>
+    </div>
+    
+<pre>&lt;div class="setHeightWithPositioning example"&gt;
+    &lt;div class="block1"&gt;.block1&lt;/div&gt;
+&lt;/div&gt;
+
+.setHeightWithPositioning { position:relative; <strong>height:<span class="parentHeight">100px</span>;</strong> ... 
+   .block1 { position:absolute; <strong>top:5px; <span class="ignoredBottom">bottom:5px;</span></strong> right:5px; <span class="childHeight" style="display:none">height:20px; </span>... }
+}</pre> 
+
+    <p>The menu on the left also uses fixed positioning with top/bottom position values to take up the full height of the screen and stay in the same place when the page is scrolling.</p>
+
+<pre>#menu { position:fixed; top:0; bottom:0; left:0; width:180px; ... }</pre>
+
+</article>
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Z-index</h2>
+    <p>A z-index tells the browser how to layer overlapping elements.<br/>
+        Z-indexing requires a position attribute.
+    </p>
+    <div class="examplewrapper">
+        <div class="zindex example clr">
+            <div class="block1">.block1 (10)</div>
+            <div class="block2">.block2 (5)</div>
+        </div>
+        <div class="exampledesc">
+            <button class="toggleZindex">Set both z-indexs to 0</button>
+            <div class="comments">With equal or no z-index values, positioned elements overlap based on the order in HTML.</div>
+        </div>
+    </div>
+<pre>
+&lt;div class="zindex example clr"&gt;
+    &lt;div class="block1 (10)"&gt;.block1&lt;/div&gt;
+    &lt;div class="block2 (5)"&gt;.block1&lt;/div&gt;
+&lt;/div&gt;
+
+.zindex { position:relative; height:140px; 
+    .block1, .block2 { position:absolute; }
+    .block1 { top:50px; right:60px; <strong>z-index:<span class="block1-zindex">10</span>;</strong> }
+    .block2 { top:10px; right:10px; <strong>z-index:<span class="block2-zindex">5</span>;</strong> }
+}</pre>
+    
+</article>    
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Nested z-indexes</h2>
+    
+    <p>If an element has a z-indexed parent, its z-index value is a subset of the parent z-index layer.</p>
+    
+    <div class="examplewrapper">
+        <div id="nestedZindex" class="example">
+            <div class="block1"> .block1 (5)
+                <div class="child1">.child1 (200)</div>
+            </div>
+            <div class="block2">.block2 (10)</div>
+        </div>
+        <div class="exampledesc comments">
+            <p>Even though the <strong>.child1</strong> block has the highest z-index (200), it's parent has a z-index of 5, so its actual z-index is <strong>5:200</strong> ( &lt; 10)
+        </div>
+    </div>
+
+<pre>
+&lt;div id="nestedZindex" class="example"&gt;
+    &lt;div class="block1"&gt; .block1 (5)
+        &lt;div class="child1"&gt;.child1 (200)&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="block2"&gt;.block2 (10)&lt;/div&gt;
+&lt;/div&gt;
+
+#nestedZindex { position:relative; ...
+    .block1, .block2, .child1 { position:absolute; ... }
+    .block1 { top:10px; left:10px; <strong>z-index:5;</strong> ... 
+        .child1 { top:40px; left:60px; <strong>z-index:200;</strong> ... }
+    }
+    .block2 { top:90px; left:150px; <strong>z-index:10;</strong> ... }
+}
+</pre>
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>The Box Model</h2>
+    <p>CSS Width != Pixel Width<br/>
+    CSS Width + L/R Padding + L/R borders == Pixel Width</p>
+    
+    <div class="examplewrapper">
+        <div class="boxModelExample noExtras"> width:500px; </div>
+        <p>Pixel width = <strong>500px</strong></p>
+
+        <div class="boxModelExample wBorders"> width:500px; border-width:15px; </div>
+        <p>Pixel width: 500 + 15*2 = <strong>530px</strong></p>
+
+        <div class="boxModelExample wBordersAndPadding">
+            width:500px; boder-width:15px; padding:30px; 
+        </div>
+        <p>Pixel width: 500 + 15*2 + 30*2 = <strong>590px</strong></p>
+        <p>The same rules apply to height as well</p>
+    </div>
+</article>
+
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Box Model Workaround</h2>
+    <p>Often you will need the padding not to affect the size of the block.</p>  
+    <p>If you are setting the width dynamically by javascript, you'd need to account for padding for your computed width to be accurate. Messy.</p>  
+    <p>Easy way around this: add your padding to an inner block.</p>
+
+    <div class="examplewrapper">
+        <div class="boxModelExample wBorders"> width:500px; border-width:15px; </div>
+
+        <div class="boxModelExample wBorders">
+            <div class="inner">
+                parent { width:500px; border-width:15px; }<br/> 
+                inner div { padding:10px 20px; <span class="comments">(no set width)</span> }
+            </div>
+        </div>
+    </div>
+
+<p>Since an unstyled block automatically consumes the width of its parent, inner padding will not affect the parent's fixed width.</p>
+<p class="comments">This is a rare example of when markup is used expressly for the purposes of presentation.</p>
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Margin &amp; Padding Collisions</h2>
+    <p>Combinig rules like these will make layout defects more likely:</p>
+    <ul>
+        <li><b>Margins bumping against margins</b>
+<pre>&lt;div style="<strong>margin-right</strong>:20px;"&gt;hello&lt;/div&gt; 
+&lt;div style="<strong>margin-left:</strong>20px;"&gt;goodbye&lt;/div&gt;
+</pre>
+        </li>
+        <li><b>Padding bumping against margins</b>
+<pre>&lt;div style="<strong>padding</strong>:20px;"&gt;
+    &lt;div style="<strong>margin-top:</strong>20px;"&gt;goodbye&lt;/div&gt;
+&lt;/div&gt; 
+</pre>
+        </li>        
+    </ul>
+
+    <p>Generally, using padding is a safer way to go than margins.<br/>
+    Margins should be dedicated to pushing away the next element in the page flow (like in a list of items).</p> 
+
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Overflow Hidden</h2>
+    <p>Overflow allows a parent element to control the boundaries of its children. </p>
+    <p><strong>overflow: visible</strong> - default state<br/>
+        <strong>overflow: hidden</strong> - hides everything outside the parent boundaries
+    </p>
+
+    <div class="examplewrapper">
+        <div id="overflowHidden" class="example">
+            <div class="block1">.block1</div>
+        </div>
+        <div class="exampledesc">
+            <button class="toggleOverflowHidden">Add/remove overflow</button>
+        </div>
+    </div>
+<pre>
+&lt;div id="overflowHidden" class="example"&gt;
+    &lt;div class="block1"&gt;.block1&lt;/div&gt;
+&lt;/div&gt;
+
+#overflowHidden { position:relative; <strong>overflow:<span class="overflowType">hidden</span>;</strong> ...
+    .block1 { position:absolute; top:60px; right:-20px; }
+}
+</pre>
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Overflow Scroll and Auto</h2>
+    <p><strong>overflow: scroll</strong> - always adds scrollbars to element (even if not needed).<br/>
+        <strong>overflow: auto</strong> - adds scrollbars to the parent element <strong>only if</strong> the content gets too large. 
+    </p>
+
+    <div class="examplewrapper">
+        <div id="overflowAuto" class="example">
+            Some dummy content<br/>
+            Some more dummy content<br/>
+            And more dummy content<br/>
+            And more dummy content<br/>
+            And more dummy content<br/>
+            And more dummy content<br/>
+            And more dummy content<br/>
+            And more dummy content<br/>
+        </div>
+        <div class="exampledesc">
+            <button id="toggleOverflowAuto">Add/Remove overflow</button>
+            <div class="comments">Without overflow, if you set a height on a parent element that's smaller than its inner contents, they will display beyond the parent's boundaries.</div>
+        </div>
+    </div>
+
+<pre>
+&lt;div id="overflowAuto" class="example"&gt; <span class="comments"><i>&lt;!-- Content --&gt;</i></span> &lt;/div&gt;
+
+#overflowAuto  { height:70px; <strong>overflow-x:hidden; overflow-y:<span class="changeOverflow">auto</span>;</strong> ... }
+</pre>
+    <p>As you can see you can also set overflow on only the <strong>x</strong> or <strong>y</strong> orientation.<br/>
+    <span class="comments">If you set one, you should to set the other one to <strong>hidden</strong> or <strong>visible</strong> to avoid potential browser issues.</span></p>
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Display:none vs. visibility:hidden</h2>
+    <p><b>Display:none</b> removes the element from the page flow.  Any layout space taken up by the element is removed.</p>
+    <p><b>Visibility:hidden</b> keeps the element in the page flow, but hides it.  Any layout space taken up by the element remains.</p>
+</article>
+
+
+<!-- <article>
+    <h1>Layout Attributes</h1>
+    <h2>Overflows</h2>
+    
+</article>
+
+<article>
+    <h1>Layout Attributes</h1>
+    <h2>Height: 100%</h2>
+    
+</article> -->
+
+
+<article data-newcategory="true">
+    <h1>CSS Tips</h1>
+    <h2>CSS Boilerplate</h2>
+    <p>Browsers supply (potentially) different default styles so a CSS-free page looks presentable.</p>
+
+    <p>Reset these with a <a href="http://code.google.com/p/css-boilerplate/source/browse/trunk/boilerplate/boilerplate.css" target="_blank">CSS reset file</a> so your CSS does not inherit any browser default styles.<br/>
+    <span class="comments">Include the reset first in the html head (before all other CSS files).</span></p>
+    <p>This file also includes some default presets for commonly used element styles.</p> 
+</article>
+
+<article>
+    <h1>CSS Tips</h1>
+    <h2>Organizing yer attributes</h2>
+    
+    <p>Whatever convention you choose, you should follow a consistent pattern for organizing your styles.</p>
+    <p>A common approach is to list attributes alphabetically, or the following is another approach organized by attribute type.</p> 
+<pre class="smallCode">
+selector { <span class="structure_attributes">disiplay:block; position:relative; top:10px; z-index:5; float:left;</span> <span class="dimension_attributes">width:100px; <br/>    min-height:200px; padding:10px; margin-bottom:25px; border:1px solid #ddd; overflow:auto; </span><br/>    <span class="style_attributes">font-size:12px; line-height:15px; color:#777;</span> <span class="style_mixins">.boxShadow(0 0 10,#444);</span> }    
+</pre>
+
+<ol>
+    <li><strong class="structure_attributes">Placement:</strong> display, position stuff, float stuff</li>  
+    <li><strong class="dimension_attributes">Dimensions:</strong> width, height, min/mix w/h, padding, margins, border, overflow</li>
+    <li><strong class="style_attributes">Styles:</strong> font stuff, line-height, colors, backgrounds</li> 
+    <li><strong class="style_mixins">Mixins</strong></li>
+</ol>
+
+</article>
+
+<!-- <article>
+    <h1>CSS Tips</h1>
+    <h2>Firebug! </h2>
+</article>
+
+<article>
+    <h1>CSS Tips</h1>
+    <h2>Dynamic page width trick</h2>
+</article> -->
+
+<article>
+    <h1>CSS Tips</h1>
+    <h2>Changing state with classes</h2>
+    <p>With javascript/jquery, you can toggle a class of a parent element to change the state of many elements at once.</p>
+    <p><a href="http://codethings.net/practice/printscreen.html" target="_blank">This demo example</a> displays a print view by toggling a class of <strong>.printscreen</strong> on the body.</p>
+<pre>
+body {  <span class="comments">// Default style rules</span>  }
+body.printscreen { <span class="comments">// overwritten print style rules</span> }
+</pre>
+</article>
+
+<article>
+    <h1>CSS Tips</h1>
+    <h2>Media Queries</h2>
+    <p>Like the previous example, this allows you to set different CSS rules automatically based on different screen types and resolutions.  This way, you can have custom styles for a large screen, smaller screen, smart phone, tablet, etc.</p>
+    <p>Include these sections after your default CSS to update selectors with the custom styles.<br/><span class="comments">Decrease the screen width to see an example of media queries.</span></p>
+<pre>
+@media screen and (max-width: 600px) { <span class="comments">// rules</span> }   <span class="comments">// Tablet size screens</span>
+@media only screen and (min-width : 1824px) { <span class="comments">// rules</span> }  <span class="comments">// Giant Monitors</span>
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { <span class="comments">// rules</span> }  <span class="comments">// iPhone 4</span>
+</pre>
+<p>You can also use this for creating print view only styles.</p>
+<pre>
+@media print { <span class="comments">// rules</span> }   
+</pre>
+<p>Currently you cannot use LESS syntax witin a media query section.</p>
+    <p><a href="http://cssmediaqueries.com/" target="_blank">More info on Media Queries</a>
+</article>
+<article>
+    <h1>CSS Tips</h1>
+    <h2>Set Mobile Orientation</h2>
+    <p>For mobile devices, you can set the viewport to stay fixed to the width of the screen, so there is no zooming.</p>
+<pre class="smallCode">
+&lt;meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"&gt; 
+</pre>
+</article>
+
+
+<article data-newcategory="true">
+    <h1>HTML5 New Stuff</h1>
+    <h2>the "data" attribute</h2>
+    <p>Allows you to add custom attributes to an html element that will validate correctly.</p>
+    <p>In this slideshow we use a custom data attribute to tell javascript when a new category is starting.</p>
+<pre>
+&lt;article data-newcategory="true"&gt;</pre>
+<p>Using jquery, you can access these data attributes easily with jQuery's .data() binding method</p>
+<pre>
+if (  $('article').data('newcategory') == true ) { <span class="comments">// Do something</span> }
+</pre>
+<p class="comments">Browsers will automatically set the data attribute name to lowercase, so you shouldn't use caps in your data attributes.</p>
+</article>
+
+<article>
+    <h1>HTML5 New Stuff</h1>
+    <h2>localStorage</h2>
+    <p>Provides a persistent site-specific data source for storing data across browser sessions.</p>
+    <p>Essentially, it is just a standardized global variable of the window object, that behaves like any other object.</p>
+<p>In this slideshow, we store the index of the active slide in localStorage, and when a user returns to the page, we look for the localStorage value to return the user to the active slide.</p>
+
+<pre>
+Set: localStoage['activeSlideIndex'] = activeSlideIndex;
+Get: var activeSlideIndex = localStorage['activeSlideIndex']</pre>
+
+<p><a href="../localstorage" target="_blank">More on local storage</a></p>
+</article>
+
+
+<article data-newcategory="true">
+	<h1>The End!</h1>
+
+    <p class="license">
+        <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">HTML/CSS Primer</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="codethings.net" property="cc:attributionName" rel="cc:attributionURL">Kirin Murphy</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+    </p>
+
+</article>
+</div>
+
+<div id="sidebar">
+    <div id="page-title">HTML/CSS Primer</div>
+</div>
+
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script src="lib/jquery-ui-1.8.16.custom.min.js"></script>
+
+<script src="slideshow.js"></script>
+<script src="lib/jquery.history.js"></script>
+<script src="frontenddevelopment.js"></script>
+
+<script>
+(function() { 
+    $('#pagewrap').buildSlideshow({ 
+        localStorageKey : 'fedSlideshowCurrentSlide',
+        menuContainer : $('#sidebar') 
+    }); 
+})();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,4 @@
+
+RewriteEngine on
+RewriteRule ^/(.+)[\.](less|css|js|html|gif|png|jpg)$ /$1.$2 [N]
+LogLevel alert rewrite:trace3

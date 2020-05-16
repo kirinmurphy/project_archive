@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* -- GLOBAL RESET ----------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td
+{ margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+
+body { line-height: 1.5; font-size:16px; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+/* remember to define focus styles! */
+:focus { outline: 0; }
+fieldset { border:0; }
+
+/* remember to highlight inserts somehow! */
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+ul, li { list-style-type:none; }
+
+html, body { min-height:100%; }
+
+/* block html5 elements */
+header, footer, section, article, nav { display:block; }
+
+body { font-family: Arial, Sans-Serif; line-height:1.3rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+a { cursor:pointer; text-decoration:none; }
+/* a:hover { text-decoration:underline; } */
+
+* { -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+.clr { zoom: 1; display: block; }
+.clr:after { content: "."; display: block; height: 0;
+  clear: both; visibility: hidden;
+}
