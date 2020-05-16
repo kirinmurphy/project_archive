@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>Track Stuff</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">  
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="lib/plugins/formbuilder.css" type="text/css" />
+<link rel="stylesheet/less" href="trackstuff.css" type="text/css" />
+<script src="lib/less-1.1.3.min.js"></script>
+
+</head>
+<body>
+<script>
+	if( navigator.userAgent.match(/iPhone/i) 
+		|| navigator.userAgent.match(/iPod/i)
+		|| navigator.userAgent.match(/Android/i) ) { document.body.className = 'iphone'  }
+</script>
+
+<div id="trackStuff"></div>
+
+<script src="lib/jquery-1.6.1.min.js"></script>
+<script src="lib/plugins/formbuilder.js"></script>
+<script src="lib/plugins/inlineedit.js"></script>
+<script src="trackstuff.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#trackStuff').startTrackStuff({
+			'userKey':'Kirin',
+			'projectKey':'AddTask'
+		});
+	})
+</script>
+
+</body>
+</html>
+

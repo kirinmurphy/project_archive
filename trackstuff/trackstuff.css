@@ -1,0 +1,92 @@
+/* cleared floats - instead of clea:both class, used on containing div */
+#createTask:after, 
+#createTask .submitActions:after,
+.task:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#createTask, #createTask .submitActions, .task {  zoom: 1; display: block;  }
+
+#trackStuff { font-size:16px;
+	
+	input[type="text"] { display:block; font-size:18px; height:30px; width:98%; max-width:none; }
+	textarea { display:block; font-size:16px; width:98%; max-width:none; font-family:Arial;  }
+	#createTask { position:relative; width:700px; margin-bottom:0px;
+		background:#f4f4f4; border:solid 1px; border-color:#ddd #aaa #aaa #ddd;
+		.formitem { float:left; width:85%; max-width:none; }
+		.submitActions { position:absolute; top:6px; right:0; margin:0; padding:0; width:88px;
+			button { display:block; float:left; width:38px; padding:0; border:1px solid; border-color:#eee #999 #999 #eee;
+				font-size:25px; background:#094; color:#fff; -moz-border-radius:5px; -webkit-border-radius:5px; 	
+			} 
+			.submit { background:#85ab98; }
+			.clear { position:relative; left:6px; background:#e4e4e4; }
+		}	
+	}
+
+	.list { width:700px; 
+		li { position:relative; padding:10px 10px 11px 10px; border-bottom:1px solid #e4e4e4;
+			
+			.task,
+			.listaction { padding:0 5px; cursor:pointer; }
+
+			.task { margin-right:115px;
+				.form {  position:relative; }
+				.formitem { width:auto; margin-right:75px; padding:0; }
+				.submitActions { position:absolute; right:5px; top:3px; width:60px; padding:0; margin:0; }
+				.form input,
+				.form textarea {  }				
+				.form button { display:block; margin:0 auto 5px auto; }	
+			}
+			
+			/* listaction class added to three buttons below */
+			.listaction {  position:absolute; top:3px; width:25px; height:28px; border:1px solid #ddd; 
+				text-align:center; font-size:22px; line-height:28px; background:#e4e4e4; color:#fff;
+				-moz-border-radius:4px; -webkit-border-radius:4px; }
+			
+			.important { right:85px; }
+			.complete { right:45px; }
+			.remove { right:5px; }
+
+			&.importantTask {
+				.task { color:#f00; }
+				.important { background:#d66; }
+				.task { font-weight:bold; }
+			}
+			
+			&:hover {
+				.listaction { visibility:visible; } 
+			}
+
+			&.done { color:#aaa;
+				.task { text-decoration:line-through; cursor:default; }
+
+				.complete { background:#c3c3c3; }
+				.important { visibility:hidden !important; }
+			}
+		}		
+	}
+}
+
+.iphone { padding:0; 
+	#trackStuff { width:100%;
+	    
+	    input[type="text"] { width:75%; }
+	    
+		#createTask,
+		.list { width:100%; }
+		
+		#createTask { background:#35485b; border:0; }
+		
+		.list li { border-bottom:1px solid #ccc;
+			.important,
+			.complete,
+			.remove { visibility:visible; }
+		} 
+	}
+} 
+/* 
+@media only screen and (max-device-width: 480px) {
+	.iphone #trackStuff #createTask .formitem { width:380px; background:blue; }
+}
+
+@media only screen and (max-device-width: 320px) {
+	.iphone #trackStuff #createTask .formitem { width:220px; background:red; }
+}
+*/

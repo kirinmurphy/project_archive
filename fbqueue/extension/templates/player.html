@@ -1,0 +1,54 @@
+<div class="control-bar">
+
+  <span class="logo">FB Queue</span>
+
+  <div class="player-nav">
+    <button class="back-button">&#x25c0;&#x25c0;</button>
+    <button class="next-button">&#x25b6;&#x25b6;</button>
+    <div class="toggle-settings">
+      <button class="open-settings">&#x2261;</button>
+      <button class="close-settings">&nbsp;</button>
+      <button class="maximize-from-min">&nbsp;</button>
+    </div>
+  </div>
+</div>
+
+<div class="cliplist-container">
+  <div class="settings-panel">
+    <header>
+      <h3>Player Settings</h3>
+    </header>
+    <div class="content">
+
+      <div class="resize-options">
+        <label>Player Size: </label>
+        <label data-set-view-mode="maximized">
+          <input type="radio" name="player-size" />
+          <span>Regular Size</span>
+        </label>
+        <label data-set-view-mode="minimized">
+          <input type="radio" name="player-size" />
+          <span>Minimized</span>
+        </label>
+      </div>
+
+      <div class="auto-queue-control">
+        <label>
+          <input type="checkbox" />
+          <span>Automatically queue all clips.
+            <span class="refresh-message">
+              (<a href="#">Refresh</a> to get the current ones)
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="support-message">
+        <span>
+          <a href="http://www.codethings.net/qtube" target="_blank">Contact</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <ul class="cliplist"></ul>
+</div>
+<div class="player-container"></div>

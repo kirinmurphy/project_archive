@@ -1,0 +1,95 @@
+.clip-container .toggle-settings {
+  display:inline-block; vertical-align:middle;
+  position:relative; top:0; right:0;
+  -webkit-transition:.9s;
+}
+
+.clip-container .toggle-settings .open-settings {
+  font-size:20px;
+}
+
+.clip-container .toggle-settings .maximize-from-min,
+.clip-container .toggle-settings .close-settings {
+  display:none;
+}
+
+.clip-container .toggle-settings .maximize-from-min:before,
+.clip-container .toggle-settings .close-settings:before {
+  content:"\3009"; font-size:15px; display:block;
+  position:relative; top:-6px;
+  -webkit-transform: rotate(-90deg);
+}
+
+.clip-container .settings-panel { position:absolute;
+  top:-500%; left:8px; bottom:200%; right:8px;
+  box-shadow:0 0 10px #666; overflow:hidden;
+  background:#fff; -webkit-transition:.8s;
+}
+
+
+.clip-container .settings-panel > header { padding:10px 20px;
+  border-bottom:1px solid #ddd; background:#eee;
+}
+
+.clip-container .settings-panel h3 { font-size:15px; }
+
+.clip-container .settings-panel .content { padding:20px 20px; }
+
+.clip-container .settings-panel .content > div { margin-bottom:14px; }
+
+.clip-container .settings-panel .resize-options label:first-of-type {
+  font-weight:bold;
+}
+
+.clip-container .settings-panel label { display:inline-block;
+  margin-right:6px; vertical-align:middle; font-weight:normal;
+  font-size:14px;
+}
+
+.clip-container .settings-panel label span { color:#333; }
+
+.clip-container .settings-panel input { position:relative; top:-1px;
+  margin-right:5px;
+}
+
+.clip-container .settings-panel input[type="radio"] { display:none; }
+
+.clip-container .settings-panel input[type="radio"] + span {
+  color:#27c;
+}
+
+.clip-container .settings-panel input[type="radio"] + span:hover {
+  color:#27c; text-decoration:underline;
+}
+
+.clip-container .settings-panel input[type="radio"]:checked + span {
+  cursor:default; color:#333;
+}
+
+.clip-container .settings-panel input[type="radio"]:checked + span:hover {
+  text-decoration:none;
+}
+
+.clip-container .settings-panel .refresh-message { display:none;
+  padding-left:5px; font-size:12px; color:#666;
+}
+
+.clip-container .settings-panel .support-message {
+  padding:4px 0 0 2px; font-size:11px; color:#666;
+}
+
+.clip-container[data-settings-open="true"] .settings-panel {
+  top:8px; bottom:8px; z-index:2;
+}
+
+.clip-container[data-settings-open="true"] .player-nav .close-settings {
+  display:inline-block;
+}
+
+.clip-container[data-settings-open="true"] .toggle-settings .open-settings {
+  display:none;
+}
+
+.clip-container[data-settings-open="true"][data-view-mode="maximized"] .toggle-settings {
+  top:46px; right:10px;
+}

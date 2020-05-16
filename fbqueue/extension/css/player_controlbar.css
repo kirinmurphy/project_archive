@@ -1,0 +1,37 @@
+
+/* -- CONTROL BAR ------------------- */
+.clip-container .logo { display:inline-block;
+  position:relative; left:5px; top:3px; line-height:30px;
+  font-size:13px; color:#fff; font-weight:bold;
+  color:#fbfbfb; font-family:helvetica;
+  letter-spacing:1px; -webkit-transition: .8s;
+}
+
+.clip-container .player-nav { float:right;
+  height:100%; width:140px;
+  -webkit-box-sizing: border-box;
+  text-align:right; -webkit-transition: .4s;
+}
+
+.intro-popup .open-settings,
+.clip-container .player-nav button { display:inline-block;
+  height:29px; min-width:35px; vertical-align:middle;
+  line-height:25px; margin:2px 0 0 4px;
+  font-size:12px; text-transform:uppercase;
+  border:1px solid #888; border-radius:3px;
+  background:-webkit-linear-gradient(#3B5998,#2B4978);
+  color:#eee; cursor:pointer;
+}
+
+.clip-container .player-nav button:hover {
+  color:#fff;
+}
+
+.clip-container .player-nav button:active {
+  position:relative; top:1px;
+  background:#05182b;
+}
+
+.clip-container .player-nav button[disabled] {
+  opacity:.5; cursor:default;
+}

@@ -1,0 +1,42 @@
+
+.clip-container[data-view-mode="minimized"] { left:0; bottom:0;
+  width:590px; height:32px; padding:5px 145px 5px 100px;
+}
+
+.clip-container[data-view-mode="minimized"] .player-container {
+  margin-left:-800px; overflow:hidden; -webkit-transiton:.3s;
+}
+
+.clip-container[data-view-mode="minimized"] .control-bar { left:0; height:0; }
+.clip-container[data-view-mode="minimized"] .control-bar > * { position:absolute; top:5px; }
+.clip-container[data-view-mode="minimized"] .logo { left:14px; top:7px; }
+.clip-container[data-view-mode="minimized"] .player-nav { right:10px; }
+.clip-container[data-view-mode="minimized"] .player-nav .open-settings { display:none; }
+.clip-container[data-view-mode="minimized"] .player-nav .maximize-from-min { display:block; }
+
+
+.clip-container[data-view-mode="minimized"] .cliplist-container { margin-top:0; height:100%; }
+.clip-container[data-view-mode="minimized"] .cliplist {
+  box-shadow:0 0 5px #888 inset; border-radius:4px;
+}
+
+.clip-container[data-view-mode="minimized"] .cliplist .actions { top:2px; }
+
+.clip-container[data-view-mode="minimized"] .cliplist li { display:none; }
+
+.clip-container[data-view-mode="minimized"] .cliplist li.active {
+  display:block; padding-top:1px; padding-bottom:1px;
+}
+
+.clip-container[data-view-mode="minimized"] .cliplist li.active .play-video {
+  padding-top:7px; padding-bottom:5px;
+}
+
+/* @REFACTOR - messy */
+.clip-container[data-view-mode="minimized"] .cliplist li.stopped .play-video:before {
+  top:7px;
+}
+
+.clip-container[data-view-mode="minimized"] .cliplist li.active:not(.stopped) .play-video:before {
+  top:-2px;
+}

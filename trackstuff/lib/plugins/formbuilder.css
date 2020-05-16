@@ -1,0 +1,96 @@
+.borderRadius (@radius){
+	-moz-border-radius:@radius;
+	-webkit-border-radius:@radius;
+	border-radius:@radius;
+}
+
+/* -- Shadows ---------------------------------------------------------------*/
+.boxShadow(@dims:0 0 10px, @color:#999) {
+	box-shadow: @dims @color; // Opera, FFX4
+	-moz-box-shadow:@dims @color; // FFX3.5
+	-webkit-box-shadow:@dims @color; // Safari/Chrome/WebKit
+}
+
+/* -- Transition ---------------------------------------------------------------*/
+.transition(@time: .1s, @range: all, @ease: ease-in) {
+	-moz-transition: @range .2s @ease;
+	-webkit-transition: @range .1s @ease;
+	-o-transition: @range @time @ease;
+	transition: @range @time @ease;
+}
+
+.linearGradient(@deg, @col1, @col2) {
+	background: @col1;
+	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
+	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+}
+
+@borderColor : #666 #bbb #bbb #666;
+
+::-webkit-input-placeholder {  color: #aaa;  }
+:-moz-placeholder {  color:#aaa;  }
+
+
+.form,
+.formitem { 
+	h3 { font-size:18px; }
+	
+	.guideline { padding:8px 10px 6px 10px; color:#777; font-size:11px; font-style:italic;  }
+	
+	.clickset { padding-bottom:6px; 
+		input[type="checkbox"],
+		input[type="radio"] { margin-right:6px; }
+	}
+	
+	.nested { padding:5px 10px 8px 10px;
+		.clickset { padding:5px 5px 10px 5px; }
+	}
+
+	label { display:block; }
+	
+	select,
+	input[type="text"],
+	textarea { width:90%; max-width:260px; border:1px solid; border-color: @borderColor; font-size:13px; }
+	
+	input[type="text"],
+	textarea { padding:4px;  }
+	
+	select option { padding:2px 4px; }
+	.submitActions { margin-top:8px; padding:12px 6px; }
+}
+fieldset { margin-top:8px; padding-bottom:10px; border: 1px solid #eee;
+	legend { padding:4px; font-size:14px; }
+}
+
+.formitem { padding:5px 10px; width:90%;
+	label { display:block; padding-bottom:2px; font-size:12px; }
+	&.error { 
+		input[type="text"],
+		select,
+		textarea { background:#fff4f4; }
+	}
+}
+.errorMsg { color:red; padding:2px; }
+
+.form .typeahead { position:relative;
+    input { font-size:.7em; padding-right:30px; width:160px; 
+        .linearGradient(270deg,#f4f4f4,#fff); .borderRadius(5px);
+    }
+    .clear { display: block; padding: 5px 8px; position: absolute; left: 155px; top: 1px; 
+        .linearGradient(90deg,#ddd,#fff); -moz-border-radius:0 5px 5px 0; -webkit-border-radius:0 5px 5px 0;
+        &:hover { color:#fff; .linearGradient(270deg,#777,#bbb); }
+    }
+}
+
+
+
+
+pre { letter-spacing:1px; line-height:1.7; font-family:Arial, Verdana;
+	.comment { font-style:italic; color:#aaa; }
+}
+
+.exampleJSON { border:1px solid #ccc; padding:45px 50px; width:600px; margin:0 auto 50px auto; font-size:13px; 
+	b { font-size:14px; }
+}
+
+.realExampleJSON { width:750px; margin:0 auto; font-size:1.1em; }

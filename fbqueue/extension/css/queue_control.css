@@ -1,0 +1,50 @@
+.queue-control { display:none; position:relative;
+  height:38px; padding:3px;
+  background:#3B5998; border:1px solid #888;
+}
+
+.queue-control-in-intro button,
+.queue-control button { display:inline-block;
+  padding:8px 5px; width:49%; height:38px;
+  vertical-align:top; text-align:center;
+  border:1px solid #ccc; border-radius:2px;
+  cursor:pointer;
+  background:-webkit-linear-gradient(#f8f8f8,#ddd);
+}
+
+.queue-control-in-intro button:hover,
+.queue-control button:hover {
+  background:-webkit-linear-gradient(#f0f0f0,#ccc);
+}
+
+.queue-control-in-intro .play-trigger,
+.queue-control .play-trigger {
+  width:100%; padding-top:11px;
+  font-size:16px;
+}
+
+.queue-control-in-intro .queue-trigger,
+.queue-control .queue-trigger { display:none;
+  padding-top:5px; font-size:26px; line-height:16px;
+}
+
+.queue-control-in-intro .play-trigger,
+.queue-control-in-intro .queue-trigger { display:inline-block;
+  width:60px; margin-top:-3px; vertical-align:middle;
+  -webkit-transform:scale(.7);
+}
+
+body[data-q-active="true"] .queue-control .play-trigger {
+  width:49%; margin-right:2%;
+}
+
+body[data-q-active="true"] .queue-control .queue-trigger {
+  display:inline-block; width:49%;
+}
+
+.queue-control .already-queued {
+  font-size:15px; line-height:36px;
+  text-align:center; color:#fff;
+}
+
+body[data-dom-loaded="true"] .queue-control { display:block; }

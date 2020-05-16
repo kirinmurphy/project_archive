@@ -1,0 +1,47 @@
+<div class="intro-frame">
+  <div class="popup-overlay"></div>
+  <div class="intro-popup" data-on-frame="player-size">
+    <span class="close-popup icon">&#x2b;</span>
+
+    <div class="frame" data-frame="player-size">
+      <header>
+        <h2>Thanks for downloading <span class="logo2">FB Queue</span>!</h2>
+      </header>
+      <div class="guideline">Pick your player size:</div>
+      <div class="option full-size">
+       <div data-img="player_size_full.png" class="img player-size-full"></div>
+        <button data-set-view-mode="maximized">Regular Size</button>
+      </div>
+      <div class="option minimized">
+       <div data-img="player_size_minimized.png" class="img player-size-minimized"></div>
+        <button data-set-view-mode="minimized">Minimized</button>
+      </div>
+      <footer>
+        You can change your settings later from the <button class="open-settings">&#x2261;</button> button.
+      </footer>
+    </div>
+
+    <div class="frame" data-frame="auto-add-option">
+      <header><h2>Great!  Just one more question...</h2></header>
+      <div class="guideline">Would you like to pick your clips or add them all automatically?</div>
+      <div class="option-wrap">
+        <div class="option pick-yourself">
+          <div data-img="qtube_post_clip.png" class="img qtube-post-clip"></div>
+          <button data-auto-add="false">Let Me Pick 'Em</button>
+        </div>
+        <div class="option auto-add">
+          <div data-img="qtube_post_clip_queued.png" class="img qtube-post-clip-queued"></div>
+          <button data-auto-add="true">Auto Add All Songs</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame" data-frame="done">
+      <header><h2>You're all set!</h2></header>
+      <div class="refresh-message" style="display:none;">
+        <a href="#">Refresh your browser</a> to auto-add clips already loaded on this page.
+      </div>
+      <button class="close-popup">Close</button>
+   </div>
+  </div>
+</div>
