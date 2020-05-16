@@ -3,18 +3,18 @@
 
 (function() {
   var imageList = [
-    { name: '/kagifoscope-public/images/rainbow-rings.gif' },
-    { name: '/kagifoscope-public/images/industrial-waste.gif' },
-    { name: '/kagifoscope-public/images/calling-all-cars.gif' },
-    { name: '/kagifoscope-public/images/boogie-nights.gif' },
-    { name: '/kagifoscope-public/images/boston_skyline.gif' },
-    { name: '/kagifoscope-public/images/night_space_sky.gif' },
-    { name: '/kagifoscope-public/images/bladerunning_glassbreaking.gif' },
-    { name: '/kagifoscope-public/images/beach_burnout.gif' },
-    { name: '/kagifoscope-public/images/animatrix_robot_riot1.gif' },
-    { name: '/kagifoscope-public/images/animatrix_robot_riot2.gif' },
-    { name: '/kagifoscope-public/images/sun_tracker.gif' },
-    { name: '/kagifoscope-public/images/retro_explo.gif' },
+    { name: 'images/rainbow-rings.gif' },
+    { name: 'images/industrial-waste.gif' },
+    { name: 'images/calling-all-cars.gif' },
+    { name: 'images/boogie-nights.gif' },
+    { name: 'images/boston_skyline.gif' },
+    { name: 'images/night_space_sky.gif' },
+    { name: 'images/bladerunning_glassbreaking.gif' },
+    { name: 'images/beach_burnout.gif' },
+    { name: 'images/animatrix_robot_riot1.gif' },
+    { name: 'images/animatrix_robot_riot2.gif' },
+    { name: 'images/sun_tracker.gif' },
+    { name: 'images/retro_explo.gif' },
     // { name: '/images/honey_bunny_standoff.gif' },
     // { name: '/images/cloud_motion.gif', opacity: .6 }
   ];
