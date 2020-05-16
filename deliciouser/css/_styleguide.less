@@ -1,0 +1,56 @@
+@font-size-big: 18px;
+@font-size-base: 16px;
+@font-size-small: 13px;
+@font-size-tiny: 11px;
+
+@textcolor-superdark: #000;
+@textcolor-base: #555;
+@textcolor-medium: #888;
+@textcolor-light: #bbb;
+@textcolor-superlight: #d4d4d4; 
+@textcolor-inverted: #fff;
+@textcolor-link: #6b7f8c;
+@textcolor-link-hover: #3b4f62;
+
+@bgcolor-base: #fff;
+@bgcolor-hover: #fafafa;
+@bgcolor-highlighted: #dde4ff;
+@bgcolor-error:#fcc;
+
+
+/* styleguide issue - some attributes are both dimensional and style (padding, border-width) 
+	what is the right place to put the attribute?  
+	styleguide is for consistent implementation but shouldn't include any properties that 
+	could break the placement of elements in the dependent CSS files
+	font sizes also can break the page so...
+	We have a problem of separation of concerns vs. don't repeat yourself  
+	What to do?? 
+	DRY is winning so far... 
+*/
+
+@border-light:1px solid #eee;
+@border-base: 1px solid #ddd;
+@border-dark: 1px solid #999;
+@border-error:2px solid #c00;
+
+
+.buttonStyle() {
+    display:block; padding:5px 6px; color:@textcolor-base; font-size:@font-size-tiny; 
+     .linearGradient(270deg,#fff,#ccc); letter-spacing:1px; border:1px solid #ccc; border-radius:3px; 
+
+     &:hover { .linearGradient(270deg,#eee,#bbb); color:@textcolor-superdark; }
+
+     &.active,
+     &:active { color:@textcolor-superdark; .linearGradient(270deg, #ccc, #f4f4f4); }
+
+     &:active { padding:6px 6px 4px 6px; .linearGradient(270deg,#888,#ccc); }
+}
+
+/* styleguide issue, gradient can't exist in a variable, needs to exist in a mixin
+    that means changing the stylesheets -__-
+	
+	@bgcolor-hover: #fff;
+	.bgcolor-hover() {  .linearGradient(270deg,#fff,#bbb);  }
+*/
+
+

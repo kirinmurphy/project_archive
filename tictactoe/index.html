@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("dropdown_group");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="main.css?v=12aa22" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body>
+
+<div id="tictactoe-yo">
+  <div id="game-board"></div>
+  <div id="game-options">
+    <div class="currentPlayer"></div>
+    <div class="players">
+      <a href="#" data-players="0" type="button">Auto Play</a>
+      <a href="#" data-players="1" type="button">One Player</a>
+      <a href="#" data-players="2" type="button">Two Player</a>
+    </div>
+    <a href="#" class="resetGame">Reset Game</a>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="main.js?v=a234fa3"></script>
+<script>
+$(document).ready(function() {
+	$('#tictactoe-yo').ticTacToeYo();
+
+  var inIframe = (function inIframe () {
+    try { return window.self !== window.top; }
+    catch (e) { return true; }
+  })();
+
+  $('body').attr('data-in-iframe', inIframe);
+});
+</script>
+
+</body>
+</html>
+

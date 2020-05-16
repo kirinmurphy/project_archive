@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="assets/default.css">
+
+    <style>
+      body { background:#000; }
+      #video { position:fixed; left:0; bottom:-40px; width:200px; height:200px;
+        z-index:1; opacity:0;
+        transition: opacity 10s ease-in-out;
+      }
+
+      #video.ready { opacity:1; }
+
+      .hair-slow-zoom { position:fixed; z-index:2; width:50%; height:50%; }
+      .hair-slow-zoom:nth-of-type(1) { top:0; left:0; }
+      .hair-slow-zoom span { transform-origin:right bottom; background-position:right bottom; }
+      .hair-slow-zoom:nth-of-type(2) { top:0; right:0; transform: scaleX(-1); }
+      /*.hair-slow-zoom:nth-of-type(2) span { transform-origin:left bottom; }*/
+      .hair-slow-zoom:nth-of-type(3) { bottom:0; left:0; transform: scaleY(-1); }
+      /*.hair-slow-zoom:nth-of-type(3) span { transform-origin:top right; }*/
+      .hair-slow-zoom:nth-of-type(4) { bottom:0; right:0; transform: rotate(180deg); transform-origin:center center; }
+      /*.hair-slow-zoom:nth-of-type(4) span { transform-origin:top left; }*/
+
+      .hair-slow-zoom span { position:absolute;
+        top:0; left:0; bottom:0; right:0;
+        color:#fff;
+        background:left top no-repeat;
+        background-size:cover;
+
+        animation:beacon 5s infinite linear;
+      }
+
+      .hair-slow-zoom[data-on-cycle="0"] span { background-image: url(images/after_the_storm_intro.gif); }
+      .hair-slow-zoom[data-on-cycle="1"] span { background-image: url(images/after_the_storm_buying_the_seed.gif); }
+      .hair-slow-zoom[data-on-cycle="2"] span { background-image: url(images/after_the_storm_everybodys_hurtin.gif); }
+      .hair-slow-zoom[data-on-cycle="3"] span { background-image: url(images/after_the_storm_planting_the_seed.gif); }
+      .hair-slow-zoom[data-on-cycle="4"] span { background-image: url(images/after_the_storm_lawn_pan.gif); }
+      .hair-slow-zoom[data-on-cycle="5"] span { background-image: url(images/after_the_storm_hair_slow_zoom.gif); }
+      /*.hair-slow-zoom[data-on-cycle="2"] span { background:red; }*/
+
+      @-webkit-keyframes beacon {
+        0% { transform:scale(2); opacity:0; }
+        /*10% { transform:scale(1.8); opacity:.15; }*/
+        /*20% { transform:scale(1.6); opacity:.3; }*/
+        /*30% { transform:scale(1.4); opacity:.4; }*/
+        /*40% { transform:scale(1.2); opacity:.5; }*/
+        40% { transform:scale(1); }
+        /*60% { transform:scale(.8); opacity:.7; }*/
+        70% { transform:scale(); opacity:.7; }
+        /*80% { transform:scale(.4); opacity:.9; }*/
+        100% { transform:scale(0); opacity:1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hair-slow-zoom"></div>
+    <div class="hair-slow-zoom"></div>
+    <div class="hair-slow-zoom"></div>
+    <div class="hair-slow-zoom"></div>
+    <iframe id="video"
+      src="https://www.youtube.com/embed/9f5zD7ZSNpQ?autoplay=1" frameborder="0"
+      allow="autoplay; encrypted-media" allowfullscreen style="">
+    </iframe>
+
+    <script src="assets/jquery-1.11.1.min.js"></script>
+
+    <script>
+      (function () {
+
+        setTimeout(function () {
+          $('#video').addClass('ready');
+        }, 4000);
+
+        var $hairSlowZoomWrapper = $('.hair-slow-zoom');
+        var frameSpeed = 3000;
+        var frameCount = 0;
+        var maxFrames = 4;
+
+        (function makeNewHairSlowZoomFrame () {
+          setTimeout(function () {
+            frameCount++;
+            var $newFrame = $('<span/>', { text: '' });
+            $hairSlowZoomWrapper.append($newFrame);
+            if ( frameCount < maxFrames ) { makeNewHairSlowZoomFrame(); }
+          }, frameSpeed);
+        })();
+
+        var cycleCount = 0;
+        var maxCycles = 5;
+        var cycleTime = 20000;
+        $hairSlowZoomWrapper.attr('data-on-cycle', cycleCount);
+        (function runCycle () {
+          setTimeout(function () {
+            cycleCount = cycleCount === (maxCycles - 1) ? 0 : cycleCount + 1;
+            $hairSlowZoomWrapper.attr('data-on-cycle', cycleCount);
+            runCycle();
+          }, cycleTime);
+        })();
+
+      })();
+    </script>
+  </body>
+</html>

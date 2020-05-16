@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+
+<!--
+@author Sean Brant http://stepsandnumbers.com/
+@author Kirin Murphy codethings.net
+-->
+
+<link rel="stylesheet" type="text/css" media="all" href="../../rel/css/default.css" />
+
+<style type="text/css">
+
+body { padding:20px; font-family:Arial, Verdana, Sans-Serif; color:#444; font-size:12px; }
+
+a { color:#7c0000; }
+
+form {   padding:5px; margin-bottom:12px; 
+	background:#efefef; border:2px solid #fff; outline:1px solid #aaa; -moz-border-radius:7px; -moz-outline-radius:7px; }
+
+form .collection { padding:5px; }
+
+form label { float:left; width:100px; padding:5px 8px 5px 0; text-align:right; }
+
+form input, form select { margin-right:8px; }
+
+form input.phone_number { width:75px; }
+form input.phone_ext { width:35px; }
+
+
+
+.collection.primary .remove_phone { display:none; }
+
+.collection .error { display:block; padding:4px 0 0 110px; color:#a00; font-weight:bold;  }
+
+#actions { clear:both; padding-left:10px; }
+
+.serialize { display:block; margin-bottom:6px; border:1px solid; border-color:#ddd #999 #999 #ddd; background-color:#ddd; }
+
+#serialized { letter-spacing:.5px; font-size:10px; }
+#serialized span { font-weight:bold; }
+
+#form { float:left; margin-bottom:10px;  }
+
+#features { float:left; width:310px; padding:3px 30px; position:relative; top:-2px;
+		line-height:1.4; letter-spacing:.3px; font-size:11px; text-align:justify; }
+#features a { test-decoration:underline; color:#444; }
+
+
+</style>
+
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			
+		// enable phonebuilder js methods to be used on the hidden input field
+			$('#phone_set').phonebuilder();
+			
+			$('#serialized').html( "<span>Stored Serialized Value:</span> " + $('#phone_set').val() );
+
+		// sends data from phonebuilder methods to add a phone instance
+			$('.add_phone').click(function() {
+				$('#phone_set').data('phonebuilder').add_phone();
+				return false;
+			});
+			
+		// Combine input values from form field into single variable of delimited arrays and sends value back to hidden value.  
+			$('.serialize').live('click', function() {	
+												   
+				var errors = false;
+				$('form').find('.collection').each(function() {
+					var number = $(this).find('input.phone_number');
+					var number_val = number.val();
+					var number_length = number.val().length;
+					var collection = number.parent();
+					var error_field = collection.find('span.error')
+																				
+					// validation test - errors start at false, then if condition is met errors is set to true 
+					if ( number_length != 10 || isNaN(number_val) ) {
+													
+						if ( error_field.length == 0  ) {
+							$('<span class="error"></span>').text('Enter a 10 digit number.').appendTo(collection);
+						} 
+						
+						errors = true;	// tells if statement below that if errors are true, stop running the function 
+						
+					} else {   $(error_field).remove();   }  // if no errors this time, removes error field
+				
+				});
+				
+				if (errors) return; // if errors = true, stop running the function
+				
+				// if no errors, use serialize method to combine all numbers in form to a single value stored in a hidden input value.
+				$('#phone_set').data('phonebuilder').serialize();
+				$('#serialized').html( "<span>New Serialized Value:</span> " + $('#phone_set').val() );
+
+				return false;
+
+			});
+			
+								   
+		});  // end document ready
+		
+		$.PhoneBuilder = function(target) {
+			this.init($(target));
+		};
+		
+		$.PhoneBuilder.prototype = {
+			
+			init: function(target) {
+				this.target = target;
+				this.numbers = [];
+				this.deserialize();
+				this.build();
+			},
+			
+			deserialize: function() {
+				if (this.target.val() == '') return; 
+				var numbers = [];
+				var numbers_bits = this.target.val().split('|');
+				for (var i = 0; i < numbers_bits.length; i++) {
+					var number_bits = numbers_bits[i].split(':');
+					numbers.push({
+						phone_id: (number_bits[0] == 'null') ? null : number_bits[0],
+						number: number_bits[1],
+						ext: (number_bits[2] == 'null') ? null : number_bits[2],
+						type: number_bits[3]
+					});
+				}
+
+				this.numbers = numbers;
+			},
+						
+			add_phone: function(number, deleteable) {  // creates phone collection object
+				
+				if (!number) {  // if there are no numbers in the phone_set value, generate a blank collection array to be built around
+					number = {phone_id:'', number: '', ext: '', type: ''};	
+				}
+				
+				// creates collection html
+				var collection = $('<div class="collection clr">');
+
+					$('<label>Additional Phone</label>').appendTo(collection);
+					$('<input type="hidden" class="phone_id" />').val(number.phone_id).appendTo(collection);
+					$('<input type="text" class="phone_number" />').val(number.number).appendTo(collection);
+					$('<input type="text" class="phone_ext" />').val(number.ext).appendTo(collection);
+					$('<select class="phone_type"><option value="1">Cell</option><option value="2">Home</option></select>')
+																.val(number.type).appendTo(collection);
+																
+					var button = $('<a href="#">');
+					var _this = this;
+					if (deleteable !== false) {
+						button.text('remove').click(function() {
+							collection.remove();						 
+							return false;								 
+						}).appendTo(collection);
+					} else {
+						button.text('add').click(function() {
+							_this.add_phone();				 
+							return false;								 
+						}).appendTo(collection);
+					}
+				
+				// append this content section to parent
+				collection.appendTo(this.container);
+				
+			},
+
+			build: function() {  // adds phone colleciton object to document
+				this.container = $('<div>').insertBefore(this.target);
+				if (this.numbers.length == 0) {
+					this.add_phone(null, false);
+					return;
+				}	
+				for (var i = 0; i < this.numbers.length; i++) {
+					var deleteable = (i == 0) ? false : true;
+					this.add_phone(this.numbers[i], deleteable);
+					if ( i == 0 ) { $(this.container).find('.collection:first label').text('Primary Phone') }
+				}
+			},
+
+			serialize: function() {
+				this.update_numbers();
+				var string = '';
+				for (var i = 0; i < this.numbers.length; i++) {
+					string	+= (this.numbers[i].phone_id || 'null') + ':';
+					string	+= (this.numbers[i].number || 'null') + ':';
+					string	+= (this.numbers[i].ext || 'null') + ':';
+					string	+= this.numbers[i].type;
+					if (i != this.numbers.length - 1) string += '|';
+				}
+				this.target.val(string);
+			},
+			
+			update_numbers: function() {  //
+				var _this = this;
+				this.numbers = [];
+				this.container.find('.collection').each(function() {
+					var container = $(this);										 
+					_this.numbers.push({
+						phone_id: container.find('.phone_id').val() || null,
+						number: container.find('.phone_number').val(),
+						ext: container.find('.phone_ext').val() || null,
+						type: container.find('.phone_type').val()
+					});	
+				});
+
+}
+
+
+		};
+		
+		
+		$.fn.phonebuilder = function() {
+			this.each(function() {
+				var pb = new $.PhoneBuilder(this);
+				$(this).data('phonebuilder', pb);
+			});	
+			return this;
+		};
+		
+	
+	</script>
+    
+
+</head>
+
+<body>
+
+
+<div id="form">
+
+	<form>
+        <input id="phone_set" type="hidden" value="333:1231231231:null:2|334:1231231231:333:1" />        
+    </form>
+
+</div>
+
+
+<div id="features">
+    Build form row sets in the DOM based on a single database value, dynamically add and remove these sets in the form, and re-serialize updated data to return to the server when the form is submitted. 
+</div>        
+
+
+    <div id="actions">
+        <button class="serialize">Validate &amp; Serialize</button>
+        <div id="serialized"></div>
+    </div>
+
+
+
+</body>
+</html>

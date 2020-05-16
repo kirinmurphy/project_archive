@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>codethings.net :: ListBuilder()</title>
+
+<link type="text/css" rel="stylesheet" href="../lib/default.css" />
+<link type="text/less" rel="stylesheet" href="../listbuilder.css"/>
+<link type="text/less" rel="stylesheet" href="contactlist.css"/>
+<link type="text/less" rel="stylesheet" href="../../dropdown/dropdown.css" />
+<script src="../lib/less-1.1.3.min.js"></script>
+
+<!--[if IE]> 
+<script>  
+ document.createElement("header");  
+ document.createElement("footer");  
+ document.createElement("nav");  
+ document.createElement("section");  
+ document.createElement("article");
+</script>  
+<![endif]-->
+
+</head><body>
+<div id="contactList" class="wrap compact">
+<!-- <header/>Dis A Header</header> -->
+
+</div>
+
+<script src="../lib/jquery-1.6.1.min.js"></script>
+<script src="../../dropdown/dropdown.js"></script>
+<script src="../../tooltip/main.js"></script>
+<script src="../lib/handlebars-1.0.0.beta.6.js"></script>
+<script src="../handlebarhelpers.js"></script>
+<script src="listbuilder.js"></script>
+
+<script id="template_expanderLink" type="text/x-handlebars-template">
+    <div class="{{type}}Link expander clr" data-url="{{url}}">
+        <em>v</em>
+        <span style="display:none">{{buttonText}}</span>
+    </div>    
+</script>
+<script id="template_recentArticles" type="text/x-handlebars-template">
+    <div class="profileSummary detail">
+        <dl>
+            <dt>Recent Articles</dt>
+            <dd>
+                <ul>
+                    {{#each this}}
+                    <li>
+                        <span class="date">{{date}}</span>
+                        <a href="#" class="title" target="_blank">{{title}}</a>
+                        <a href="{{outletURL}}" class="outlet">{{outlet}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</script>
+
+<script id="template_item" type="text/x-handlebars-template">
+    <div class="articleContent clr">
+        <h3 class="name">
+            {{#if nameLink }} 
+                <a href="{{nameLink}}">{{name}}</a>
+            {{else}}
+                <span>{{name}}</span>
+            {{/if}}
+            {{#if title}} <span class="title">{{title}}</span>  {{/if}}
+        </h3>
+        {{#if outlet}}
+            <div class="outletInfo">
+                <a class="primaryOutlet" href="{{outletLink}}">{{outlet}}</a>
+                {{#if mediaType}}<span class="mediaType">{{mediaType}}</span>{{/if}}
+            </div>
+        {{/if}}
+        {{#if topics}}
+            <dl class="topics"><dt>Covering:</dt><dd>{{htmlifyArray topics addSpan=true separator=","}}</dd></dl>
+        {{/if}}
+    </div>
+    <div class="contactInfo clr">
+        {{#if address1}}<div class="address">{{address1}}</div>{{/if}}
+        {{#if location}}<div class="location">{{location}}</div>{{/if}}
+        {{#if DMA}}<div class="DMA">{{DMA}}</div>{{/if}}
+        {{#if phone}}<div class="phone">{{phone}}</div>{{/if}}
+        <div class="contactLinks clr">
+            {{#if email}}<a href="mailto:{{email}}" class="email">{{email}}</a>{{/if}}
+            {{#if twitter}}<a href="http://www.twitter.com/{{twitter}}" class="twitter">{{twitter}}</a>{{/if}}
+            {{#if website}}<a href="{{website}}" class="website">{{website}}</a>{{/if}}
+        </div>
+    </div>
+    {{#if metrics}}
+        <div class="metrics">
+            {{#each metrics}}
+                <dl class="{{this.type}}"><dt>{{this.name}}</dt>
+                    <dd>{{this.value}}
+                        {{#if this.frequency}} / <span>{{this.frequency}}</span> {{/if}}
+                    </dd>
+                </dl>
+            {{/each}}
+        </div>
+    {{/if}}
+    {{expanderLinks id}}
+    {{#if recentArticles}} 
+        {{showRecentArticles recentArticles}}
+    {{/if}}
+</script>
+
+<script>
+
+    var list = {
+        "configuration": {
+            "expanderLinks" : [
+                { 'type': 'allOutlets', 'buttonText': 'All Outlets', 'url':'assets/alloutlets/' },
+                { 'type': 'recentArticles', 'buttonText': 'Recent Articles', 'url':'assets/recentarticles/' },
+                { 'type': 'profileSummary', 'buttonText': 'View All Outlets', 'url':'assets/profiletext/' }
+            ]
+        },
+        'groups': [
+        	{
+        		"name":"Search Results",
+        		"projects": [
+        			{
+        			    "id":20000,
+                        "isSelected":true,
+        			    "isStarred":true,
+        			    "name":"Walter Mossberg",
+        			    "title":"Editor",
+        			    "imgLink":"http://www.journalism.columbia.edu/system/photos/956/default/Alumni_Mossberg.jpg?1282075390",
+        			    "nameLink":"",
+        			    "outlet":"The New York Times",
+        			    "mediaType":"Daily Newspaper",
+        			    "outletLink":"#",
+        			    "allOutletsLink":"#",
+        			    "topics":["Sports","Excercise","World Events" ],
+        			    "address1":"620 Eighth Avenue Manhattan",
+        			    "location":"New York, NY USA",
+        			    "DMA":"DMA-001",
+        			    "phone":"(211) 434-2343",
+        			    "email":"walter@mossman.com",
+        			    "twitter": "waltmossberg",
+                        "metrics" : [
+                            { "type":"circulation", "name":"Circulation", "value":"200,000", "frequency":"Daily" }
+                        ],
+        			    "frequency":"Daily",
+        			    "website":"http:www.mossblog.com",
+                        "recentArticles": [
+                            { "date":"10.20.11", "title":"Staring at computer all day makes Walter a dull boy", "outletURL":"#", "outlet":"Mossblog.com"  },
+                            { "date":"10.01.11", "title":"Giant Space Men at higher risk of Adult Onset Diabetes", "outletURL":"#", "outlet":"New York Times"  },
+                            { "date":"09.20.11", "title":"iPhone 5, Kindle Fire and the future of Staring at screens.", "outletURL":"#", "outlet":"New York Times"  }
+                        ]
+        			},			
+        			{
+                        "id":20001,
+        			    "isSelected":true,
+        			    "isStarred":false,
+        				"name":"David Pogue",
+        			    "title":"Blogger",
+        			    "imgLink": "http://www.mygreatphone.com/wp-content/themes/MyGreatPhone_2011/scripts/timthumb.php?src=http://www.mygreatphone.com/wp-content/uploads/2009/06/david-pogue-150x150.jpg&w=80&h=80&zc=1&q=100",
+        			    "nameLink":"#",
+        			    "outlet":"Los Angeles Times",
+        			    "mediaType":"Daily Newspaper",
+        			    "outletLink":"#",
+        			    "allOutletsLink":"#",
+        			    "topics":["Sports","Excercise","World Events" ],
+        			    "address1":"202 West 1st Street",
+        			    "location":"Los Angeles, CA USA",
+        			    "DMA":"DMA-003",
+        			    "phone":"(312) 588-2300",
+        			    "email":"davidpogue@aol.com",
+        			    "twitter": "davPo",
+                        "metrics" : [
+                            { "type":"circulation", "name":"Circulation", "value":"200,000" }
+                        ],
+        			    "frequency":"Daily",
+        			    "website":"http:www.poguee.com"
+        			},
+        			{
+                        "id":20002,
+        			    "isSelected":false,
+        			    "isStarred":false,
+        				"name":"Christian Amanpour",
+        			    "title":"Foreign Correspondent",
+        			    "imgLink":"http://s12.bdbphotos.com/images/80x80/c/5/c5d4ai5a6qc9qa95.jpg",
+        			    "nameLink":"#",
+        			    "outlet":"CNN",
+        			    "mediaType":"Cable Television",
+        			    "outletLink":"#",
+        			    "allOutletsLink":"#",
+        			    "topics":["Finance","Stocks","Wubba Wubba" ],
+        			    "address1":"1 West Waverly Burroughs",
+        			    "location":"London, England",
+        			    "phone":"+44 207 232 23 12",
+        			    "email":"christian@christianamanpour.com",
+        			    "twitter": "ChrisAm"
+        			},
+        			{
+                        "id":20003,
+        			    "isSelected":false,
+        			    "isStarred":false,
+        				"name":"Arianna Huffington",
+        			    "title":"Blogger, Editor",
+        			    "imgLink":"",
+        			    "nameLink":"#",
+        			    "outlet":"The Huffington Post",
+        			    "mediaType":"Blog",
+        			    "outletLink":"#",
+        			    "allOutletsLink":"#",
+        			    "topics":["Politics, World Events" ],
+        			    "address1":"222 N. North Street",
+        			    "location":"New York, NY",
+        			    "phone":"(646) 926-3342",
+        			    "email":"arianna@huffingtonpost",
+        			    "twitter": "ChrisAm",
+                        "metrics" : [
+                            { "type":"uvpm", "name":"UVPM", "value":"26,000" }
+                        ],
+        			    "website":"http://www.huffingtonpost.com"
+        			},
+        			{
+                        "id":20004,
+        			    "isSelected":false,
+        			    "isStarred":true,
+        				"name":"Jon Stewart",
+        			    "title":"TV Show Host",
+        			    "imgLink":"http://content9.flixster.com/photo/13/93/99/13939943_tmb.jpg",
+        			    "nameLink":"#",
+        			    "outlet":"The Daily Show with Jon Stewart",
+        			    "mediaType":"Cable Television",
+        			    "outletLink":"#",
+        			    "allOutletsLink":"#",
+        			    "topics":["Politics","Comedy" ],
+        			    "address1":"27 W. 84th Street",
+        			    "location":"New York, NY, USA",
+        			    "DMA":"DMA-001",
+        			    "phone":"(232) 323-2322",
+        			    "email":"thedailyshow@comedycentral.com",
+        			    "twitter": "JohnStew",
+        			    "onairTime":"9pm (30min) Mon-Thurs",
+        			    "website": "http://thedailyshow.com"
+        			}
+        		]
+        	}
+        ]
+    };
+
+
+    $('#contactList').listBuilder({
+        list: list,
+        customBuilder: function(model) {
+        // model: $article, item, settings) {
+
+            // @fix - tried to move this to handlebarhelpers.js but have a dependency on this model value
+            // is there a way to pass in this model value from where the helper is called in the template?
+            // or because this helper has a dependency on a specific model, this is the proper scope for this specific helper
+            Handlebars.registerHelper('expanderLinks', function(id,options)  {
+                var expanderArray = [];
+
+                var expanderButtonTemplate = Handlebars.compile( $('#template_expanderLink').html() );
+
+                $.each(model.settings.list.configuration.expanderLinks, function(index,item) {
+
+                    var htmlString = expanderButtonTemplate({
+                        type: item.type,
+                        buttonText: item.buttonText,
+                        url: item.url + id
+                    });
+
+                    expanderArray.push(htmlString);
+                });
+
+                return new Handlebars.SafeString( expanderArray.join("") );
+            });
+
+            Handlebars.registerHelper('showRecentArticles',function(articleArray) {
+                
+                var recentArticlesTemplate = Handlebars.compile(  $('#template_recentArticles').html() );
+
+                var string = recentArticlesTemplate(articleArray);
+
+                console.log('string',string);
+                return new Handlebars.SafeString(string);
+
+            });
+
+            // helper to build htmlified lists of items from an array
+            Handlebars.registerHelper('htmlifyArray', function(array, options) {
+
+                // map the original array to an array of processed html items
+                var processedValue = $.map(array,function(item,index) {
+                    if ( options.hash.addSpan === true ) { item = '<span>' + item + '</span>'; } 
+                    return item;
+                });
+
+                // add join separator from element if exists, default is a space
+                var itemSeparator = options.hash.separator ? options.hash.separator + ' ' : ' ';  
+
+                return new Handlebars.SafeString( processedValue.join(itemSeparator) );
+            });
+
+            // we pull the raw markup from the script and compile the handlebars tempaltes
+            var template = Handlebars.compile( $('#template_item').html() );
+
+            // we bind the handlebars template with the item data
+            var html = template(model.item);
+
+            // and return the output content item to the list builder plugin
+            return html; 
+        },
+		addSelect: true,
+		addStarring: true,
+		addRemove: true,
+		templates: [
+	        { 'class':'compact','label':'Compact View' },
+	        {'class':'','label':'Detail View' }
+	    ],
+        completedItemCallback: function(model) {
+
+            model.$article.find('.expander').each(function() {
+                var $expanderLink = $(this);
+                var $button = $expanderLink.find('em');
+                var $buttonDesc = $expanderLink.find('span');
+
+                $button.mouseenter(function() {  $buttonDesc.show();  })
+                    .mouseleave(function() {  $buttonDesc.hide();  })
+                    .click(function() {
+
+                        // hide descriptive text
+                        $desc.hide();
+
+
+
+                        console.log('model',model);
+                    });
+                });
+        },
+		completedListCallback: function(model) {
+            
+            // put options in a view container and add to parent wrap
+            var $viewOptions = $('<div/>', { 'class':'viewOptions' })
+
+            if ( model.returnControls.$templateLinks ) {  $viewOptions.append(model.returnControls.$templateLinks);  }
+            if ( model.returnControls.$showSelected ) { $viewOptions.append(model.returnControls.$showSelected) }
+
+            $viewOptions.appendTo(model.$listwrap);
+        }
+    });
+    
+    
+</script>
+</body>
+</html>

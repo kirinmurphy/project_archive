@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* -- GLOBAL RESET ----------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td 
+{ margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; }
+
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+/* remember to define focus styles! */
+:focus { outline: 0; }
+fieldset { border:0; }
+
+/* remember to highlight inserts somehow! */
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: collapse; border-spacing: 0; }
+
+
+/* cleared floats - instead of clea:both class, used on containing div */
+.clr:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clr {  zoom: 1; display: block;  }  
+
+html, body { height:100%; }
+
+header, footer, section, article, nav { display:block; }  /* block html elements */
+
+div.divider { height:1px; width:100%; line-height:1px; overflow:hidden; clear:both; margin:2em 0 1.8em 0;
+        !important; border:0 !important; padding:0 !important; background-color:#ccc; }
+
+body {  font-size:.70%; padding:20px; overflow-y:scroll; font-family: Arial, Sans-Serif;   color:#333; } 
+
+a { color:#05182b; text-decoration:none;   }
+a:hover { color:#95a8bb; }
+
+
+
+
+#wrap { margin:0px auto; line-height:1.4;  font-size:11px; }
+
+#pageheader { margin-bottom:30px; }
+#pageheader h1 {  font-size:2.5em; }
+
+h1 { margin-bottom:2px; }
+h1, 
+h1 a {  font-size:1em; font-weight:bold; letter-spacing:2px; 
+	color:#05182b; font-family: Verdana, Sans-serif;  }
+

@@ -1,0 +1,41 @@
+
+body { padding:40px; font-size:@font-size-base;
+  .linearGradient(270deg, #fff, #f6f6f6, fixed);
+}
+
+#delicious-feed { width:100%; max-width:850px; margin:0 auto;
+
+  .inner > header { padding:15px 30px; margin-bottom:10px;
+    line-height:25px; color:@textcolor-inverted;
+    .linearGradient(270deg, #336688, #003355);
+
+    & * { display:inline-block; vertical-align:top; }
+
+    label { padding-top:4px; font-size:@font-size-big; }
+
+    input[type="text"] { font-size:@font-size-base; }
+  }
+
+  @filterControlWidth: 53%;
+  @userSettingsWidth: 95% - @filterControlWidth;
+  .filter-by { width:@filterControlWidth; }
+
+  .user-setting { width:@userSettingsWidth;
+    label { margin-right:8px; }
+    input[type="text"] { width:42%; margin-right:8px;
+      padding:6px; border:@border-base;
+    }
+  }
+
+  .loading,
+  .init-load { font-size:@font-size-big;
+    .fa { margin-right:5px; }
+  }
+
+  .no-articles,
+  .loading { display:block; clear:left;
+    padding:20px 10px;
+  }
+
+  .init-load { padding:35px;  }
+}

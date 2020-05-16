@@ -1,0 +1,15 @@
+<div class="friend-post-up-message"
+  data-is-meeting="{{friend.waitingForYou}}" ng-show="friend.isPostingUp()"
+  data-placement="{{friend.messagePlacement()}}" data-tap-animate-source>
+  <div ng-show="!friend.waitingForYou" data-default><span>here til </span></div>
+  <div ng-show="friend.waitingForYou" class="meeting-message"><span>meet by<span></div>
+  <div class="post-up-message">
+    <strong class="time"> {{friend.staying_until}}</strong>
+  </div>
+  <div ng-show="friend.waitingForYou">
+    <button type="button" ng-mousedown="cancelMeet()">Cancel Meet</button>
+  </div>
+  <div ng-show="!friend.waitingForYou" data-default>
+    <button type="button" ng-mousedown="meetUp()">Meet Up</button>
+  </div>
+</div>

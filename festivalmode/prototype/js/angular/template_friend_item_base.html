@@ -1,0 +1,22 @@
+<div class="friend-item-base" data-online-status="{{friend.online_status}}">
+  <div class="name">{{friend.name}}</div>
+  <div class="stats">
+    <span class="distance">{{friend.text_pos}}</span>
+    <span class="activity-status">{{friend.idleMessage()}}</span>
+  </div>
+  <div fm-friend-post-up-message friend="friend"></div>
+
+  <div ng-show="friend.isMoving()" data-tap-animate-source class="bump-control">
+    <div class="friend-has-been-bumped" ng-show="friend.bumped">
+      you bumped <div>{{friend.firstName}}</div>
+    </div>
+    <button data-tap-trigger ng-hide="friend.bumped"
+      ng-mousedown="friend.bump()" type="button">Bump</button>
+  </div>
+</div>
+
+<div class="plan-messages" ng-if="friend.now_plan || friend.today_plan">
+  <div ng-if="friend.today_plan">
+    <strong>Today: </strong>{{friend.today_plan}}
+  </div>
+</div>

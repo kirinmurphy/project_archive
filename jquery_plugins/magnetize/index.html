@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>codethings.net :: .magnetize()</title>
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="magnetize.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="header" style="display:none;">.magnetize()</div>
+		<div class="magnet">
+			.magnetize()
+		</div>
+		<div class="content">
+
+<pre>
+&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;magnet&quot;&gt;...&lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+$('.container').magnetize({
+    magnetSelector: '.magnet',
+});
+</pre>
+
+<pre style="display:none;">To Do:
+Set magnetize on page load.
+</pre>
+
+
+		</div>
+	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="magnetize.js"></script>
+<script>
+$(document).ready(function(){
+	$('.container').magnetize({
+		magnetSelector: '.magnet'//,
+		//headerSelector : '.header'
+	});
+});
+
+</script>
+
+</body>
+</html>
+

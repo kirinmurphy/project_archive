@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>codethings.net :: Top Scrollbar</title>
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="topscrollbar.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body>
+
+<div id="scrollwrap">
+ 	<div class="contentwrap"><div class="content">
+		<h2>.addTopScrollbar()</h2>
+
+<pre>
+Dynamically displayed top scrollbar
+Displays only if bottom scrollbar is off the screen
+
+<span style="font-size:1.3em">DO NOT USE THIS PLUGIN.  MAKE YOUR CONTENT FIT ON THE SCREEN.</span>
+
+but if you must...
+</pre>
+
+<pre class="code">
+<h3>Markup</h3>&lt;div id=&quot;scrollwrap&quot;&gt;
+    &lt;div class=&quot;contentwrap&quot;&gt;
+        &lt;div class=&quot;content&quot;&gt;
+            content
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+<h3>Javascript</h3>&lt;script src=&quot;lib/jquery-1.6.1.min.js&quot;&gt;&lt;/script&gt;<span style="display:none;">&lt;script src=&quot;../magnetize/main.js&quot;&gt;&lt;/script&gt;</span>
+&lt;script src=&quot;topscrollbar.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    $('#scrollwrap').addTopScrollbar();
+&lt;/script&gt;
+
+</pre>
+
+<pre style="display:none">To Do:
+- add magnetize
+- do we need classes for top scroll elements?
+</pre>
+	</div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../magnetize/main.js"></script>
+<script src="topscrollbar.js"></script>
+
+<script>
+    $('#scrollwrap').addTopScrollbar();
+</script>
+
+</body>
+</html>
+

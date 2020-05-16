@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>HTML Slideshow Plugin</title>
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1;">
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("nav");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet" href="lib/fonts.css">
+<link rel="stylesheet/less" href="slideshow.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body>
+
+
+
+<div id="slideshow">
+
+<!-- <header>
+    <h1>Slideshow!</h1>
+</header>
+ -->
+
+<!-- <article>
+    <h1></h1>
+    <h2></h2>
+</article>
+ -->
+
+<article class="first pagination">
+	<h1>HTML Slideshow</h1>
+    <h2>Setup</h2>
+    <div>So there's a slideshow thing goin on here.<br/>
+        You got yer list of html items.  This plugin will make each one a slide.
+    </div>
+    <pre>
+&lt;div id="slideshow"&gt;
+    <strong>&lt;article&gt;</strong> ... &lt;/article&gt;
+    <strong>&lt;article&gt;</strong> ... &lt;/article&gt;
+    ...
+&lt;/div&gt;
+
+(function() {
+    $('#slideshow').buildSlideshow();
+})();
+</pre>
+</article>
+
+<article>
+    <h1>HTML Slideshow</h1>
+    <h2>Table Of Contents</h2>
+
+    <div>Each slide requires <strong>Chapter</strong> and <strong>Slide Title</strong> elements.  <br/>
+        These values are used to build the Table Of Contents and Persistent slide URLs.<br/>
+        <span class="comments">We create a dynamic ID from these values, so the raw HTML should not contain IDs on the slides.
+            <br/> (if they do they will get overwritten)</span></div>
+
+<pre>
+&lt;article&gt;
+    <strong>&lt;h1&gt;</strong> HTML Slideshow &lt;/h1&gt;     <span class="comments">// chapter </span>
+    <strong>&lt;h2&gt;</strong> Table Of Contents &lt;/h2&gt;  <span class="comments">// slide title </span>
+    ...
+&lt;article&gt;
+</pre>
+
+<div>Each new value in the chapter tag will display a chapter header in the Table of Contents.</div>
+</article>
+
+<article>
+    <h1>HTML Slideshow</h1>
+    <h2>Element Types</h2>
+    <div>
+        The default slide element is <strong>article</strong>, but can be changed to a class or different tag.
+    </div>
+    <pre>
+$('#slideshow').buildSlideshow({
+    element_slide: <strong>'.slide'</strong>
+}); </pre>
+
+<div class="">The default Chapter and Title elements are <strong>h1</strong> &amp; <strong>h2</strong>, but can also be changed.
+</div>
+<pre>
+$('#slideshow').buildSlideshow({
+    element_slideChapter: '<strong>.chapter</strong>'
+    element_slideTitle: '<strong>.title</strong>'
+});
+</pre>
+
+</article>
+
+
+<article class="pagination">
+    <h1>HTML Slideshow</h1>
+    <h2>Pagination</h2>
+    <div>
+        <div class="back"></div> and <div class="next"></div>
+        navigation can be accomplished with the on screen buttons or the left right keyboard keys.
+    </div>
+    <div>The on screen buttons dispaly by default but can be hidden through the plugin settings.</div>
+    <pre>
+$('#slideshow').buildSlideshow({
+    addLeftRightButtons: false
+}); </pre>
+
+
+</article>
+
+
+<article>
+    <h1>HTML Slideshow</h1>
+    <h2>Persistent (SEO Friendly) Slide URLs</h2>
+</article>
+
+<article>
+    <h1>HTML Slideshow</h1>
+    <h2>Persistent History with localStorage</h2>
+    <div>As a fallback, if a user is returning to the site from a static URL, she will return to the last viewed slide. <br/>
+    This is done by setting a localStorage variable of the currently active slide.</div>
+
+    <div>You can set the localStorage key that will save the current slide value.</div>
+    <pre>
+$('#slideshow').buildSlideshow({
+    localStorageKey: 'demoSlideshowCurrentSlide'
+});
+</pre>
+</article>
+<article>
+    <h1>HTML Slideshow</h1>
+    <h2>Full Screen Mode</h2>
+    <div></div>
+    <pre>
+$('#slideshow').buildSlideshow({
+    addShowHideMenuButtons: false
+}); </pre>
+
+</article>
+
+</div>
+
+<!--
+- features
+    - slideshow!
+        - slideshow plugin that uses html list of items and dynamically creates a single slide navigationable item
+    - pagination
+        - forward/back navigation with click and keypress options
+    - table of contents menu navigation
+        - TOC built from header tags
+        - Title is required, subtitle is required if user wants a navigatable link to the page
+        - If you have a Title section with only one slide, can skip the subtitle to make the header appear as a single option
+    - smart seo friendly urls
+        - uses html5 pushstate to create navigation URLs based on header tags
+    - persistent page history with local storage
+        - as fallback to smart URL slide navigation, use localstorage to persist last viewed slide
+- setup
+    - article common element
+    - wrap (don't use body)
+    - h1 & h2 tags
+    - data-newcategory = true
+    - javascript settings
+    - localStorageKey
+- Mobile
+    - navigation buttons
+    - hide show menu
+- Credito's
+
+ -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="lib/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="slideshow.js"></script>
+<script src="lib/jquery.history.js"></script>
+
+<script>
+(function() {
+    $('#slideshow').buildSlideshow({
+        localStorageKey : 'demoSlideshowCurrentSlide'
+    });
+})();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML><html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>Codethings.net :: Stretchy Scroller</title>
+
+<link type="text/less" rel="stylesheet" href="stretchyscroller.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+<style type="text/css">
+    h2 { font-size:16px; margin-bottom:10px; }
+    pre { width:1100px; margin:0 auto; padding:30px; margin-bottom:10px; }
+</style>
+
+</head>
+
+<body>
+
+	<div id="jsonAjaxScroller" class="stretchyscroller clr">
+	    <div class="wrap"><ul class="clr"></ul></div>
+	</div>
+
+<pre>
+<h2>StretchyScroller() - fluid width carousel scroller</h2>Dynamically sets scroller wrapper width to available window size on load and resize
+Sets scroll button options if contents overflow scroll container
+On scroll, finds which item is the last fully displayed item and scrolls to the next set
+<b>&lt;li class=&quot;on&quot;&gt;</b> Option to set active item, loads panels with group displayed that includes this active item
+<b>controlPosition : 'rightSide' or 'eachSide'</b> - Option to place scroll buttons on right side or each side of the container
+<b>centerIfNoScroll</b> - Option to center items if contents don't overflow scroll container
+<b>Ajax Options</b> - Content items can be loaded via AJAX in HTML or JSON format
+<b>buildItemsFromJSON</b> - Accepts callback function to build content from an external template that returns HTML string or a jQuery DOM object
+<b>afterListLoadedCallback</b> - additional callback function to run functions on items independent of Load Type
+
+<b>recalculate()</b> - $('#pluginTarget').data('stretchyScroller).recalculate() will recalculate items in the list.
+  Can be fired in the afterListLoadedCallback or from any external function for when items get added or removed from the list.
+</pre>
+
+<pre style="width:900px; border:1px solid #ddd; color:#fff; background:#333; font-size:14px;">
+&lt;div id="jsonAjaxScroller" class="stretchyscroller clr"&gt;
+    &lt;div class="wrap"&gt;
+        &lt;ul class="clr"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+
+    var $jsonAjaxScroller = $('#jsonAjaxScroller');
+    $jsonAjaxScroller.buildStretchyScroller({
+        path:'scrolleritems.json',
+        ajaxLoadType:'json',
+        controlPosition: 'eachSide',
+        centerIfNoScroll: true,
+        buildItemsFromJSON: function(data) {
+            var items = [];
+            $.each(data.listitems,function(index,item) {
+                var template = '&lt;li&gt;&lt;h3&gt;' + item.title + '&lt;/h3&gt;&lt;p&gt;'
+                    + item.content + '&lt;/p&gt;&lt;a href="#" class="remove"&gt;Remove&lt;/a&gt;&lt;/li&gt;';
+
+                items.push(template);
+            });
+            var $items = $(items.join(""));
+
+            $items.find('.remove')
+                .click(function() {
+                    $(this).closest('li').remove();
+                    $jsonAjaxScroller.data('stretchyScroller').recalculate();
+                    return false;
+                });
+
+            return $items;
+        },
+        afterListLoadedCallback: function($scroller) {
+
+            $scroller.find('ul').colorizeList();
+
+            $('&lt;a/&gt;', { href:'#', text:'Add another one', 'class':'addTile' })
+                .click(function() {
+                    var $tile = $scroller.find('li:last');
+                    $tile.clone(true).insertAfter($tile);
+                    $jsonAjaxScroller.data('stretchyScroller').recalculate();
+                    return false;
+                })
+                .appendTo($jsonAjaxScroller);
+        }
+    });
+
+})();
+&lt;/script&gt;
+</pre>
+
+<pre style="width:900px;">
+<h2>Known issues:</h2>recalculate() still a little buggy:
+- removing only item in second group (so only left are first items), doesn't not go back to first group
+- adding items, when in 2nd or > group, and adding an item that starts on the screen but goes off,
+  forward button does not activate until first full item gets added in the next list
+
+<h2>To Do:</h2>- Resizing browser currently resets to beginning of list.
+  Persist displaying the tile that was the first one in current group before resize (same way as active on state)
+- account for multiple possible on classes in content list
+- Validate that buildItemsFromJSON returns the correct element type
+- Magnetize
+</pre>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="stretchyscroller.js"></script>
+<script src="colorizelist.js"></script>
+<script>
+(function() {
+
+    var $jsonAjaxScroller = $('#jsonAjaxScroller');
+	$jsonAjaxScroller.buildStretchyScroller({
+		path:'assets/scrolleritems.json',
+		ajaxLoadType:'json',
+		controlPosition: 'eachSide',
+		centerIfNoScroll: true,
+		buildItemsFromJSON: function(data) {
+			var items = [];
+			$.each(data.listitems,function(index,item) {
+				var onClass = item.on === true ? ' class="on"' : '';
+				var onText = item.on === true ? 'This item is active' : '';
+				var template = '<li' + onClass + '><h3>' + item.title + '</h3><div><p>'
+				    + item.content + '<p> <div>' + onText + '</div></div><a href="#" class="remove">Remove</a></li>';
+				items.push(template);
+			});
+			var $items = $(items.join(""));
+			$items.find('.remove')
+			    .click(function() {
+			        $(this).closest('li').remove();
+			        $jsonAjaxScroller.data('stretchyScroller').recalculate();
+			        return false;
+			    });
+			return $items;
+		},
+		afterListLoadedCallback: function($scroller) {
+			$scroller.find('ul').colorizeList();
+
+             $('<a/>', { href:'#', text:'Add another one', 'class':'addTile' })
+                 .click(function() {
+                     var $tile = $scroller.find('li:last');
+                     $tile.clone(true).insertAfter($tile);
+                     $jsonAjaxScroller.data('stretchyScroller').recalculate();
+                     return false;
+                 })
+                 .appendTo($jsonAjaxScroller);
+		}
+	});
+
+})();
+</script>
+
+</body>
+</html>

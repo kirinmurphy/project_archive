@@ -1,0 +1,10 @@
+{
+    "name": "fb-track-bower",
+    "description": "loading assets",
+    "version": "1.0.0",
+    "dependencies": {
+      "angular": "latest",
+      "angular-ui-router": "latest"
+    },
+    "private": true
+}

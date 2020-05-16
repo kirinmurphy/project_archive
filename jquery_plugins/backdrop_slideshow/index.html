@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<link rel="stylesheet/less" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="main.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head><body>
+
+
+	<div id="slideshow">
+
+		<div class="ss_content">
+	    	<!-- fixed content -->
+	        <ul class="ss_rotatingcontent">
+	        	<li><div class="content hawaii">you could say something here</div></li>
+	            <li><div class="content amy">and maybe something else here!</div></li>
+				<li><div class="content cash">and maybe you want a <a href="#">link</a> on this slide about Johnny Cash</div></li>
+	        	<li><div class="content fear">
+	        	  <h2>And you might want a bunch of text on this one</h2>
+	        	  <p>So then you can say more things and talk about stuff that you want people to think about while they are looking at this image yo!</p>
+	        	    </div>
+	        	</li>
+	        </ul>
+
+	    </div>
+
+		<div class="ss_images">
+	        <img src="images2/Hawaii_largeImage.jpg" />
+	        <img src="images2/amy-winehouse-1.jpg" />
+	        <img src="images2/Johnny-cash.gif" />
+	        <img src="images2/Henson_P006_capt2.jpg" />
+	    </div>
+	</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script>
+(function() {  $('#slideshow').backdropSlideshow();  })()
+</script>
+
+</body>
+</html>

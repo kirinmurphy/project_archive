@@ -1,0 +1,1 @@
+var fmApp;fmApp=angular.module("fmApp",[]).run(["$rootScope",function(_this){return function($rootScope){return $rootScope.utils=new KMUtils}}(this)]);

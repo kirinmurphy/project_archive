@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>Codethings.net :: .dropDown();</title>
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="dropdown.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body id="dropdownDemo">
+
+<h2>.dropdown()</h2>
+<pre id="pluginCode">&lt;dl class=&quot;dropdown&quot;&gt;
+    &lt;dt&gt;Trigger&lt;/dt&gt;
+    &lt;dd class=&quot;linklist&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;
+        ...
+        &lt;div class=&quot;nestedlinks&quot;&gt;
+            &lt;a href=&quot;#&quot;&gt;Nested Link&lt;/a&gt;
+            ...
+        &lt;/div&gt;
+    &lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;div class=&quot;dropdownGroup&quot;&gt;
+    &lt;dl&gt; ... &lt;/dl&gt;
+    &lt;dl&gt; ... &lt;/dl&gt;
+    &lt;dl&gt; ... &lt;/dl&gt;
+&lt;/div&gt;
+
+
+$(document).ready(function(){
+	$('.dropdownGroup dl, .dropdown').dropDown();
+});
+
+var <strong>settings = { </strong>
+    trigger: 'click',                       <em>// click or mouseenter</em>
+    displayType: 'show',                    <em>// show or fadeIn </em>
+    fitToScreen: true,                      <em>// if true, shrinks to available height and adds scrollbars</em>
+    spaceFromDropdownToTrigger:5,           <em>// additional px spacing between elements</em>
+    gutter_leftRight: 5                     <em>// min distance dropdowns should be from the edge of the screen </em>
+    selector_dropdownGroup : '.dropdownGroup',  <em>// wraps group of dropdowns. if one dropdown is clicked,</em>
+                                            <em>   other dropdowns in the group open now on hover</em>
+    fadeInSpeed: 40,
+    fadeOutSpeed: 40,
+<strong>}</strong>
+</pre>
+
+<div id="header" class="clr">
+
+    <div id="topnav" class="dropdownGroup clr">
+    	<dl id="dropdown1" class="clr">
+    		<dt>About Dropdown</dt>
+    		<dd>
+    		    <div class="desc">
+        		    <h3>Thanks for checking out this dropdown yo!</h3>
+        		    <p>we gonna say some stuff here too</p>
+                </div>
+                <div class="options">
+                    <a class="first" href="#">Link1</a>
+                    <a href="#">Link2</a>
+                    <a href="#">Link3</a>
+                    <a href="#">Link4</a>
+                    <a href="#">Link5</a>
+                    <a href="#">Link6</a>
+                    <a href="#">Link7</a>
+                    <a href="#">Link8</a>
+                    <a href="#">Link9</a>
+                    <a href="#">Link10</a>
+                    <a class="last" href="#">Link11</a>
+                </div>
+    		</dd>
+    	</dl>
+    	<dl>
+    		<dt>Settings</dt>
+    		<dd class="linklist"></dd>
+    	</dl>
+
+    </div>
+
+    <div id="linklist" class="dropdownGroup clr">
+    	<dl id="superlong">
+    		<dt>Super Long List</dt>
+    		<dd class="linklist">
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    		</dd>
+    	</dl>
+    	<dl>
+    		<dt>Header2</dt>
+    		<dd class="linklist">
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    			<a href="#">Another List Item</a>
+    		</dd>
+    	</dl>
+
+    </div>
+
+</div>
+
+
+
+<dl id="bottomLeft" class="dropdown">
+	<dt>Dropdown w/ Nested List</dt>
+	<dd class="linklist">
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<h6>Nested Links</h6>
+		<div class="nestedlinks">
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+    		<a href="#">Another List Item</a>
+		</div>
+	</dd>
+</dl>
+
+
+
+<dl id="bottomRight" class="dropdown">
+	<dt>Header1</dt>
+	<dd class="linklist">
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+		<a href="#">Another List Item</a>
+	</dd>
+</dl>
+
+<pre style="display:none">To do:
+- fix left/right position of elements based on screen position when absolutely positioned (when floated, positioning is fine)
+</pre>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="dropdown.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+{
+  "name": "markdownzle",
+  "version": "1.0.0",
+  "description": "markdown to html prototerp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cheerio": "^0.6.2",
+    "gulp-filenames": "^3.0.0",
+    "gulp-html-prettify": "0.0.1",
+    "gulp-inject-file": "0.0.18",
+    "gulp-markdown": "^1.2.0",
+    "gulp-util": "^3.0.7"
+  }
+}

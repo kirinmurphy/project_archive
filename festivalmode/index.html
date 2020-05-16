@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<!--[if IE]>
+<script>
+document.createElement("header");
+document.createElement("footer");
+document.createElement("nav");
+document.createElement("section");
+document.createElement("article");
+</script>
+<![endif]-->
+<link rel="stylesheet" href="assets/lib/css/font-awesome.min.css" />
+<link rel="stylesheet" href="prototype/css/index.css" />
+</head>
+
+<body data-portal="prototype">
+
+<div id="festival-mode" ng-app="fmApp" ng-controller="ContactManager" data-page-state="unauthenticated" style="display:none">
+  <header data-has-status="before-auth-form">
+  <div class="marquee"></div>
+  <div class="activator">
+    <div class="inner">
+      <label class="switch">
+        <input id="activator-checkbox" type="checkbox">
+        <div class="switch-ui"></div>
+      </label>
+      <div data-view="unauthenticated">
+        <label class="logo">Festival Mode</label>
+      </div>
+      <div data-view="inactive">
+        <label><i class="fa fa-chevron-left"></i> Get On The Map!</label>
+      </div>
+      <div data-view="active">
+        <div class="activation-details">
+          <div class="nearby-friends">
+            <span class="count">{{contacts.nearbyFriendCountLabel}}</span> Nearby
+          </div>
+        </div>
+        <nav class="active-state-actions">
+          <div class="map-list-toggle">
+            <i data-change-view="map" class="fa fa-map-marker"></i>
+            <i data-change-view="friends-list" class="fa fa-list"></i>
+          </div>
+          <div class="plan-updates-toggle">
+            <i class="fa fa-comment" data-trigger-popup="plan-updates"></i>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="authentication-views">
+    <div data-view="loading" data-default>
+      <i class="fa fa-spin fa-spinner"></i>
+    </div>
+
+    <div data-view="unauth-welcome">
+      <h3>Do you have an account?</h3>
+      <form id="sign-in">
+        <h3>Sign In</h3>
+        <div class="field">
+          <input type="text" placeholder="Username" value="paulallen@pnp.com">
+        </div>
+        <div class="field">
+          <input type="password" placeholder="Password" value="password">
+        </div>
+        <div class="actions">
+          <button type="button" class="big" data-change-view="friends-list" data-update-app-state="authenticated">Sign In</button>
+        </div>
+      </form>
+
+      <form id="sign-up">
+        <h3>Sign Up</h3>
+        <div class="field">
+          <input type="text" placeholder="Username" value="paulallen@pnp.com">
+        </div>
+        <div class="field">
+          <input type="password" placeholder="Password" value="password">
+        </div>
+        <div class="actions">
+          <button type="button" class="big" data-change-view="friends-list" data-update-app-state="authenticated">Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</header>
+  <div class="main-region" ng-controller="PlanManager" data-plan-type="{{plan.currentPlan}}">
+    <div data-view="map" ng-controller="MapManager" data-mapstate="{{mapState}}" ng-mousedown="checkForDrawerClose($event)">
+
+  <div class="map-layer">
+    <div class="map-layer-inner" style="margin-left:{{mapLeftOffset}}%; margin-top:{{mapTopOffset}}%">
+      <div class="map-members">
+
+        <div data-map-point="you" data-status="{{plan.currentPlan}}" style="top:{{topBeaconPosition}}%; left:{{leftBeaconPosition}}%">
+          <div class="inner"></div>
+          <div data-status="posted-up" data-placement="right-side" class="post-up-message">
+            <span>here til</span> <strong class="time">{{plan.postUpUntil}}</strong>
+          </div>
+        </div>
+
+        <div data-map-point="friend" data-online-status="{{friend.online_status}}" ng-repeat="friend in contacts.list" ng-if="friend.isNearby()" style="top:{{friend.map_pos_top}}%; left:{{friend.map_pos_left}}%" ng-mousedown="triggerMapPoint(friend, 'person')" ng-class="{ active:friend.waitingForYou }" data-tap-animate-source data-tap-trigger data-tap-transition-delay="100">
+          <div class="inner">
+            <span class="initials">{{utils.getInitials(friend.name)}}</span>
+          </div>
+          <div fm-friend-post-up-message friend="friend"></div>
+        </div>
+      </div>
+
+      <div class="places">
+        <div data-map-point="place" data-place-type="{{place.type}}" ng-repeat="place in places" ng-mousedown="triggerMapPoint(place, 'place')" data-is-active="{{place.isActive}}" data-tap-animate-source data-tap-trigger data-tap-transition-delay="100" style="top:{{place.pos_top}}%; left:{{place.pos_left}}%">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-footer" data-drawer-is-open="{{drawerIsOpen}}" data-display-drawer-as="{{drawerState}}">
+  <div class="footer-nav">
+    <div class="location-actions" data-tap-animate-source>
+      <div data-status="no-plans" ng-show="plan.currentPlan == 'no-plans'" data-default>
+        <button type="button" ng-mousedown="plan.changePlan('setting-time')" data-tap-trigger>
+          Post Up
+        </button>
+      </div>
+      <div data-status="meeting-friend" ng-show="plan.currentPlan == 'meeting-friend'">
+        <button type="button" ng-mousedown="plan.changePlan('no-plans')" data-tap-trigger>
+          Cancel Meet
+        </button>
+      </div>
+      <div data-status="posted-up" ng-show="plan.currentPlan == 'posted-up'">
+        <button type="button" ng-mousedown="plan.leaveSpot()" data-tap-trigger>
+          Leave Spot
+        </button>
+      </div>
+      <div data-status="setting-time" ng-show="plan.currentPlan == 'setting-time'">
+        <button type="button" ng-mousedown="plan.changePlan('no-plans')" data-tap-trigger>
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div class="friends-places-toggle">
+      <i class="places fa fa-building" ng-mousedown="changeMapState('places')"></i>
+      <i class="friends fa fa-user" ng-mousedown="changeMapState('friends')"></i>
+    </div>
+  </div>
+  <div class="footer-drawer">
+    <div data-view="time-selector" data-hide-on-outside-click="false" ng-show="activeFooterView == 'settingTime'">
+      <ul class="time-options">
+        <li ng-mousedown="plan.postUp('6:10')">until 6:10</li>
+        <li ng-mousedown="plan.postUp('6:20')">until 6:20</li>
+        <li ng-mousedown="plan.postUp('6:30')">until 6:30</li>
+        <li ng-mousedown="plan.postUp('6:40')">until 6:40</li>
+      </ul>
+    </div>
+    <div data-view="friend-detail" data-hide-on-outside-click="true" ng-show="activeFooterView == 'person'">
+      <div class="inner" fm-friend-item-base friend="activeMapPoint"></div>
+    </div>
+    <div data-view="place-detail" data-hide-on-outside-click="true" ng-show="activeFooterView == 'place'" data-place-type="{{activeMapPoint.type}}">
+      <div class="icon"></div>
+      <div class="place-name">{{ activeMapPoint.name }}</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+    <div data-view="friends-list" data-friends-count="{{contacts.friendCount}}">
+  <header class="clr">
+    <h2 class="friends-count">Friends</h2>
+    <div class="controls">
+      <a href="#" data-trigger-popup="invite-friends">
+        <i class="fa fa-user"><em>+</em></i>
+        <span>Invite Friends</span>
+      </a>
+      <a href="#" class="go-to-requests" data-requests="2">2 <span>new requests</span></a>
+    </div>
+  </header>
+  <div>
+    <div data-view="with-friends">
+      <ul class="friends-list">
+
+        <li class="friend" ng-repeat="friend in contacts.list" ng-show="friend.isFriend()" ng-class="{ active:friend.waitingForYou }" data-visible-to-friend="{{friend.hasPermissionToSeeYou}}">
+          <div class="inner" fm-friend-item-base friend="friend"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div data-popup="plan-updates">
+      <i data-close-popup class="fa fa-remove"></i>
+      <h3>What's going on?</h3>
+      <textarea ng-model="plan.your_today_plan" placeholder="Let your friends know what you're up to today."></textarea>
+    </div>
+
+  </div>
+  <div class="popups">
+  <div class="overlay"></div>
+
+  <div data-popup="request-contact-access" class="dialog">
+    <div class="message">
+      <h3 class="logo">Festival Mode</h3>
+      <p>would like to access your contacts.</p><p>
+    </p></div>
+    <a class="permit-contact-access" data-trigger-popup="invite-friends" href="#">
+      YES
+    </a>
+    <a data-close-popup href="#">NO</a>
+  </div>
+
+  <div data-popup="invite-friends" data-popup-size="full">
+
+    <header>
+      <h2>Invite Friends</h2>
+      <a data-close-popup>DONE</a>
+    </header>
+
+    <ul class="friends-list">
+      <li class="friend" data-relationship="{{contact.relationship}}" ng-repeat="contact in contacts.list">
+        <div class="invitee-item-base">
+          <div class="name">{{contact.name}}</div>
+          <div class="actions" data-tap-animate-source>
+
+            <div ng-show="contact.relationship == 'contact'">
+              <button class="invite-friend" ng-mousedown="contact.invite()" data-tap-trigger>
+                <i class="fa fa-plus fa-lg"></i>
+              </button>
+            </div>
+
+            <div ng-show="contact.relationship == 'invited'">
+              <span class="message">Invited</span>
+              <button class="remove-friend" ng-mousedown="contact.unfriend()" data-tap-trigger>
+                <i class="fa fa-ban"></i>
+              </button>
+            </div>
+
+            <div ng-show="contact.relationship == 'requesting'">
+              <span class="message">Requesting</span>
+              <button class="approve-friend" data-tap-trigger>
+                <i class="fa fa-check"></i></button>
+              <button class="remove-friend" ng-mousedown="contact.unfriend()" data-tap-trigger>
+                <i class="fa fa-ban"></i></button>
+            </div>
+
+            <div ng-show="contact.relationship == 'friend'">
+
+              <button class="hide-friend" data-tap-trigger ng-show="contact.canSeeYou()" ng-mousedown="contact.allowVisibility(false)">
+                <i class="fa fa-map-marker"></i>
+              </button>
+
+              <button class="remove-friend" ng-mousedown="contact.unfriend()" data-tap-trigger>
+                <i class="fa fa-ban"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden-from-map-message" data-tap-animate-source data-tap-trigger ng-show="contact.isFriendButCantSeeYou()">
+          You are hidden from {{utils.firstWord(contact.name)}}'s map
+          <button class="show-friend" data-tap-trigger ng-mousedown="contact.allowVisibility(true)">
+            <strong>SHOW</strong>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div data-popup="view-friend-requests">friend requests</div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+<script src="assets/js/km_utils.js"></script>
+<script src="assets/js/view_base.js"></script>
+
+<!-- LEGACY JS - AUTHENTICATION AND POPUPS -->
+<script src="prototype/js/view_popup_manager.js"></script>
+<script src="prototype/js/view_main.js"></script>
+
+<!-- NEW ANGULAR STUFF -->
+<script src="assets/lib/js/angular-1.2.28.min.js"></script>
+<script src="prototype/js/angular/app_base.js"></script>
+<script src="prototype/js/angular/factory_contact_model.js"></script>
+<script src="prototype/js/angular/service_contacts_collection.js"></script>
+<script src="prototype/js/angular/service_plan_object.js"></script>
+<script src="prototype/js/angular/directive_animate_tap_trigger.js"></script>
+<script src="prototype/js/angular/directives_friend.js"></script>
+<script src="prototype/js/angular/controller_map_manager.js"></script>
+<script src="prototype/js/angular/controller_contacts_manager.js"></script>
+<script src="prototype/js/angular/controller_plan_manager.js"></script>
+
+
+</body>
+</html>

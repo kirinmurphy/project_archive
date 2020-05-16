@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>Delicious-er :: Codethings.net</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("nav");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet/less" href="css/application.less" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+<script src="lib/knockout-2.0.0.js"></script>
+</head>
+<body>
+
+  <div id="delicious-feed">
+    <div class="init-load" data-bind="visible:initLoad()">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading feed...
+    </div>
+    <div class="inner" style="display:none" data-bind="visible:!initLoad()">
+      <header class="clr">
+        <div class="filter-by clr">
+          <label for="filter-input"><span class="text-filtering">Filtering </span> <span class="text-by">by</span></label>
+          <div class="input-with-dropdown" data-bind="css: { nomatches: matchedTags() == 0 }">
+
+            <div class="input-wrap">
+              <input id="filter-input" placeholder="keyword" type="text" value="" data-bind="
+                  value:filterInput,
+                  valueUpdate:'keyup',
+                  event: { keyup:keyPress }
+              "/>
+              <a href="#" class="reset-filter" style="display:none" data-bind="visible: filtering(), click:resetFeed">
+                <i class="fa fa-remove"></i>
+              </a>
+              <a href="#" class="show-taglist" data-bind="click:openFullList, css: { disabled: filterInput() && isTyping() }">
+                <i class="fa fa-caret-down"></i>
+              </a>
+            </div>
+
+            <div data-bind="visible:isTyping()">
+              <div class="tag-menu" data-bind="foreach: $root.tags">
+                <a href="#" class="clr" data-bind="
+                  visible: isDisplayed(),
+                  click: $root.filterFromTagList,
+                  css: { hilighted: isHilighted }">
+                  <div class="qty" data-bind="text: staticTag.content"></div>
+                  <div class="title" data-bind="text:staticTag.title"></div>
+                </a>
+              </div>
+
+              <div class="tag-sort-options clr" data-bind="visible: matchedTags() > 5">
+                <legend>Sort tags</legend>
+                <label class="quantity" data-bind="css: { active: sortOrderType() == 'content' }">
+                  <input type="radio" name="sortOption" value="content" data-bind="checked:sortOrderType" checked="checked">by quantity
+                </label>
+                <label class="alphabetical" data-bind="css: { active: sortOrderType() == 'title' }">
+                  <input type="radio" name="sortOption" value="title" data-bind="checked:sortOrderType">
+                  alphabetically
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="no-matches-message" data-bind="visible: matchedTags() == 0">
+            Sorry No Matches Dude
+          </div>
+        </div>
+        <div class="user-setting">
+          <label>in</label>
+          <input type="text" data-bind="value: feedUser" placeholder="all delicious.com">
+          <label>'s bookmarks</label>
+        </div>
+      </header>
+
+      <div class="articles" data-bind="visible: articles().length > 0, foreach: articles">
+        <article class="clr" data-bind="visible:isDisplayed()">
+          <div class="date" data-bind="text:date, css : { first: isNewDate }"></div>
+          <h4>
+            <a class="title" target="_blank" data-bind="text:staticArticle.title, attr: { href: staticArticle.link }"></a>
+          </h4>
+          <div class="tags clr" data-bind="foreach:staticArticle.categories">
+            <a href="#" data-bind="
+              text:$data,
+              click:$root.filterFromItemTag,
+              clickBubble: false,
+              css : { active: $data == $root.currentFilterValue() }
+            "></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="no-articles" style="display:none" data-bind="visible:articles().length == 0 && loading() == false">
+          No Articles Breh
+      </div>
+
+      <div class="loading" style="display:none" data-bind="visible:loading">
+        <i class="fa fa-spinner fa-spin"></i>
+        Loading...
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script src="http://www.google.com/jsapi?key=ABQIAAAALk3O0uNEZo5JV2NnBu4xlhRFCtgDY70CJjq_pz_LlgW1_NaJVRRJ7B-fna1-IzWO8WQdiXo7a_k2Ew"></script>
+<script src="js/deliciouser.js"></script>
+<script src="js/feedlist.js"></script>
+<script src="js/dom_stuff.js"></script>
+<script>
+(function() {
+
+  var inIframe = (function inIframe () {
+    try { return window.self !== window.top; }
+    catch (e) { return true; }
+  })();
+
+  $('body').attr('data-in-iframe', inIframe);
+
+  var feedViewModel = new $.FeedList({
+    feedURL: "http://feeds.delicious.com/v2/rss/",
+    feedUser: "km_webdev",
+    feedTags: null,
+    feedCount: 150,
+    tagListCount: 150,
+    localStorageKey: {
+        userName: 'deliciouserUser',
+        initTag: 'deliciouserCurrentTag'
+    }
+  });
+
+  ko.applyBindings(feedViewModel);
+
+})();
+</script>
+
+</body>
+</html>
+

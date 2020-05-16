@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>CodeThings</title>
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="dropdown.css" type="text/css" />
+<link rel="stylesheet/less" href="slidepuzzle.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+</head>
+<body>
+
+<div id="puzzle1" class="puzzlePic">
+    <img src="images/daft-punk-dreamscape.gif" />
+</div>
+
+<pre style="display:none;">To Do:
+- load image from default pictures array
+- setup auto game player to randomly run program
+</pre>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="dropdown.js"></script>
+<script src="slidepuzzle.js"></script>
+<script>
+	$(window).load(function() {
+	    $('#puzzle1').puzzlePic({
+        defaultPictures : [
+					{ name:'Colorful Expression', url:'images/mbttzn.jpg' },
+					{ name:'Cool Tree Bro', url:'http://www.dirjournal.com/info/wp-content/uploads/2009/12/winter3.jpg' },
+					{ name:'Paolo Ceric', url:'images/paolo-ceric-animated-gif-06.gif' },
+        	{ name:'Pac Man', url:'images/pac-man.gif' },
+        	{ name:'Daft Punk Dreams', url:'images/daft-punk-dreamscape.gif' }
+				]
+	    });
+	});
+</script>
+
+</body>
+</html>

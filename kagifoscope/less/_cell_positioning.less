@@ -1,0 +1,82 @@
+// CELL POSITION -------------- //
+#slides .cell {
+  @horizOffset: 15%;
+  @verticalOffset: @horizOffset * 2/3;
+
+transform-style: preserve-3d;
+  .inner { .fillContainer; }
+
+  &.top { top:@horizOffset; }
+  &.bottom { bottom:@horizOffset; }
+  &.left { left:@verticalOffset; }
+  &.right { right:@verticalOffset; }
+  &.center { left:50%; }
+  &.middle { top:50%; }
+
+  // NUCLEUS
+  @adjustedScale: 1.26;
+  @adjustedTranslate: -50% / @adjustedScale;
+  &.center.middle { transform-origin:center center;
+    .transform(scale(@adjustedScale) translate3d(@adjustedTranslate, @adjustedTranslate, 0));
+  }
+
+  // CORNERS
+  @cornerAskew: 11deg;
+  @cornerScale: 1.05;
+  @cornerXRotate:20deg;
+  @cornerYRotate:9deg;
+  &.left.top {
+    .transform(scale(@cornerScale) rotateX(@cornerXRotate) rotateY(@cornerYRotate *-1) skewX(@cornerAskew * -1)); }
+  &.right.top {
+    .transform(scale(@cornerScale) rotateX(@cornerXRotate) rotateY(@cornerYRotate) skewX(@cornerAskew)); }
+  &.right.bottom {
+    .transform(scale(@cornerScale) rotateX(@cornerXRotate *-1) rotateY(@cornerYRotate) skewX(@cornerAskew * -1)); }
+  &.left.bottom {
+    .transform(scale(@cornerScale) rotateX(@cornerXRotate *-1) rotateY(@cornerYRotate *-1) skewX(@cornerAskew)); }
+
+  // SIDES
+  @sidePerspective:100px;
+  @outerCrossOffsets: 5.2%;
+  @verticalOuterOffset: @horizOffset - @outerCrossOffsets;
+  @horizontalOuterOffset: @verticalOffset - (@outerCrossOffsets * 1.1);
+  &.center.bottom { bottom:@verticalOuterOffset;
+    .transform(translateX(-50%) perspective(@sidePerspective) rotateX(-10deg)); }
+  &.center.top { top:@verticalOuterOffset;
+    .transform(translateX(-50%) perspective(@sidePerspective) rotateX(10deg)); }
+  &.left.middle { left:@horizontalOuterOffset;
+    .transform(translateY(-50%) perspective(@sidePerspective) rotateY(-5deg)); }
+  &.right.middle { right:@horizontalOuterOffset;
+    .transform(translateY(-50%) perspective(@sidePerspective) rotateY(5deg)); }
+
+}
+
+.goofyFlip {
+  .cell {
+    &.right .inner { -webkit-transform:scale(-1,2); }
+    &.bottom .inner { -webkit-transform:scale(1,-1); }
+    &.bottom.right .inner { -webkit-transform:scale(-1,-1); }
+  }
+}
+
+.regularFlip {
+  .cell {
+    &.left .inner { -webkit-transform:scale(-1,1); }
+    &.top .inner { -webkit-transform:scale(1,-1); }
+    &.top.left .inner { -webkit-transform:scale(-1,-1); }
+  }
+}
+
+
+#slides[data-pic="1"] { .regularFlip; }
+#slides[data-pic="2"] { .goofyFlip; }
+#slides[data-pic="3"] { .regularFlip; }
+#slides[data-pic="4"] { .regularFlip; }
+#slides[data-pic="5"] { .goofyFlip; }
+#slides[data-pic="6"] { .regularFlip; }
+#slides[data-pic="7"] { .regularFlip; }
+#slides[data-pic="8"] { .regularFlip; }
+#slides[data-pic="9"] { .goofyFlip; }
+#slides[data-pic="10"] { .goofyFlip; }
+#slides[data-pic="11"] { .regularFlip; }
+
+

@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>codethings.net :: ListBuilder()</title>
+
+<link type="text/css" rel="stylesheet" href="lib/default.css" />
+<link type="text/less" rel="stylesheet" href="listbuilder.css"/>
+<link type="text/less" rel="stylesheet" href="knockit.less" />
+<link type="text/less" rel="stylesheet" href="../dropdown/dropdown.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+<script src="lib/knockout-2.0.0.js"></script>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("nav");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+</head><body>
+
+<div id="contactList" class="listwrap wrap compact">
+    <div class="listheader clr">
+
+        <div class="totalItems">There are <span data-bind="text: articles().length"></span> total items</div>
+
+        <div class="totalChecked">
+            There are <span data-bind="text: checkedCount()"></span> checked items.
+            <button data-bind="click:selectAll, text:buttonTextCheckAll"></button>
+        </div>
+
+        <div class="totalStarred">
+            There are <span data-bind="text: starredCount()"></span> starred items.
+            <button data-bind="click:starAll, text:buttonTextStarAll"></button>
+        </div>
+
+        <select class="displayType" data-bind="
+            options: displayType,
+            optionsValue:'value',
+            optionsText:'name',
+            value:selectedDisplayType
+        "></select>
+
+    </div>
+
+    <div id="articles" data-bind="foreach: articles">
+        <article data-bind="visible: displayIt">
+            <div class="selectOptions clr">
+                <div class="selectItem"><input type="checkbox" data-bind="click:$root.toggleCheckedItem, checked:isSelected"></div>
+                <div class="starItem" data-bind="css: { isStarred:isStarred }, click:$root.toggleStarredItem">☆</div>
+                <!-- <div class="removeItem">x</div> -->
+            </div>
+            <h3>
+                <!-- ko if:article.nameLink -->
+                <a data-bind="text:article.name, attr:{ href:article.nameLink }"></a>
+                <!-- /ko -->
+                <!-- ko if:!article.nameLink -->
+                <span data-bind="text:article.name"></span>
+                <!-- /ko -->
+            </h3>
+        </article>
+    </div>
+
+
+    <div class="listfooter">
+        <button class="showmore" data-bind="
+            visible: settings.url_loadMoreArticles,
+            css : { loading:requestingMoreArticles, disabled:requestingMoreArticles },
+            attr: { disabled:requestingMoreArticles },
+            click:getMoreArticles,
+            text:buttonTextShowMore
+        ">
+        </button>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../dropdown/dropdown.js"></script>
+<script src="../tooltip/main.js"></script>
+<script src="../magnetize/magnetize.js"></script>
+<script src="knockit.js"></script>
+
+<script>
+(function() {
+    var list = {
+        "configuration": {
+            "expanderLinks" : [
+                { 'type': 'allOutlets', 'buttonText': 'All Outlets', 'url':'assets/alloutlets/' },
+                { 'type': 'recentArticles', 'buttonText': 'Recent Articles', 'url':'assets/recentarticles/' },
+                { 'type': 'profileSummary', 'buttonText': 'View All Outlets', 'url':'assets/profiletext/' }
+            ]
+        },
+        "articles": [
+            {
+                "id":20000,
+                "isSelected":true,
+                "isStarred":true,
+                "name":"Walter Mossberg",
+                "title":"Editor",
+                "imgLink":"http://www.journalism.columbia.edu/system/photos/956/default/Alumni_Mossberg.jpg?1282075390",
+                "nameLink":null,
+                "outlet":"The New York Times",
+                "mediaType":"Daily Newspaper",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Sports","Excercise","World Events" ],
+                "address1":"620 Eighth Avenue Manhattan",
+                "location":"New York, NY USA",
+                "DMA":"DMA-001",
+                "phone":"(211) 434-2343",
+                "email":"walter@mossman.com",
+                "twitter": "waltmossberg",
+                "metrics" : [
+                    { "type":"circulation", "name":"Circulation", "value":"200,000", "frequency":"Daily" }
+                ],
+                "frequency":"Daily",
+                "website":"http:www.mossblog.com",
+                "recentArticles": [
+                    { "date":"10.20.11", "title":"Staring at computer all day makes Walter a dull boy", "outletURL":"#", "outlet":"Mossblog.com"  },
+                    { "date":"10.01.11", "title":"Giant Space Men at higher risk of Adult Onset Diabetes", "outletURL":"#", "outlet":"New York Times"  },
+                    { "date":"09.20.11", "title":"iPhone 5, Kindle Fire and the future of Staring at screens.", "outletURL":"#", "outlet":"New York Times"  }
+                ]
+            },
+            {
+                "id":20001,
+                "isSelected":true,
+                "isStarred":false,
+                "name":"David Pogue",
+                "title":"Blogger",
+                "imgLink": "http://www.mygreatphone.com/wp-content/themes/MyGreatPhone_2011/scripts/timthumb.php?src=http://www.mygreatphone.com/wp-content/uploads/2009/06/david-pogue-150x150.jpg&w=80&h=80&zc=1&q=100",
+                "nameLink":"#",
+                "outlet":"Los Angeles Times",
+                "mediaType":"Daily Newspaper",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Sports","Excercise","World Events" ],
+                "address1":"202 West 1st Street",
+                "location":"Los Angeles, CA USA",
+                "DMA":"DMA-003",
+                "phone":"(312) 588-2300",
+                "email":"davidpogue@aol.com",
+                "twitter": "davPo",
+                "metrics" : [
+                    { "type":"circulation", "name":"Circulation", "value":"200,000" }
+                ],
+                "frequency":"Daily",
+                "website":"http:www.poguee.com"
+            },
+            {
+                "id":20002,
+                "isSelected":false,
+                "isStarred":false,
+                    "name":"Christian Amanpour",
+                "title":"Foreign Correspondent",
+                "imgLink":"http://s12.bdbphotos.com/images/80x80/c/5/c5d4ai5a6qc9qa95.jpg",
+                "nameLink":"#",
+                "outlet":"CNN",
+                "mediaType":"Cable Television",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Finance","Stocks","Wubba Wubba" ],
+                "address1":"1 West Waverly Burroughs",
+                "location":"London, England",
+                "phone":"+44 207 232 23 12",
+                "email":"christian@christianamanpour.com",
+                "twitter": "ChrisAm"
+            },
+            {
+                "id":20003,
+                "isSelected":false,
+                "isStarred":false,
+                "name":"Arianna Huffington",
+                "title":"Blogger, Editor",
+                "imgLink":"",
+                "nameLink":"#",
+                "outlet":"The Huffington Post",
+                "mediaType":"Blog",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Politics, World Events" ],
+                "address1":"222 N. North Street",
+                "location":"New York, NY",
+                "phone":"(646) 926-3342",
+                "email":"arianna@huffingtonpost",
+                "twitter": "ChrisAm",
+                "metrics" : [
+                    { "type":"uvpm", "name":"UVPM", "value":"26,000" }
+                ],
+                "website":"http://www.huffingtonpost.com"
+            },
+            {
+                "id":20004,
+                "isSelected":false,
+                "isStarred":true,
+                "name":"Jon Stewart",
+                "title":"TV Show Host",
+                "imgLink":"http://content9.flixster.com/photo/13/93/99/13939943_tmb.jpg",
+                "nameLink":"#",
+                "outlet":"The Daily Show with Jon Stewart",
+                "mediaType":"Cable Television",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Politics","Comedy" ],
+                "address1":"27 W. 84th Street",
+                "location":"New York, NY, USA",
+                "DMA":"DMA-001",
+                "phone":"(232) 323-2322",
+                "email":"thedailyshow@comedycentral.com",
+                "twitter": "JohnStew",
+                "onairTime":"9pm (30min) Mon-Thurs",
+                "website": "http://thedailyshow.com"
+            },
+            {
+                "id":20000,
+                "isSelected":true,
+                "isStarred":true,
+                "name":"Walter Mossberg",
+                "title":"Editor",
+                "imgLink":"http://www.journalism.columbia.edu/system/photos/956/default/Alumni_Mossberg.jpg?1282075390",
+                "nameLink":null,
+                "outlet":"The New York Times",
+                "mediaType":"Daily Newspaper",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Sports","Excercise","World Events" ],
+                "address1":"620 Eighth Avenue Manhattan",
+                "location":"New York, NY USA",
+                "DMA":"DMA-001",
+                "phone":"(211) 434-2343",
+                "email":"walter@mossman.com",
+                "twitter": "waltmossberg",
+                "metrics" : [
+                    { "type":"circulation", "name":"Circulation", "value":"200,000", "frequency":"Daily" }
+                ],
+                "frequency":"Daily",
+                "website":"http:www.mossblog.com",
+                "recentArticles": [
+                    { "date":"10.20.11", "title":"Staring at computer all day makes Walter a dull boy", "outletURL":"#", "outlet":"Mossblog.com"  },
+                    { "date":"10.01.11", "title":"Giant Space Men at higher risk of Adult Onset Diabetes", "outletURL":"#", "outlet":"New York Times"  },
+                    { "date":"09.20.11", "title":"iPhone 5, Kindle Fire and the future of Staring at screens.", "outletURL":"#", "outlet":"New York Times"  }
+                ]
+            },
+            {
+                "id":20001,
+                "isSelected":true,
+                "isStarred":false,
+                "name":"David Pogue",
+                "title":"Blogger",
+                "imgLink": "http://www.mygreatphone.com/wp-content/themes/MyGreatPhone_2011/scripts/timthumb.php?src=http://www.mygreatphone.com/wp-content/uploads/2009/06/david-pogue-150x150.jpg&w=80&h=80&zc=1&q=100",
+                "nameLink":"#",
+                "outlet":"Los Angeles Times",
+                "mediaType":"Daily Newspaper",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Sports","Excercise","World Events" ],
+                "address1":"202 West 1st Street",
+                "location":"Los Angeles, CA USA",
+                "DMA":"DMA-003",
+                "phone":"(312) 588-2300",
+                "email":"davidpogue@aol.com",
+                "twitter": "davPo",
+                "metrics" : [
+                    { "type":"circulation", "name":"Circulation", "value":"200,000" }
+                ],
+                "frequency":"Daily",
+                "website":"http:www.poguee.com"
+            },
+            {
+                "id":20002,
+                "isSelected":false,
+                "isStarred":false,
+                    "name":"Christian Amanpour",
+                "title":"Foreign Correspondent",
+                "imgLink":"http://s12.bdbphotos.com/images/80x80/c/5/c5d4ai5a6qc9qa95.jpg",
+                "nameLink":"#",
+                "outlet":"CNN",
+                "mediaType":"Cable Television",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Finance","Stocks","Wubba Wubba" ],
+                "address1":"1 West Waverly Burroughs",
+                "location":"London, England",
+                "phone":"+44 207 232 23 12",
+                "email":"christian@christianamanpour.com",
+                "twitter": "ChrisAm"
+            },
+            {
+                "id":20003,
+                "isSelected":false,
+                "isStarred":false,
+                "name":"Arianna Huffington",
+                "title":"Blogger, Editor",
+                "imgLink":"",
+                "nameLink":"#",
+                "outlet":"The Huffington Post",
+                "mediaType":"Blog",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Politics, World Events" ],
+                "address1":"222 N. North Street",
+                "location":"New York, NY",
+                "phone":"(646) 926-3342",
+                "email":"arianna@huffingtonpost",
+                "twitter": "ChrisAm",
+                "metrics" : [
+                    { "type":"uvpm", "name":"UVPM", "value":"26,000" }
+                ],
+                "website":"http://www.huffingtonpost.com"
+            },
+            {
+                "id":20004,
+                "isSelected":false,
+                "isStarred":true,
+                "name":"Jon Stewart",
+                "title":"TV Show Host",
+                "imgLink":"http://content9.flixster.com/photo/13/93/99/13939943_tmb.jpg",
+                "nameLink":"#",
+                "outlet":"The Daily Show with Jon Stewart",
+                "mediaType":"Cable Television",
+                "outletLink":"#",
+                "allOutletsLink":"#",
+                "topics":["Politics","Comedy" ],
+                "address1":"27 W. 84th Street",
+                "location":"New York, NY, USA",
+                "DMA":"DMA-001",
+                "phone":"(232) 323-2322",
+                "email":"thedailyshow@comedycentral.com",
+                "twitter": "JohnStew",
+                "onairTime":"9pm (30min) Mon-Thurs",
+                "website": "http://thedailyshow.com"
+            }
+        ]
+    };
+
+    // light it up, b
+    ko.applyBindings(new $.ListViewModel({
+        firstArticles: list,
+        url_loadMoreArticles:'tempdata/morearticles.json'
+    }));
+
+    // magnetize toolbar
+    $('#contactList').magnetize({  magnetSelector: '.listheader'  });
+
+})();
+</script>
+</body>
+</html>

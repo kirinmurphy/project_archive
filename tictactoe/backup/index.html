@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("dropdown_group");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="main.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<body>
+
+<div id="tictactoe-yo"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="main.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#tictactoe-yo').ticTacToeYo();
+
+    var inIframe = (function inIframe () {
+        try { return window.self !== window.top; }
+        catch (e) { return true; }
+    })();
+
+    $('body').attr('data-in-iframe', inIframe)
+	});
+</script>
+
+</body>
+</html>
+

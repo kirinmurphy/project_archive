@@ -1,0 +1,227 @@
+{ "addtofavs" : false,
+  "filterset" : [ { "datastate" : "default",
+        "filterelements" : [ { "__type" : "selectFilter:#Cision.CisionPoint.Web.ViewModels",
+              "group" : 0,
+              "id" : "NotSet",
+              "items" : [ { "id" : null,
+                    "items" : [ { "id" : "25023",
+                          "items" : [  ],
+                          "label" : "ddddddddddd",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25022",
+                          "items" : [  ],
+                          "label" : "dsaasddsa",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25025",
+                          "items" : [  ],
+                          "label" : "ssssssss",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25028",
+                          "items" : [  ],
+                          "label" : "top save yo",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25018",
+                          "items" : [  ],
+                          "label" : "top1",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25019",
+                          "items" : [  ],
+                          "label" : "top2",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25020",
+                          "items" : [  ],
+                          "label" : "topsave",
+                          "selectType" : "link",
+                          "value" : "off"
+                        },
+                        { "id" : "25021",
+                          "items" : [  ],
+                          "label" : "topyes",
+                          "selectType" : "link",
+                          "value" : "off"
+                        }
+                      ],
+                    "label" : null,
+                    "selectType" : "unselectable",
+                    "value" : "off"
+                  } ],
+              "label" : null,
+              "selectType" : "checkbox"
+            } ],
+        "group" : 1,
+        "id" : "NotSet",
+        "label" : "My Saved Filters"
+      },
+      { "datastate" : "default",
+        "filterelements" : [ { "__type" : "textFilter:#Cision.CisionPoint.Web.ViewModels",
+              "group" : 0,
+              "id" : "NotSet",
+              "inputType" : "string",
+              "label" : null,
+              "value" : ""
+            } ],
+        "group" : 2,
+        "id" : "SelfServiceSavedSearchText",
+        "label" : "Text Search"
+      },
+      { "datastate" : "default",
+        "filterelements" : [ { "__type" : "selectFilter:#Cision.CisionPoint.Web.ViewModels",
+              "group" : 0,
+              "id" : "NotSet",
+              "items" : [ { "id" : null,
+                    "items" : [ { "id" : "10323619",
+                          "items" : [  ],
+                          "label" : "1413 Wells Fargo",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        },
+                        { "id" : "10324933",
+                          "items" : [  ],
+                          "label" : "2900-B Boston",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        }
+                      ],
+                    "label" : null,
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  } ],
+              "label" : null,
+              "selectType" : "checkbox"
+            } ],
+        "group" : 1,
+        "id" : "SelfServiceSavedSearchSubscriptions",
+        "label" : "Subscriptions"
+      },
+      { "datastate" : "default",
+        "filterelements" : [ { "__type" : "selectFilter:#Cision.CisionPoint.Web.ViewModels",
+              "group" : 0,
+              "id" : "NotSet",
+              "items" : [ { "id" : null,
+                    "items" : [ { "id" : "50148289",
+                          "items" : [  ],
+                          "label" : "General Project",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        } ],
+                    "label" : null,
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  } ],
+              "label" : null,
+              "selectType" : "checkbox"
+            } ],
+        "group" : 1,
+        "id" : "SelfServiceSavedSearchProject",
+        "label" : "Project"
+      },
+      { "datastate" : "default",
+        "filterelements" : [ { "__type" : "DateFilterModel:#Cision.CisionPoint.Web.ViewModels",
+              "dateRangeItems" : [  ],
+              "group" : 0,
+              "id" : "NotSet",
+              "label" : null,
+              "range" : { "storedEndDate" : null,
+                  "storedStartDate" : null
+                },
+              "rangeType" : "absolute",
+              "relativeRangeItems" : [ { "disabled" : false,
+                    "id" : "18",
+                    "label" : "Last 24 hours",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  },
+                  { "disabled" : false,
+                    "id" : "1",
+                    "label" : "Today",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  },
+                  { "disabled" : false,
+                    "id" : "2",
+                    "label" : "Last 2 days",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  },
+                  { "disabled" : false,
+                    "id" : "3",
+                    "label" : "Last 3 days",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  },
+                  { "disabled" : false,
+                    "id" : "4",
+                    "label" : "Last 4 days",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  },
+                  { "disabled" : false,
+                    "id" : "16",
+                    "label" : "All dates",
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  }
+                ],
+              "selectType" : "radio"
+            } ],
+        "group" : 4,
+        "id" : "SelfServiceSavedSearchDate",
+        "label" : "Date"
+      },
+      { "datastate" : "default",
+        "filterelements" : [ { "__type" : "selectFilter:#Cision.CisionPoint.Web.ViewModels",
+              "group" : 0,
+              "id" : "NotSet",
+              "items" : [ { "id" : null,
+                    "items" : [ { "id" : "-1",
+                          "items" : [  ],
+                          "label" : "Admin, Cision",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        },
+                        { "id" : "120086",
+                          "items" : [  ],
+                          "label" : "1351, 1351",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        },
+                        { "id" : "117759",
+                          "items" : [  ],
+                          "label" : "Bugaian, Adrian MA",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        },
+                        { "id" : "120598",
+                          "items" : [  ],
+                          "label" : "User, SRU",
+                          "selectType" : "checkbox",
+                          "value" : "off"
+                        }
+                      ],
+                    "label" : null,
+                    "selectType" : "checkbox",
+                    "value" : "off"
+                  } ],
+              "label" : null,
+              "selectType" : "checkbox"
+            } ],
+        "group" : 1,
+        "id" : "SelfServiceSavedSearchLastUpdatedBy",
+        "label" : "Last Updated By"
+      }
+    ],
+  "filtersetname" : null,
+  "newtab" : null
+}

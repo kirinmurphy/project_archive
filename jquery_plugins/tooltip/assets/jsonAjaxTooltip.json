@@ -1,0 +1,9 @@
+{
+    "title":"How cool is it that you just loaded a form inside of me by getting JSON data and then running your own custom builder called <strong>buildItemsFromJSON</strong> that returns this HTML?",
+    "items":[
+        "Yawn",
+        "That's pretty cool",
+        "You're a nerd",
+        "I don't use computers"
+    ]
+}

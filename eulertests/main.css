@@ -1,0 +1,44 @@
+body { padding:50px; line-height:1;
+  font-family:Helvetica,Arial,Verdana,Sans-serif;
+  font-size:12px;
+}
+
+@media (max-width:768px) {
+  body { padding:25px; }
+}
+
+#wrap { max-width:1100px;
+  margin:0 auto; line-height:1.5; font-size:12px;
+
+  h2 { display:inline-block;
+    margin:0 6px 2px 0; padding:0; font-size:18px;
+  }
+
+  p { display:inline; margin:0 0 5px 0; padding:0; }
+}
+
+#eulertests {
+  ul {  padding:0; border:solid #ccc;
+    border-width:1px 0px 0 0px; list-style-type:none;
+  }
+
+  li { position:relative; border-bottom:1px solid #ccc;
+
+    .question { margin-right:200px; padding:15px;
+      overflow-x:auto; overflow-y:visible;
+      .links a { display:block; }
+    }
+
+    .answer { position:absolute; top:0; right:0; bottom:0;
+      width:170px; padding:15px;
+      border-left:1px solid #ddd; cursor:default;
+      background:#fff;
+
+      &.undisplayed { cursor:pointer; }
+      &.undisplayed:hover { background-color:#eef; }
+      &.noanswer { color:#aaa; }
+      &.correct { background:#efe; }
+      &.incorrect { background:#fee; }
+    }
+  }
+}

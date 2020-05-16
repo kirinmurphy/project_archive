@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<head>
+<meta charset="utf-8" >
+
+<title>codethings.net : InlineEdit</title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("dropdown_group");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="inlineedit.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+<style>
+
+    #header { width:750px; padding:25px 0; border-bottom:1px solid #eee; margin:0 auto 40px auto; font-size:15px; line-height:1.3; }
+    h2 { font-size:18px; margin-bottom:4px; }
+    #header h2 { font-size:24px; }
+    #header p { margin-bottom:12px; }
+    #header ul { margin-left:15px; list-style-type:square;  }
+    #header li { padding:4px; }
+	.form { width:700px; margin:0 auto; zoom: 1; display: block;  }
+	fieldset { float:left; width:305px; margin-right:10px; padding:15px; float:left; }
+	.submitActions { clear:both; }
+
+	#formbuilder { width:700px; margin:0 auto 50px auto; padding-bottom:40px; border-bottom:1px solid #eee;  }
+
+	.realExampleJSON { margin-top:30px; padding-top:30px; border-top:1px solid #eee; }
+
+	a { text-decoration:underline; }
+
+</style>
+
+</head>
+<body>
+
+<div id="inlineEditForm">
+    <h3 class="inlineedit" data-fieldtype="text"><span>Do This Thing Right Now</span></h3>
+    <div class="inlineedit description" data-fieldtype="textarea">
+        <span>You should do this thing right now and then it you will see that you made the right decision to do this thing.</span>
+    </div>
+    <dl style="display:none" class="categories inlineedit" data-fieldtype="checkbox" data-fieldoptions="topics"><dt><strong>Categories</strong></dt>
+        <dd><span>Meatballs, Driveways, Sadness</span></dd>
+    </dl>
+</div>
+
+<div class="actionMessages"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="inlineedit.js"></script>
+<script src="../formbuilder/formbuilder.js"></script>
+
+<script>
+	(function() {
+            var callbackMessage = 'submitSuccessCallback() passes you back your edited value to post it to the server or do whatever the heck you wanna do with it, gosh!:'
+
+		$(".inlineedit").doAnInlineEdit({
+		    fieldOptions : {
+		        topics: 'assets/topiclist.json'
+		    },
+			submitSuccessCallback : function(editedValue) {
+			    $('.actionMessages')
+			        .html('<strong>' + editedValue + '</strong>' + callbackMessage)
+			        .show().delay(8000).fadeOut(400);
+			}
+		});
+	})();
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+{
+	"buildType" : "form",
+	"formHeader" : "Example Form Yo!",
+	"groups" : [
+		{
+			"header" : "fieldset header 1",
+			"items" : [
+				{ "type":"guideline", "html":"This is a guideline to tell you what to do." },
+				{ "type":"text", 
+					"properties":{ 
+						"type":"text", "label":"Label", "name":"input1", "id":"input1", "placeholder" : "placeholder", 
+						"required":true, "validate":"numeric", "maxChar": 16
+					}
+				},
+				{ "type":"textarea", 
+					"properties":{ "type":"textarea", "label":"Label", "id":"textarea1", "placeholder" : "placeholder", "name":"textareaInput", "className":"whawha" } },
+				{ "type":"select", 
+					"properties": { "label":"select ittt!", "name":"select1", "required":true },
+				 	"options" : [
+						{ "label":"Select Option", "value":"unselected" },
+						{ "label":"option2", "value":"2345" },
+						{ "label":"option3", "value":"2343" },
+						{ "label":"option4", "value":"2342", "on":true, 
+							"child" : { "type":"checkbox",
+								"properties" : { "hideNested":true, "minRequired":1 },
+								"options" : [
+									{ "label":"option1", "value":"3223" },
+									{ "label":"option2", "value":"4544", "on":true },
+									{ "label":"option3", "value":"657556",
+										"children" : [
+											{ "type":"text", 
+												"properties":{ 
+													"type":"text", "label":"children 12", "name":"input1222", "id":"input1", 
+													"required":true, "placeholder" : "placeholder" 
+												} 
+											},							
+											{ "type":"text", 
+												"properties":{ 
+													"type":"text", "label":"children 2", "name":"input1333", "id":"input1", 
+													"required":true, "placeholder" : "placeholder" 
+												} 
+											}							
+										]
+									},
+									{ "label":"option4", "value":"4564544" }
+								]
+							}
+						
+						},
+						{ "label":"option5", "value":"345635" },
+						{ "label":"option6", "value":"234533",
+							"children" : [
+								{ "type":"text", 
+									"properties":{ 
+										"type":"text", "label":"children 1", "name":"input1222", "id":"input1", 
+										"required":true, "placeholder" : "placeholder" 
+									} 
+								},							
+								{ "type":"text", 
+									"properties":{ 
+										"type":"text", "label":"children 2", "name":"input1333", "id":"input1", 
+										"required":true, "placeholder" : "placeholder" 
+									} 
+								}							
+							
+							]
+						},
+						{ "label":"option7", "value":"232526" }
+					]
+				}
+			]
+		},
+		{
+			"header" : "Nested Checkboxes and Radio Buttons",
+			"items" : [
+				{ "type":"checkbox",
+					"properties": { "label":"What should you do?", "hideNested":true, "maxSelectable":3, "minRequired":2, "typeahead":true },
+					"options" : [
+						{ "label":"shopping", "value":"aa3223" },
+						{ "label":"shipping", "value":"aa4544" },
+						{ "label":"sailing", "value":"aa657556", 
+							"child" : { "type":"text", 
+								"properties":{ 
+									"type":"text", "label":"children 1", "name":"input1222", "id":"input1", 
+									"required":true, "placeholder" : "placeholder" 
+								} 
+							}
+						},
+						{ "label":"whaleing", "value":"aa4564544" }
+					]
+				},
+				{ "type": "radio", 
+					"properties" : { "label":"What is your problem", "name": "parentselecta", "hideNested":true },
+				 	"options" : [
+						{ "label":"option1", "value":"34534" },
+						{ "label":"option2", "value":"34534", "on":true, 
+							"children" : [ 
+								{ "type":"text", 
+									"properties":{ 
+									    "type":"text", "label":"Label", "name":"input1", "id":"input1", "required":true, "placeholder" : "placeholder" 
+									} 
+								}
+							]
+						},
+						{ "label":"option3", "value":"34646" },
+						{ "label":"option4", "value":"34633", 
+							"child" : { "type":"checkbox",
+								"properties" : { "hideNested":false },
+								"options" : [
+									{ "label":"option1", "value":"4356" },
+									{ "label":"option2", "value":"564756", "on":true },
+									{ "label":"option3", "value":"544566",
+										"child" : { "type":"text", 
+											"properties":{ "type":"text", "label":"Label", "name":"input1", "id":"input1", "required":true, "placeholder" : "placeholder" } } 
+									},
+									{ "label":"option4", "value":"3455445" }
+								]
+							}
+						}
+					] 
+				}
+				
+			]
+		}
+	]
+}

@@ -1,0 +1,194 @@
+<!--
+
+Planetary Proximity Detection Simulator
+by KM & DK
+
+orbit technique inspired by bebraw -
+http://stackoverflow.com/questions/5964236/how-can-i-animate-an-object-in-orbit-using-html5-canvas
+
+reference:
+http://hyperphysics.phy-astr.gsu.edu/hbase/solar/soldata2.html
+http://www.braeunig.us/space/orbmech.htm
+http://www.windows2universe.org/physical_science/physics/mechanics/orbit/orbit_shape_interactive.html
+
+ellipse example - thanks Mauricio
+http://scienceprimer.com/draw-oval-html5-canvas
+function drawEllipse(ctx, x0, y0, a, exc, lineWidth, color) {
+  x0 += a * exc;
+  var r = a * (1 - exc * exc) / (1 + exc),
+    x = x0 + r,
+    y = y0;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  var i = 0.01 * Math.PI;
+  var twoPi = 2 * Math.PI;
+  while (i < twoPi) {
+    r = a * (1 - exc * exc) / (1 + exc * Math.cos(i));
+    x = x0 + r * Math.cos(i);
+    y = y0 + r * Math.sin(i);
+    ctx.lineTo(x, y);
+    i += 0.01;
+  }
+  ctx.lineWidth = lineWidth;
+  ctx.strokeStyle = color;
+  ctx.closePath();
+  ctx.stroke();
+}
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Planetary Proximity Detection Simulator</title>
+  <style>
+    body { margin: 20px; text-align:center; background:#000; }
+  </style>
+</head>
+<body>
+
+  <canvas id="universe" width="350" height="350"></canvas>
+
+  <div class="data" style="display:none;">
+    <pre><u>Planet Size:</u>
+    mars diameter - 6,779
+    earth diameter - 12,742
+    sun - 1,391,684
+    </pre>
+  </div>
+
+<script>
+(function() {
+
+  // SETUP -- getting the initial elements set up for our tiny universe -------- //
+
+  // access the <canvas> element in the HTML and store it in a variable for later use
+  var universe = document.getElementById('universe');
+
+  // initial values for our scenario
+  var blastOffs = 0;
+  var proximityColor = '#00ff00';
+
+  // We make an OBJECT that contains all of the properties of our tiny solar system
+  var solarSystem = {
+    // getContext creates a layer of 2d stuff
+    context: universe.getContext('2d'),
+    width: universe.width,
+    height: universe.height,
+    sun: {
+      size: 15,
+      color: 'yellow'
+    },
+    planets: {
+      earth: {
+        context: universe.getContext('2d'),
+        distanceFromSun: .3,
+        increment: 0,
+        orbitPosition: 0,
+        size: 6,
+        speedRelativeToEarth: 1,
+        color:'blue'
+      },
+      mars: {
+        context: universe.getContext('2d'),
+        increment: 0,
+        orbitPosition: 0,
+        distanceFromSun: .45,
+        size: 3.5,
+        speedRelativeToEarth: .52966,
+        color: '#fa0'
+      }
+    }
+  };
+
+  // INIT - the method that starts the sequence.
+  window.requestAnimationFrame(paintTheUniverse);
+
+  // this runs over and over and each time the values change incrementally to simulate the orbit
+  function paintTheUniverse () {
+    createSolarSystem();
+    checkIfPlanetsAreClose(solarSystem.planets.earth, solarSystem.planets.mars);
+    for ( planet in solarSystem.planets ) { setupOrbitFor(solarSystem.planets[planet]); }
+    // paintTheUniverse runs over and over because of the line below
+    // once the main tasks above complete it tells itself to run again (just like the same as the first time
+    window.requestAnimationFrame(paintTheUniverse);
+  };
+
+  function createSolarSystem () {
+    solarSystem.context.save();
+    createAVastEmptiness();
+    letThereBeLight();
+    solarSystem.context.restore();
+  };
+
+  function createAVastEmptiness () {
+    solarSystem.context.fillStyle = 'black';
+    solarSystem.context.fillRect(0, 0, solarSystem.width, solarSystem.height);
+  };
+
+  function letThereBeLight () {
+    goToCenterOfFrame(solarSystem.context);
+    createCelestialBody(solarSystem.sun.color, solarSystem.sun.size, solarSystem.context);
+  };
+
+  function checkIfPlanetsAreClose (planet1, planet2) {
+    var planetsAreClose = Math.abs(planet1.orbitPosition - planet2.orbitPosition) < 15;
+    planet1.inProximity = planetsAreClose;
+    planet2.inProximity = planetsAreClose;
+    if ( planetsAreClose ) { logEligibleLaunchDay(); }
+  };
+
+  function logEligibleLaunchDay () { blastOffs++; };
+
+  function setupOrbitFor (planet) {
+    planet.orbitPosition = Math.floor(planet.increment * planet.speedRelativeToEarth);
+    planet.increment = planet.orbitPosition < 360 ? planet.increment+1 : 0;
+    planet.context.save();
+    setPlanetCoordinates(planet);
+    createCelestialBody(getPlanetColor(planet), planet.size, planet.context);
+    planet.context.restore();
+  };
+
+  function setPlanetCoordinates (planet) {
+    goToCenterOfFrame(planet.context);
+    planet.context.rotate(getRadian(planet.orbitPosition));
+    var calculatedDistance = Math.floor(universe.width * planet.distanceFromSun)
+    planet.context.translate(calculatedDistance, 0);
+    // planet.context.translate(getEllipticalDistance(planet), 0);
+  };
+
+  // some stuff I haven't gotten to work yet
+  // function getEllipticalDistance (planet) {
+  //   var differential = planet.maxDistanceFromSun - planet.minDistanceFromSun;
+  //   var incrementDifferential = differential / 90;
+  //   var onExpandingArc = Math.floor(planet.increment / 90) % 2 === 1;
+  //   // none of this below works right
+  //   if ( !onExpandingArc ) { incrementDifferential = incrementDifferential * -1 }
+  //   planet.distanceFromSun = planet.distanceFromSun + incrementDifferential;
+  //   return planet.distanceFromSun;
+  // };
+
+  function getPlanetColor (planet) {
+    return planet.inProximity ? proximityColor : planet.color;
+  };
+
+  function goToCenterOfFrame (context) {
+    context.translate(solarSystem.width/2, solarSystem.height/2);
+  };
+
+  function createCelestialBody (color, radians, context) {
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(0, 0, radians, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+  };
+
+  function getRadian (degree) {
+    degree = degree || 1;
+    return degree * Math.PI / 180;
+  };
+})();
+
+</script>
+</body>
+</html>

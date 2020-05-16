@@ -1,0 +1,39 @@
+#delicious-feed .articles {
+  /* Article Variables and Mixins */
+  @dateWidth : 60px;
+  @dateLeft : @dateWidth * -1;
+  @articlesOffset : @dateWidth + 5;
+
+  padding-left:@articlesOffset;
+
+  article { position:relative; padding:10px 5px 7px 5px;
+    border-bottom:@border-light; cursor:pointer;
+
+    &:hover {
+      h4 a { color:@textcolor-link-hover; text-decoration:underline; }
+    }
+
+    .date { position:absolute; top:0;
+      left:@dateLeft; width:@dateWidth; padding-top:19px;
+      font-size:@font-size-tiny; color:@textcolor-superlight;
+
+      &.first { color:@textcolor-medium; }
+    }
+
+    @titleWidth: 63%;
+    @tagWidth: 97% - @titleWidth;
+
+    h4 { float:left; width:65%; padding:2px 0 0 4px;
+      margin-bottom:4px; line-height:1.5;
+      font-size:@font-size-base; font-weight:normal;
+
+      a { color:@textcolor-link; }
+    }
+
+    .tags { float:right; width:@tagWidth;
+      margin-bottom:-1px; max-width:220px;
+
+      a { float:right; margin:0 0 4px 4px; .buttonStyle(); }
+    }
+  }
+}

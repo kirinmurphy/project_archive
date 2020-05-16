@@ -1,0 +1,21 @@
+/* ------------------------------------------------- */
+body { padding:30px; }
+
+/* Required CSS */
+#scrollwrap {
+	.contentwrap { overflow-x:auto; overflow-y:hidden; }
+}
+
+/* Unique Styles */
+#scrollwrap { 
+	.contentwrap .content { min-height:1200px; min-width:1600px; font-size:14px; padding:20px; 
+		background:#89b; color:#fff;
+		h2 { font-size:22px; color:#fff; letter-spacing:1.6px; margin-bottom:40px; }
+		h3 { font-size:15px; text-decoration:underline; }
+		pre { width:670px; margin-left:80px; line-height:1.6; 
+			&.code { padding: 35px; margin-top: 30px; background:#DEF; color:#556688;
+			    border: 1px solid #667799; outline: 1px solid #FFFFFF;
+		 	}
+		}
+	}
+}

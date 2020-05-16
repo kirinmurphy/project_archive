@@ -1,0 +1,27 @@
+var dummyFormItem = {
+	buildType : 'item',
+	item : { type:'text', properties:{ type:'text', label:'name', name:'guy1', id:'hello1', required:true } }
+};
+
+var dummyFormGroup = {
+	buildType : 'group',
+	header : 'test header',
+	items : [
+		{ type:'text', properties:{ type:'text', label:'name', name:'guy1', id:'hello1', required:true } },
+		{ type:'textarea', properties:{ label:'textarea', type:'textarea', id:'textarea1', placeholder:'hello', name:'yeye1', className:'whawha' } }			
+	]
+}
+
+var dummyForm = {
+	buildType : 'form',
+	formHeader : 'Form Header',
+	items : [
+		{ type:'guideline', html:'This is a guideline to tell you what to do.' },
+		{ type:'text', properties:{ type:'text', label:'form name', name:'guy1', id:'hello1', required:true } },
+		{ type:'html', html:'<div class="hello"><select multiple><option>1</option><option>2</option><option>1</option><option>2</option><option>3</option></select></div>' },
+		{ type:'textarea', properties:{ label:'textarea', type:'form textarea', id:'textarea1', placeholder:'hello', name:'yeye1', className:'whawha' } }			
+	],
+	submitSuccessCallback : function(data) { console.log(data); },
+	cancelButtonCallback : function() { console.log('cancelleyoo'); }
+};
+

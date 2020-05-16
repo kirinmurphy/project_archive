@@ -1,0 +1,64 @@
+
+slideshow.js ----
+- mobile mode
+- if url extension doesn't match, need to revert to prior start page setting (localStorage vs. first slide)
+- finish scrollering thing
+
+
+
+
+
+
+title - required and must be unique 
+	- if using chapters title must be unique within the chapter
+
+chapter - optional
+	w/ no chapter - 
+	w/ chapter, each new chapter name change from slide to slide with create a chapter title in the table of contents
+
+
+
+
+
+
+
+inheriting styles
+
+Changes
+Add
+semantic layout in firebug ex
+demo example of sidebar code
+
+EM DRama
+
+#rss_feeds as a global element and a as a module panel
+
+
+LESS CSS example of cascading specific rules not working
+CSS is soooooo easy!
+
+CSS examples
+close div on absolute position example
+problems with width percentages (box model)
+margin padding collisions: firebug example graphic
+
+links:
+w3schools
+caniuse?
+
+
+
+
+
+
+IDs vs. classes:
+
+classes are intended for elements that share the same 
+id's are intended to represent a variable for a single unique page element.
+
+it is possible to write html completely with classes with no difference.  
+
+Early javascript dealt better with classes than ids, but now that browsers are faster and libraries like jQuery exist, the performance benefit of using IDs is somewhat marginal.  
+
+The only benefit of using IDs is semantics.  It identifies an element to a developer as a single 
+It also makes id's excellent scope encapsulators for css rules because there is not a chance of that id being used for another purpose on the page.   

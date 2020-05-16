@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<link rel="stylesheet/less" href="lib/default.css" type="text/css" />
+
+
+<style>
+.addtypeahead label { display:block; }
+
+</style>
+
+</head><body>
+
+
+<div id="wrap" class="clr">
+
+	<div class="addtypeahead">
+		<label><input type="checkbox" /> <span>america</span> </label>
+		<label><input type="checkbox" /> <span>american samoa</span> </label>
+		<label><input type="checkbox" /> <span>north korea</span> </label>
+		<label><input type="checkbox" /> <span>north vietnam</span> </label>
+		<label><input type="checkbox" /> <span>north virginia</span> </label>
+		<label><input type="checkbox" /> <span>san diego</span> </label>
+		<label><input type="checkbox" /> <span>san francisco</span> </label>
+		<label><input type="checkbox" /> <span>san fracheeze</span></label>
+	</div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="typeahead-1.0.js"></script>
+
+<script>
+$(document).ready(function(){
+	$('.addtypeahead').typeAhead();
+});
+</script>
+
+
+</body>
+</html>

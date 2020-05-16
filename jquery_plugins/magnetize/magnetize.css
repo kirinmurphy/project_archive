@@ -1,0 +1,13 @@
+body { padding:60px 40px; font-size:14px; }
+
+.header { padding:15px 30px; margin-bottom:40px; background:#000; color:#fff; font-size:18px; }
+
+.container { background-color:#f4f4f4; border:solid #888; border-width:0 1px 1px 1px;
+	
+	.magnet { padding:20px 30px; background:#999; color:#fff; font-size:16px; letter-spacing:1.6px; }
+	.magnet.docked { background-color:rgba(0,0,0, 0.7); }
+	.content { padding:30px; min-height:1200px; }	
+}
+
+pre { padding-top:20px; width:430px; line-height:1.5; letter-spacing:1.4px; margin:0 auto; }
+

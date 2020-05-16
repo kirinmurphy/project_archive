@@ -1,0 +1,256 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>JavaScript Primality Tests: isPrime(n), leastFactor(n)</title>
+
+<script type="text/javascript" src="numberisprime_files/primefactors.js"> 
+</script>
+
+<script type="text/javascript" language="JavaScript"> 
+msTotal = [0,0,0,0,0,0,0,0,0];
+nRuns   = [0,0,0,0,0,0,0,0,0];
+
+function formatTime(nn) {
+ var hh = Math.floor(nn/3600000);
+ var mm = Math.floor(nn/60000) - 60*hh;
+ var ss = Math.floor(nn/1000) - 3600*hh - 60*mm;
+ var ms = nn - 3600000*hh - 60000*mm - 1000*ss;
+ return (''+(100 + hh)).substring(1)+
+    ':'+(''+(100 + mm)).substring(1)+
+    ':'+(''+(100 + ss)).substring(1)+
+    '.'+(''+(1000+ ms)).substring(1)
+}
+
+function updateTiming(parDate,k) {
+ var nn = (new Date())-parDate;
+ msTotal[k] += nn;
+ nRuns  [k] += 1;
+ var avg = Math.round(msTotal[k]/nRuns[k])
+ document.forms[k].jsElapsed.value = formatTime(nn);
+ document.forms[k].jsAverage.value = formatTime(avg);
+ return nn;
+}
+//--> 
+</script> 
+
+<style type="text/css">
+FORM  {
+ font-family : Arial, Helvetica, sans-serif;
+ font-size   : 10pt;
+ margin      : 0px;
+ padding     : 1px;
+}
+</style>
+
+</head>
+<body bgcolor="#FFFFFF" link="#0000FF" text="#000000" vlink="#660099">
+<a name="top"></a>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-5507865760857847";
+/* 728x90_20101016 */
+google_ad_slot = "7989268040";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="numberisprime_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_0" name="aswift_0" style="left: 0pt; position: absolute; top: 0pt;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins>
+
+
+<h3><font color="#000099" face="Verdana,Arial,Helvetica,sans-serif">
+Primality Tests in JavaScript:<br>
+isPrime(n) and leastFactor(n)
+</font></h3>
+
+<script language="JavaScript">
+<!--
+if (
+    parent.location==self.location
+    && (""+self.location).toLowerCase().indexOf(".chm")==-1
+    && (""+self.location).toLowerCase().indexOf("~hh")==-1
+   )
+ document.writeln ('<small><a href="index.htm"><img border=0 alt="Table of Contents" width=17 height=15 src="../hi-icons/82.gif">Table of Contents</a></small>');
+//-->
+</script><small><a href="http://www.javascripter.net/faq/index.htm"><img alt="Table of Contents" src="numberisprime_files/82.gif" border="0" height="15" width="17">Table of Contents</a></small>
+
+
+
+<p>
+<b>Question:</b> How do I test if a given number <code>n</code> is prime in JavaScript?
+
+</p><p>
+<b>Answer:</b> 
+JavaScript does not have a standard function to do this.
+To check if <code>n</code> is prime, you would need to define your own function like the following (see source code below): 
+
+</p><li><code>isPrime(n)</code> 
+returns <code>true</code> if <code>n</code> is prime, and <code>false</code> otherwise
+
+</li><li><code>leastFactor(n)</code> 
+returns the smallest prime that divides <code>n</code> 
+(it returns zero if <code>n=0</code>, 
+and one if <code>n</code> is ±1 or if <code>n</code> is not an integer).
+
+<p>
+Click the <b>Run</b> button to display the results of the function calls
+<code>isPrime(n)</code> and 
+<code>leastFactor(n)</code> and measure the execution time.
+
+<!-- (For more accurate timing, use the average execution time over several runs.) -->
+
+</p><p>
+</p><form name="jsForm0" onsubmit="this.jsElapsed.value='working...'; this.jsResult.value='...'; setTimeout('dTime0=new Date();jsVal0=eval(document.jsForm0.jsInput.value);updateTiming(dTime0,0);document.jsForm0.jsResult.value=jsVal0;',1);return false;"> 
+<nobr><input name="jsInput" value="isPrime(22639)" size="28" type="text"> 
+<input value="Run" type="submit"> 
+<input name="jsResult" value="true" size="22" type="text"> 
+<input name="jsElapsed" value="00:00:00.000" size="9" onfocus="this.blur();" type="text"> 
+&nbsp; Average:<input name="jsAverage" value="00:00:00.000" size="9" onfocus="this.blur();" type="text"> 
+</nobr></form> 
+ 
+<form name="jsForm1" onsubmit="this.jsElapsed.value='working...'; this.jsResult.value='...'; setTimeout('dTime1=new Date();jsVal1=eval(document.jsForm1.jsInput.value);updateTiming(dTime1,1);document.jsForm1.jsResult.value=jsVal1;',1);return false"> 
+<nobr><input name="jsInput" value="isPrime(9007199254740881)" size="28" type="text"> 
+<input value="Run" type="submit"> 
+<input name="jsResult" size="22" type="text"> 
+<input name="jsElapsed" size="9" onfocus="this.blur();" type="text"> 
+&nbsp; Average:<input name="jsAverage" size="9" onfocus="this.blur();" type="text"> 
+</nobr></form> 
+ 
+<form name="jsForm2" onsubmit="this.jsElapsed.value='working...'; this.jsResult.value='...'; setTimeout('dTime2=new Date();jsVal2=eval(document.jsForm2.jsInput.value);updateTiming(dTime2,2);document.jsForm2.jsResult.value=jsVal2;',1);return false"> 
+<nobr><input name="jsInput" value="leastFactor(341550071728321)" size="28" type="text"> 
+<input value="Run" type="submit"> 
+<input name="jsResult" size="22" type="text"> 
+<input name="jsElapsed" size="9" onfocus="this.blur();" type="text"> 
+&nbsp; Average:<input name="jsAverage" size="9" onfocus="this.blur();" type="text"> 
+</nobr></form> 
+
+<form name="jsForm3" onsubmit="this.jsElapsed.value='working...'; this.jsResult.value='...'; setTimeout('dTime3=new Date();jsVal3=eval(document.jsForm3.jsInput.value);updateTiming(dTime3,3);document.jsForm3.jsResult.value=jsVal3;',1);return false;"> 
+<nobr><input name="jsInput" value="isPrime(341550071728321)" size="28" type="text"> 
+<input value="Run" type="submit"> 
+<input name="jsResult" size="22" type="text"> 
+<input name="jsElapsed" size="9" onfocus="this.blur();" type="text"> 
+&nbsp; Average:<input name="jsAverage" size="9" onfocus="this.blur();" type="text"> 
+</nobr></form> 
+
+<p>&nbsp;<br>
+Here are several versions of the function <code>isPrime(n)</code>.
+All versions check the primality by <i>trial division</i>; so, all versions are, in a sense, <i>brute force</i> tests. 
+However, note that the version with the fewest lines of code takes the <i>longest</i> to run for a large prime <code>n</code> &#8211;
+thus, not all brute force tests are created equal:
+
+</p><pre>// This version has the fewest lines of code - but is very slow.
+// It checks if n is dividible by <b><i>every</i></b> integer 2, 3, 4, 5 ... 
+// up to sqrt(n)
+
+function isPrime(n) {
+ if (isNaN(n) || !isFinite(n) || n%1 || n&lt;2) return false; 
+ var m=Math.sqrt(n);
+ for (var i=2;i&lt;=m;i++) if (n%i==0) return false;
+ return true;
+}
+
+// The next version is better: it checks the divisor 2 separately;
+// then, it proceeds to check <b><i>odd</i></b> divisors only, from 3 up to sqrt(n).
+// At most half of the numbers between 3 and sqrt(n) are checked.
+
+function isPrime(n) {
+ if (isNaN(n) || !isFinite(n) || n%1 || n&lt;2) return false; 
+ if (n==2) return true;
+ var m=Math.sqrt(n);
+ for (var i=3;i&lt;=m;i+=2) {
+  if (n%i==0) return false;
+ }
+ return true;
+}
+
+// Even better: first, check if n is divisible by 2 or 3.
+// Then check only the <b><i>odd divisors that are not multiples of 3</i></b>.
+// At most 1/3 of divisors under sqrt(n) are checked;
+// other divisors are multiples of either 2 or 3 anyway.
+
+function isPrime(n) {
+ if (isNaN(n) || !isFinite(n) || n%1 || n&lt;2) return false; 
+ if (n==2 || n==3) return true;
+ var m=Math.sqrt(n);
+ for (var i=5;i&lt;=m;i+=6) {
+  if (n%i==0)     return false;
+  if (n%(i+2)==0) return false;
+ }
+ return true;
+}
+</pre>
+
+Below is the source code of the functions for primality testing that are actually used on this page.
+This code works even faster than the fastest version listed above; here only about a quarter of divisors
+under <code>sqrt(n)</code> are checked in the main <code>for</code> loop; the other three-quarters 
+(multiples of 2, 3, and 5) are immediately eliminated in the initial checks, before entering the <code>for</code> loop:
+
+<pre>isPrime = function(n) {
+ if (isNaN(n) || !isFinite(n) || n%1 || n&lt;2) return false; 
+ if (n==leastFactor(n)) return true;
+ return false;
+}
+
+// leastFactor(n)
+// returns the smallest prime that divides n
+//     NaN if n is NaN
+//      0  if n=0
+//      1  if n=1, n=-1, or n is not a finite integer
+
+leastFactor = function(n){
+ if (isNaN(n) || !isFinite(n)) return NaN;  
+ if (n==0) return 0;  
+ if (n%1 || n*n&lt;2) return 1;
+ if (n%2==0) return 2;  
+ if (n%3==0) return 3;  
+ if (n%5==0) return 5;  
+ var m = Math.sqrt(n);
+ for (var i=7;i&lt;=m;i+=30) {
+  if (n%i==0)      return i;
+  if (n%(i+4)==0)  return i+4;
+  if (n%(i+6)==0)  return i+6;
+  if (n%(i+10)==0) return i+10;
+  if (n%(i+12)==0) return i+12;
+  if (n%(i+16)==0) return i+16;
+  if (n%(i+22)==0) return i+22;
+  if (n%(i+24)==0) return i+24;
+ }
+ return n;
+}
+</pre>
+
+If you look at the source code of <a href="http://www.javascripter.net/faq/primefactors.txt">primefactors.js</a>, 
+you will notice additional browser-specific optimizations.
+
+<p>
+Want more information on primes and primality tests in JavaScript? <br>
+
+Please visit the <a target="_top" href="http://www.javascripter.net/math/index.htm">JavaScripter.net Math section</a>,
+particluarly these pages:
+
+</p></li><li><a target="_top" href="http://www.javascripter.net/math/calculators/primefactorscalculator.htm">Prime factors calculator up to 20 digits</a>
+</li><li><a target="_top" href="http://www.javascripter.net/math/primes/millerrabinprimalitytest.htm">The Miller-Rabin primality test in JavaScript</a>
+</li><li><a target="_top" href="http://www.javascripter.net/math/primes/quadruplets.htm">Searching for prime quadruplets with JavaScript</a>
+
+<!--Page content ends here; don't delete this comment.-->
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5507865760857847";
+/* 728x90_20101016 */
+google_ad_slot = "7989268040";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="numberisprime_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_1" name="aswift_1" style="left: 0pt; position: absolute; top: 0pt;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins>
+
+</p><p>
+<font face="Arial,Helvetica,sans-serif" size="2">
+<a href="http://www.javascripter.net/faq/legal.htm">Copyright</a>
+© 1999-2011, <a target="_top" href="http://www.javascripter.net/">JavaScripter.net</a>.
+</font>
+
+
+
+</p></li></body></html>

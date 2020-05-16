@@ -1,0 +1,92 @@
+body { padding:0 20px 40px 20px; color:#555; }
+a { color:#458; }
+a:hover { text-decoration:underline; }
+
+.wrap { margin-bottom:40px; line-height:1.4;  font-size:11px; 
+
+	.viewOptions { width:280px; position:absolute; top:25px; right:10px; font-size:11px; line-height:13px;
+		
+		.templates,
+		.selectOptions { float:right; margin-left:20px; }
+		
+		a { display:block; width:100px; padding:2px 6px; margin-bottom:2px; background:#fafafa; }
+		a:hover { background-color:#459; color:#fff; text-decoration:none; }
+
+		.on, 
+		.on.disabled:hover  { font-weight:bold; background:#89a; color:#fff; }
+		
+		.disabled { cursor:default; }
+	}
+	
+	.inner { clear:both; }
+
+	header { 
+		h2 { font-size:18px; padding:5px 10px; }
+	}
+
+
+	article { padding:10px 5px; border-bottom:1px solid #ddd; position:relative; 
+		
+		.removedInfo { padding:6px 8px 4px 8px; font-size:13px; 
+			a { margin-left:10px; text-decoration:underline; }
+		}
+		
+/*		.selectOptions { width:20px; position:absolute; top:0; left:0; bottom:0;*/
+		.selectOptions { width:20px; float:left; margin-right:5px;
+			div { width:15px; padding:2px; margin-bottom:5px; text-align:center; line-height:18px; font-size:15px; }
+			.selectItem input { margin:0; }
+			.starItem { cursor:pointer; 
+			&.isStarred { color:orange; }
+			}
+			.removeItem { cursor:pointer; }
+		}
+		
+/*		.imgWrap { position:absolute; top:8px; left:32px; width:80px; height:80px; overflow:hidden; background:#eee;  }*/
+		.imgWrap { float:left; width:80px; height:80px; margin-right:10px; }
+		
+		/*.articleContent { float:left; margin-left:120px; margin-right:10px; }*/
+		
+
+		h3 { margin-bottom:-1px; padding:2px 0 1px 0; font-weight:normal; font-size:18px; line-height:18px; 
+			a { margin-right:8px; }
+			.title { font-size:12px; font-weight:normal; color:#aaa; margin-right:8px; }
+		}
+		
+		p { margin-bottom:8px; font-size:13px; }
+
+		.expander { position:absolute; min-width:22px; height:22px; z-index:50; bottom:-10px; 
+			color:#999; background:#fff; border:1px solid #f4f4f4; -moz-border-radius:15px; font-size:10px; 
+			&:hover { text-decoration:none; border-color:#ccc; z-index:51; }
+
+			em { position:absolute; left:2px; top:2px; text-align:center; width:16px; height:16px; line-height:17px; 
+				cursor:pointer; -moz-border-radius:13px; border:1px solid #fff; font-style:normal; color:#aaa; 
+				font-weight:bold; font-size:11px;
+				&:hover { background:#89a; color:#fff; }
+			}
+			span { padding:3px 10px 2px 25px; }
+
+			&.displayed em { background:#f4f4f4; color:#999; line-height:21px;font-size:13px; }
+		}
+		.detail { clear:both; padding:10px 10px 5px 28px; font-size:13px; color:#888; max-width:1125px; }
+
+	}
+
+}
+
+
+.tooltip { position:fixed; top:auto !important; left:auto !important; bottom:20px; right:20px; 
+	-moz-box-shadow:0 0 15px #777; -webkit-box-shadow:0 0 15px #777;
+}
+
+
+.listwrap.compact {
+	article {
+		.selectOptions { width:60px; position:relative; top:-2px; 
+			div { float:left; margin-right:0px; padding:0 4px 0 0; }
+			.selectItem { margin-right:3px; }
+		}
+	}
+}
+
+
+

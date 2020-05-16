@@ -1,0 +1,19 @@
+@import url('_mixins');
+@import url('_cell_positioning');
+@import url('_cell_composition');
+
+body { font-size:18px; color:#335; padding:0; background:#000;  }
+
+.imageFill { .fillContainer; background:left top no-repeat; background-size:100% 100%; }
+
+#slides { perspective:20em; height:100%;
+  &:after { content:""; .imageFill; transform:scale(-1,-1); opacity:.25; }
+
+  span { .imageFill; }
+
+  .cell { position:absolute; overflow:hidden; opacity:.7;
+    width:27%; height:24%;
+
+    em { display:block; .fillContainer; overflow:hidden; }
+  }
+}

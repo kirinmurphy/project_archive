@@ -1,0 +1,35 @@
+/* -- Shadows ---------------------------------------------------------------*/
+.boxShadow(@dims:0 0 10px, @color:#999) {
+	box-shadow: @dims @color; // Opera, FFX4
+	-moz-box-shadow:@dims @color; // FFX3.5
+	-webkit-box-shadow:@dims @color; // Safari/Chrome/WebKit
+}
+
+.insetShadow(@dims:0 0 10px, @color:#999) {
+	box-shadow:inset @dims @color; // Opera, FFX4
+	-moz-box-shadow:inset @dims @color; // FFX3.5
+	-webkit-box-shadow:inset @dims @color; // Safari/Chrome/WebKit
+}
+
+/* -- Transition ---------------------------------------------------------------*/
+.transition(@time: .1s, @range: all, @ease: ease-in) {
+	-moz-transition: @range .2s @ease;
+	-webkit-transition: @range .1s @ease;
+	-o-transition: @range @time @ease;
+	transition: @range @time @ease;
+}
+
+.setColumns(@count,@gap) {
+	-moz-column-count: @count;
+	-moz-column-gap: @gap;
+	-webkit-column-count: @count;
+	-webkit-column-gap: @gap;
+	column-count: @count;
+	column-gap: @gap;
+}
+
+.linearGradient(@deg, @col1, @col2) {
+	background: @col1;
+	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
+	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+}

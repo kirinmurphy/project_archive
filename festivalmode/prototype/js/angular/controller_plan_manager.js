@@ -1,0 +1,1 @@
+fmApp.controller("PlanManager",["$scope","PlanObject",function($scope,PlanObject){return $scope.plan=PlanObject}]);

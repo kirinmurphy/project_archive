@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>codethings.net :: FormBuilder</title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("dropdown_group");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="formbuilder.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+<style>
+
+    #header { width:750px; padding:25px 0; border-bottom:1px solid #eee; margin:0 auto 40px auto; font-size:15px; line-height:1.3; }
+    h2 { font-size:18px; margin-bottom:4px; }
+    #header h2 { font-size:24px; }
+    #header p { margin-bottom:12px; }
+    #header ul { margin-left:15px; list-style-type:square;  }
+    #header li { padding:4px; }
+	.form { width:700px; margin:0 auto; zoom: 1; display: block;  }
+	fieldset { float:left; width:305px; margin-right:10px; padding:15px; float:left; }
+	.submitActions { clear:both; }
+
+	#formbuilder { width:700px; margin:0 auto 50px auto; padding-bottom:40px; border-bottom:1px solid #eee;  }
+
+	.realExampleJSON { margin-top:30px; padding-top:30px; border-top:1px solid #eee; }
+
+	a { text-decoration:underline; }
+
+</style>
+
+</head>
+<body>
+
+    <div id="header">
+
+        <h2>JSON Forms!</h2>
+        <p>Dynamic form generation built with JSON. Abstracts the content and structure of the form (JSON) from its functionality to allow building numerous forms that conform to the same logic. Includes:</p>
+        <ul>
+            <li>External callbacks on init, cancel, submit success and submit error.</li>
+            <li>Unlimited nesting of form sections (with checkbox, radio and select options).  Nested elements can be set to expand/collapse if item is checked/unchecked.</li>
+            <li>Built in validation engine that currently includes required field, number only, and min/max selections tests.</li>
+            <li>If submit passes validation, plugin returns name:value pairs of all visible form elements to success callback.</li>
+            <li>Accepts custom html form components that are not available via the plugin.</li>
+            <li>Typeahead filtering on lists of checkboxes and radio buttons.</li>
+        </ul>
+
+    </div>
+
+	<div id="formbuilder"></div>
+
+
+
+<pre class="exampleJSON">
+<h2>JSON Structure</h2>
+{
+	buildType : 'form || group || item', <span class="comment"> // defaults to form if no value supplied</span>
+	formHeader : '',
+	formID : '',
+
+	addClearButton : true,
+	addCancelButton: false,
+	clearOnSubmitSuccess : true,
+	addFormLevelErrorMsg : true,
+
+	groups : [ group, group, ... ],  <span class="comment">//OR</span>
+	items : [item, item, ... ],
+
+	<span class="comment">// callbacks</span>
+	initCallback : function(){},
+	submitSuccessCallback : function(){},
+	submitErrorCallback : function(){},
+	cancelButtonCallback : function(){}
+
+    <span class="comment">// default dom elements, classes, and content</span>
+    <i>elementType_xxx : 'html_tag</i>',
+    <i>class_xxx : 'classname xxx</i>',
+    <i>text_xxx : 'text xxx</i>',
+    <i>errormsg_xxx : 'Error msg xxx</i>'
+};
+
+<b>group</b> : {
+	header:'',
+	items : [ item, item, ... ]
+};
+
+<b>item</b> : {
+	type: 'text' || 'textarea' || 'select' || 'checkbox' || 'radio' || 'guideline' || 'html',
+
+	<span class="comment">// configuration for each item type</span>
+	properties : {},
+
+	<span class="comment">// for SELECT, CHECKBOX and RADIO BUTTONS</span>
+	options : [ option, option, ... ],
+
+	<span class="comment">// for GUIDELINE and HTML (static form element) type</span>
+	html : ''
+};
+
+<b>option</b> : {
+	label: '',
+	on : true/false,
+	child : item, <span class="comment"> // OR </span>
+	children : [ item, item, ... ]
+	value : ''
+};
+
+<b>properties</b> : {
+	<span class="comment">// all properties</span>
+	label,
+	type,
+	class,
+	name,
+	id,
+	title,
+	required,  <span class="comment">// for checkboxes, use minRequired</span>
+	disabled,
+
+	<span class="comment">// TEXT, TEXTAREA properties</span>
+	value,
+	placeholder,
+	validate,
+	maxChar,
+
+	<span class="comment">// SELECT only properties</span>
+	multiple : true/false,                      <span class="comment">// for multiple select box</span>
+	size: qty                                      <span class="comment">// number of items displayed if multiple:true</span>
+
+	<span class="comment">// CHECKBOX and RADIO BUTTONS</span>
+	hideNested : true/false,  <span class="comment">// true will collapse nested elements if not selected</span>
+
+	<span class="comment">// CHECKBOX only properties</span>
+	minRequired : qty, <span class="comment">// &gt; 0</span>
+	maxSelectable : qty, <span class="comment">// &lt; maxOptions</span>
+};
+
+</pre>
+
+
+
+
+<pre class="realExampleJSON">
+<h2>Sample Form Code:</h2> (function() {
+    $.ajax({
+        type: "GET",
+        url: "url_requesting_below_json",
+        dataType: "json",
+        success: function (form) {
+            form.submitSuccessCallback = function(data) { console.log(data); };
+            form.cancelButtonCallback = function() { console.log('cancelleyoo'); };
+            $('#formbuilder').buildMeAFormOrSomething(form);
+        }
+    });
+})();
+
+<b>Sample JSON</b> (get <a href="assets/dummyform.json" class="getdummyform">dummyform.json</a>)
+{
+	buildType : 'form',
+	formHeader : 'JSON Forms!',
+	groups : [
+		{
+			header : 'fieldset header 1',
+			items : [
+				{ type:'guideline', html:'This is a guideline to tell you what to do.' },
+				{ type:'text',
+					properties:{ type:'text', label:'Label', name:'input1', id:'input1',
+						placeholder:'placeholder',required:true, validate:'numeric', maxChar: 16
+					}
+				},
+				{ type:'textarea',
+					properties:{ type:'textarea', label:'Label', id:'textarea1',
+					    placeholder:'placeholder', name:'yeye1', className:'whawha' }
+				},
+				{ type:'select',
+					properties: { label:'select label yo!', name:'select1', required:true },
+				 	options : [
+						{ label:'Select Option', value:'unselected' },
+						{ label:'option2', value:'2345' },
+						{ label:'option3', value:'2343', on:true },
+						{ label:'option4', value:'2342',
+							child : { type:'checkbox',
+								properties : { hideNested:true, minRequired:1 },
+								options : [
+									{ label:'option1', value:'3223' },
+									{ label:'option2', value:'4544', on:true },
+									{ label:'option3', value:'657556',
+										children : [
+											{ type:'text',
+												properties:{ type:'text', label:'children 12', name:'input1222',
+												    id:'input1', required:true, placeholder:'placeholder'
+												}
+											},
+											{ type:'text',
+												properties:{ type:'text', label:'children 2', name:'input1333',
+												    id:'input1', required:true, placeholder:'placeholder'
+												}
+											}
+										]
+									},
+									{ label:'option4', value:'4564544' }
+								]
+							}
+						},
+						{ label:'option5', value:'345635' },
+						{ label:'option6', value:'234533',
+							children : [
+								{ type:'text',
+									properties:{ type:'text', label:'children 1', name:'input1222',
+									    id:'input1', required:true, placeholder:'placeholder'
+									}
+								},
+								{ type:'text',
+									properties:{ type:'text', label:'children 2', name:'input1333',
+									    id:'input1', required:true, placeholder:'placeholder'
+									}
+								}
+							]
+						},
+						{ label:'option7', value:'232526' }
+					]
+				}
+			]
+		},
+		{
+			header : 'Nested Checkboxes and Radio Buttons',
+			items : [
+				{ type:'checkbox',
+					properties: {
+					    label:'What is you\'re problem', hideNested:true, maxSelectable:3, minRequired:2
+					},
+					options : [
+						{ label:'option1', value:'aa3223' },
+						{ label:'option2', value:'aa4544' },
+						{ label:'option3', value:'aa657556',
+							child : { type:'text',
+								properties:{
+									type:'text', label:'children 1', name:'input1222', id:'input1',
+									required:true, placeholder:'placeholder'
+								}
+							}
+						},
+						{ label:'option4', value:'aa4564544' }
+					]
+				},
+				{ type: 'radio',
+					properties : { label:'What should you do?', name: 'parentselecta', hideNested:true },
+				 	options : [
+						{ label:'option1', value:'34534', on:true },
+						{ label:'option2', value:'34534',
+							children : [
+								{ type:'text',
+									properties:{ type:'text', label:'Label', name:'input1',
+									    id:'input1', required:true, placeholder:'placeholder'
+									}
+								},
+								{ type:'text',
+									properties:{ type:'text', label:'Label', name:'input1',
+									    id:'input1', required:true, placeholder:'placeholder'
+									}
+								}
+							]
+						},
+						{ label:'option3', value:'34646' },
+						{ label:'option4', value:'34633',
+							child : { type:'checkbox',
+								properties : { hideNested:false },
+								options : [
+									{ label:'option1', value:'4356' },
+									{ label:'option2', value:'564756', on:true },
+									{ label:'option3', value:'544566',
+										child : { type:'text',
+											properties:{ type:'text', label:'Label', name:'input1',
+											    id:'input1', required:true, placeholder:'placeholder'
+											}
+										}
+									},
+									{ label:'option4', value:'3455445' }
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+};
+
+
+
+</pre>
+
+
+
+<pre>Next Tasks:
+<span class="comment">// Validation</span>
+- <b>keypress fix - allow all default characters</b>
+- <b>consolidate keypress validation with click validation with form validation</b>
+- on keypress, allow any control-c, control-v, control-x, etc. // or do keyup() and get the value first and then test if isNaN
+- on keypress - need to check full value for isNaN, otherwise whatever is in there on submit will not get attention from the error
+- do proper messaging for max required
+
+<span class="comment">// Add Elements</span>
+- clickset headers (abstract elementType and className)
+- inline messages
+- inline tooltips
+
+- consolidate item type with form element property type
+- should we allow nested elements on select multiple?
+- clearnested option for nested items
+- add checkboxes to post (dan help)
+- add service to accept server side error messages and display error messaging based on name value
+- what props should be avaialble to html loaded elements
+- show view state vs. edit state
+
+</pre>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="lib/typeahead-1.0.js"></script>
+<script src="formbuilder.js"></script>
+
+<script>
+(function() {
+	$.ajax({
+		type: "GET",
+		url: "assets/dummyform.json",
+		dataType: "json",
+		success: function (form) {
+		    form.submitSuccessCallback = function(data) { console.log(data); alert('Check yo console for the name:values') };
+		    form.cancelButtonCallback = function() { console.log('cancelleyoo'); };
+            $('#formbuilder').buildMeAFormOrSomething(form);
+		}
+	});
+})();
+</script>
+
+</body>
+</html>
+

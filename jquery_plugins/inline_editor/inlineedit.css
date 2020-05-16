@@ -1,0 +1,42 @@
+/* cleared floats - instead of clea:both class, used on containing div */
+.linearGradient(@deg, @col1, @col2) {
+	background: @col1;
+	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
+	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+}
+
+
+.inlineedit { padding:2px 5px 2px 30px;
+
+	form { width:auto; }
+
+    span { cursor:pointer; display:block; min-height:20px; }
+        
+    &:hover { background:url(images/edit.png) left 2px no-repeat; }
+	&:hover span { text-shadow:2px 2px #fff;  }
+	
+	&.editmode:hover { background:none; }	
+	
+	input[type="text"] { display:block; font-size:16px; height:30px; width:98%; padding:3px; max-width:none; }
+	textarea { display:block; padding:8px; font-size:16px; width:98%; min-height:80px; max-width:none; font-family:Arial; }
+
+	.form { position:relative; padding:10px; border:1px solid #ddd; border-radius:6px; .linearGradient(90deg,#ddd,#fff); -moz-box-shadow:0 0 3px #000; }
+	.formitem { margin-right:80px; }
+    .submitActions { position:absolute; top:10px; right:2px; width:70px;  }
+	.form button { display:block; margin-bottom:2px; }	
+}
+
+#inlineEditForm { margin:40px auto 0 auto; width:600px; padding:25px 15px 20px 15px;
+    .linearGradient(90deg,#bdd,#eff); -moz-box-shadow:inset 2px 2px 6px #044; border:1px solid #ccc; border-radius:8px;
+    h3 { font-size:24px; margin-bottom:5px; }
+    .description { font-size:14px; margin-bottom:5px; }    
+}
+
+.actionMessages { display:none; width:500px; padding:30px; margin:0 auto; font-size:18px; 
+    text-align:center; line-height:22px; border-radius:10px; 
+    // .linearGradient(90deg,#099,#0cc); color:#fff; 
+
+    strong { display:block; margin-bottom:20px;
+        // padding:0 0 30px 85px; background:url(images/sendpost.jpg) left top no-repeat; min-height:45px; text-align:left;
+     }
+}

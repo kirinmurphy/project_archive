@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<!--[if IE]> 
+<script>  
+ document.createElement("header");  
+ document.createElement("footer");  
+ document.createElement("nav");  
+ document.createElement("section");  
+ document.createElement("article");
+</script>  
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<!-- <link rel="stylesheet" href="lib/fonts.css"> -->
+<link rel="stylesheet/less" href="main.css" type="text/css" />
+<script src="lib/less-1.1.3.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="frame" class="imageOn">
+
+    <section id="imageBackground" class="dotLayer">
+        <div class="inner"></div>
+    </section>
+
+    <section id="originalImage"></section>
+    
+	<section id="brows">
+		<div class="brow1"></div>
+		<div class="brow2"></div>
+		<div class="brow3"></div>
+		<div class="brow4"></div>
+		<div class="brow5"></div>
+		<div class="brow6"></div>
+		<div class="brow7"></div>
+		<div class="brow8"></div>
+		<div class="brow9"></div>
+		<div class="brow10"></div>
+	</section>
+
+    <section id="lowerEye">
+        <div class="bottomLash"></div>
+    </section>
+
+</div>
+
+<div class="controls">
+    <a href="#" class="hideshow">Hide/Show Image</a>
+    <a href="#" class="hideshowDots">Hide/Show Dots</a>
+</div>
+
+
+<script src="lib/jquery-1.6.1.min.js"></script>
+<script src="main.js"></script>
+<script>
+	less.watch();
+	(function() {
+        $('#imageBackground .inner').makeSomeDots();
+        
+        $('.hideshow').click(function() {  $('#frame').toggleClass('imageOn'); return false;  });
+        $('.hideshowDots').click(function() { $('.dotLayer').toggle(); return false; });
+	})();
+</script>
+
+</body>
+</html>
+

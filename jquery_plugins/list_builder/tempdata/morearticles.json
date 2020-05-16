@@ -1,0 +1,130 @@
+{
+    "configuration": {
+        "expanderLinks" : [
+            { "type": "allOutlets", "buttonText": "All Outlets", "url":"assets/alloutlets/" },
+            { "type": "recentArticles", "buttonText": "Recent Articles", "url":"assets/recentarticles/" },
+            { "type": "profileSummary", "buttonText": "View All Outlets", "url":"assets/profiletext/" }
+        ]
+    },
+    "articles": [
+        {
+            "id":20005,
+            "isSelected":true,
+            "isStarred":true,
+            "name":"Falter Flossberg",
+            "title":"Editor",
+            "imgLink":"http://www.journalism.columbia.edu/system/photos/956/default/Alumni_Mossberg.jpg?1282075390",
+            "nameLink":null,
+            "outlet":"The New York Times",
+            "mediaType":"Daily Newspaper",
+            "outletLink":"#",
+            "allOutletsLink":"#",
+            "topics":["Sports","Excercise","World Events" ],
+            "address1":"620 Eighth Avenue Manhattan",
+            "location":"New York, NY USA",
+            "DMA":"DMA-001",
+            "phone":"(211) 434-2343",
+            "email":"walter@mossman.com",
+            "twitter": "waltmossberg",
+            "metrics" : [
+                { "type":"circulation", "name":"Circulation", "value":"200,000", "frequency":"Daily" }
+            ],
+            "frequency":"Daily",
+            "website":"http:www.mossblog.com",
+            "recentArticles": [
+                { "date":"10.20.11", "title":"Staring at computer all day makes Walter a dull boy", "outletURL":"#", "outlet":"Mossblog.com"  },
+                { "date":"10.01.11", "title":"Giant Space Men at higher risk of Adult Onset Diabetes", "outletURL":"#", "outlet":"New York Times"  },
+                { "date":"09.20.11", "title":"iPhone 5, Kindle Fire and the future of Staring at screens.", "outletURL":"#", "outlet":"New York Times"  }
+            ]
+        },                      
+        {
+            "id":20006,
+            "isSelected":true,
+            "isStarred":false,
+            "name":"Flavid Flogue",
+            "title":"Blogger",
+            "imgLink": "http://www.mygreatphone.com/wp-content/themes/MyGreatPhone_2011/scripts/timthumb.php?src=http://www.mygreatphone.com/wp-content/uploads/2009/06/david-pogue-150x150.jpg&w=80&h=80&zc=1&q=100",
+            "nameLink":"#",
+            "outlet":"Los Angeles Times",
+            "mediaType":"Daily Newspaper",
+            "outletLink":"#",
+            "allOutletsLink":"#",
+            "topics":["Sports","Excercise","World Events" ],
+            "address1":"202 West 1st Street",
+            "location":"Los Angeles, CA USA",
+            "DMA":"DMA-003",
+            "phone":"(312) 588-2300",
+            "email":"davidpogue@aol.com",
+            "twitter": "davPo",
+            "metrics" : [
+                { "type":"circulation", "name":"Circulation", "value":"200,000" }
+            ],
+            "frequency":"Daily",
+            "website":"http:www.poguee.com"
+        },
+        {
+            "id":20007,
+            "isSelected":false,
+            "isStarred":false,
+                "name":"Bristian Almondfour",
+            "title":"Foreign Correspondent",
+            "imgLink":"http://s12.bdbphotos.com/images/80x80/c/5/c5d4ai5a6qc9qa95.jpg",
+            "nameLink":"#",
+            "outlet":"CNN",
+            "mediaType":"Cable Television",
+            "outletLink":"#",
+            "allOutletsLink":"#",
+            "topics":["Finance","Stocks","Wubba Wubba" ],
+            "address1":"1 West Waverly Burroughs",
+            "location":"London, England",
+            "phone":"+44 207 232 23 12",
+            "email":"christian@christianamanpour.com",
+            "twitter": "ChrisAm"
+        },
+        {
+            "id":20008,
+            "isSelected":false,
+            "isStarred":false,
+            "name":"Sharianna Buffington",
+            "title":"Blogger, Editor",
+            "imgLink":"",
+            "nameLink":"#",
+            "outlet":"The Huffington Post",
+            "mediaType":"Blog",
+            "outletLink":"#",
+            "allOutletsLink":"#",
+            "topics":["Politics, World Events" ],
+            "address1":"222 N. North Street",
+            "location":"New York, NY",
+            "phone":"(646) 926-3342",
+            "email":"arianna@huffingtonpost",
+            "twitter": "ChrisAm",
+            "metrics" : [
+                { "type":"uvpm", "name":"UVPM", "value":"26,000" }
+            ],
+            "website":"http://www.huffingtonpost.com"
+        },
+        {
+            "id":20009,
+            "isSelected":false,
+            "isStarred":true,
+            "name":"Blon Blewart",
+            "title":"TV Show Host",
+            "imgLink":"http://content9.flixster.com/photo/13/93/99/13939943_tmb.jpg",
+            "nameLink":"#",
+            "outlet":"The Daily Show with Jon Stewart",
+            "mediaType":"Cable Television",
+            "outletLink":"#",
+            "allOutletsLink":"#",
+            "topics":["Politics","Comedy" ],
+            "address1":"27 W. 84th Street",
+            "location":"New York, NY, USA",
+            "DMA":"DMA-001",
+            "phone":"(232) 323-2322",
+            "email":"thedailyshow@comedycentral.com",
+            "twitter": "JohnStew",
+            "onairTime":"9pm (30min) Mon-Thurs",
+            "website": "http://thedailyshow.com"
+        }
+    ]
+}

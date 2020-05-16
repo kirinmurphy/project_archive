@@ -1,0 +1,99 @@
+.linearGradient(@deg, @col1, @col2) {
+	background: @col1;
+	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
+	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+}
+
+/* -- Shadows ---------------------------------------------------------------*/
+.boxShadow(@dims:0 0 10px, @color:#999) {
+	box-shadow: @dims @color; // Opera, FFX4
+	-moz-box-shadow:@dims @color; // FFX3.5
+	-webkit-box-shadow:@dims @color; // Safari/Chrome/WebKit
+}
+
+.borderRadius (@radius){
+	-moz-border-radius:@radius;
+	-webkit-border-radius:@radius;
+	border-radius:@radius;
+}
+
+/* -- Transition ---------------------------------------------------------------*/
+.transition(@time: .1s, @range: all, @ease: ease-in) {
+	-moz-transition: @range .2s @ease;
+	-webkit-transition: @range .1s @ease;
+	-o-transition: @range @time @ease;
+	transition: @range @time @ease;
+}
+
+#tictactoe-yo { padding:10px 0 60px 0;
+  #game-board { background:#666; border:1px solid #666; border-width:0 0 1px 1px;
+
+    border-radius:8px; overflow:hidden; box-shadow:0 0 6px, #777;
+
+  	span { position:relative; float:left; width:33%; height:33%; margin: .3% .3% 0 0; text-align:center;
+      .linearGradient(90deg,#aaa,#fff); overflow:hidden;
+
+  		&.empty:hover { .linearGradient(90deg,#777,#fff); cursor:pointer; }
+
+  		em { font-size:14px; position:absolute; top:5px; right:5px; }
+
+      &.winner { .linearGradient(90deg,#89b,#def); color:#fff;
+        transform: rotate(1440deg); .transition(1.5s);
+  		}
+  	}
+  }
+
+  #game-options { width:400px; margin:0 auto; padding:20px 0 15px 0;
+    .currentPlayer { margin-bottom:25px;
+      text-align:center; font-size:20px;
+    }
+
+    .players { padding-left:15px;
+      a { display:block; float:left; width:100px;
+        margin-right:10px; padding:8px; color:#567;
+        border:1px solid #666; border-width:0 1px 1px 0;
+        text-align:center; border-radius:5px;
+        .linearGradient(90deg, #ddd, #fff);
+
+        &:hover { .linearGradient(90deg,#bbb,#ddd); color:#235; }
+
+        &.on { .linearGradient(270deg,#89b,#bcd); color:#fff;
+          cursor:default; font-weight:bold; font-size:1.1em;
+          border-width:1px 0 0 1px;
+        }
+      }
+    }
+
+    .resetGame { display:block; position:relative; top:15px;
+      width:100px; margin:0 auto; text-align:center; color:#888;
+
+      &:hover { color:#444; text-decoration:underline; }
+    }
+  }
+}
+
+[data-in-iframe="false"] {
+  #tictactoe-yo {
+    #game-board { width:399px; height:399px; margin:0 auto;
+      span { font-size: 100px; line-height:113px; }
+    }
+  }
+}
+
+[data-in-iframe="true"] { padding:0;
+  #tictactoe-yo {
+    padding:30px; margin:0 auto;
+
+    #game-board { width:300px; height:300px;
+      span { font-size:80px; line-height:88px; }
+    }
+
+    #game-board,
+    #game-options { display:inline-block; vertical-align:middle; }
+
+    #game-options { width:auto; padding-left:30px; margin:0;
+
+      .players a { float:none; margin:0 auto 15px auto; }
+    }
+  }
+}

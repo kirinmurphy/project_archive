@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("nav");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet" href="lib/default.css" type="text/css" />
+<!-- <link rel="stylesheet" href="lib/fonts.css"> -->
+<link rel="stylesheet/less" href="onthegrid2.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+
+</head>
+<!-- <body class="spaced"> -->
+<body class="">
+
+<div id="frame">
+    <div id="dots"></div>
+    <div class="chromeMessage">This works way better in Chrome.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="onthegrid.js"></script>
+<script>
+	// less.watch();
+	(function() {
+        var $dots = $('#dots');
+
+        // declare parameters for Chrome
+        var dotSize = 26,
+            horizontalMargin = 4,
+            verticalMargin = 4,
+            fillScreen = true,
+            boxWidth = 330,
+            boxHeight = 700,
+            clickSpeed = 150;
+
+        // declare backup parameters if not chrome
+        if ( navigator.userAgent.match(new RegExp("Chrome","gi")) === null ) {
+            $('body').addClass('notChrome');
+            dotSize = 16; horizontalMargin = 24; verticalMargin = 24; fillScreen = false;
+            boxWidth = 750; boxHeight = 500; clickSpeed = 200;
+        }
+
+        if ( navigator.userAgent.match(new RegExp("Macintosh","gi")) === null ) {
+            $('body').addClass('notMac');
+        }
+
+        // make dem dots
+        $dots.onTheGrid({
+            dotSize: dotSize,
+		    horizontalMargin: horizontalMargin,
+		    verticalMargin: verticalMargin,
+		    borderSize: 0,
+		    speed_expando: 25,
+		    fillScreen: fillScreen,
+		    boxWidth: boxWidth,
+		    boxHeight: boxHeight,
+		    completeCallback: function(model) {
+
+		        // model = methods and instance values
+		        // model.settings = passed through values from plugin call
+
+                // get all <em>s and bind fire surrounders
+                var $ems = model.$parent.find('em')
+                    .bind('click', function() {
+                        model.explodeSurrounders($(this),'rightSpray');
+                    }).bind('mouseenter', function() {
+                        model.explodeSurrounders($(this),'right');
+                    });
+
+                var clickTimeout;
+                var reDoIt = function($element) {
+                    clickTimeout = setTimeout(function() {
+                        model.explodeSurrounders($element,'fourWay');
+                        reDoIt(model.getRandomElements($ems));
+                   },clickSpeed);
+                };
+
+                // set last one triggers
+                $lastOne = $ems.eq($ems.length-1);
+                $lastOne.addClass('autoToggle off')
+                    .attr('data-passClass','autoToggle')
+                    .mouseenter(function(event) {
+                        var $this = $(this);
+                        if ( $this.hasClass('off') ) {
+                            reDoIt(model.getRandomElements($ems));
+                            $this.removeClass('off');
+                        } else if ( clickTimeout ) {
+                            $this.addClass('off'); clearTimeout(clickTimeout);
+                        }
+                        return false;
+                    });
+
+                // getRandomElements($ems,10).each(function(index) {
+                //     var $this = $(this);
+                //     $this.attr('data-passClass','ramdom'+index);
+                //     console.log('dis',$this);
+                // });
+            }
+        });
+	})();
+</script>
+
+</body>
+</html>
+

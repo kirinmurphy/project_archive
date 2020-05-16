@@ -1,0 +1,1 @@
+fmApp.controller("ContactManager",["$scope","ContactsCollection",function($scope,ContactsCollection){return $scope.contacts=ContactsCollection}]);

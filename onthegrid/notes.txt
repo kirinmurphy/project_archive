@@ -1,0 +1,10 @@
+page size
+
+box size
+
+dotwidth 
+
+
+dots per row = parseInt ( box size / dotwidth )
+
+newBox

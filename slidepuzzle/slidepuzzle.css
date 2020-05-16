@@ -1,0 +1,62 @@
+
+body { padding:0; margin:0; font-family:Arial, Verdana, sans-serif;}
+
+@media (max-width: 700px) {
+	h2 { display:none; }
+	.puzzlePic .inner { transform:scale(.9); }
+}
+
+@media(max-width:640px) {
+	.puzzlePic .inner { transform:scale(.75) translateY(-5px); }
+}
+
+
+.puzzlePic { position:relative;
+
+	img { display:block; margin:0 auto; }
+
+	.actions { position:relative; padding:10px 15px; margin-bottom:20px;
+		background-color: #358; box-shadow:0 0 6px #777;
+
+		h2 { float:left; margin:0 20px 0 0; padding:4px 10px; font-size:25px; color:#fff; }
+
+		dt,
+		button { float:right; position:relative; top:1px; padding:5px 10px;  margin-right:20px;
+			border:1px solid; border-color: #CCC #888 #888 #CCC; font-size:12px; line-height:18px;
+		    background:#a6b3cc; color:#fff; font-family: Verdana; cursor:pointer;
+		    border-radius:3px; text-transform:uppercase;
+		  }
+
+		input { padding:4px 8px; margin-right:3px; font-size:14px; }
+		.newRowsCols { float:right; margin:1px 1px 0 0; width:25px; }
+
+		.image-selector { float:right;
+
+			&.on dt { background:darken(#a6b3cc,15%);
+				&:hover { padding:5px 10px; }
+			}
+
+			dt { margin-right:0; }
+			dd { left:auto; right:0; width:214px; background:#fff; border:1px solid #aaa;
+				box-shadow:0 0 10px #333;
+				a { display:block; padding:5px 10px; border-bottom:1px solid #bbb; color:#568;
+					&:hover { background:#eee; }
+				}
+				input { display:block; }
+				button { display:block; float:none; width:100%; margin-right:0; }
+			}
+		}
+	}
+
+	.inner { margin:0 auto; transition:.5s; transform-origin:center top;
+		span {  display:block; float:left; background:#090; border:0px solid #fff;
+			border-width:0 1px 1px 0;  text-indent:-9999px; }
+
+		.leftMover { cursor:e-resize; }
+		.rightMover { cursor:w-resize; }
+		.bottomMover { cursor:n-resize; }
+		.topMover { cursor:s-resize; }
+	}
+}
+
+

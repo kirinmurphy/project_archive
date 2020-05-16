@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title></title>
+
+<!--[if IE]>
+<script>
+ document.createElement("header");
+ document.createElement("footer");
+ document.createElement("dropdown_group");
+ document.createElement("section");
+ document.createElement("article");
+</script>
+<![endif]-->
+
+<link rel="stylesheet/less" href="lib/default.css" type="text/css" />
+<link rel="stylesheet/less" href="tooltip.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.js"></script>
+</head>
+<body id="tooltipDemo">
+
+<h2>.tooltip()</h2>
+
+<pre>
+$(document).ready(function() {
+
+    <em>// tooltip built with existing DOM elements</em>
+    $('.trigger').each(function(index,item) {
+    	var $this = $(this);
+    	$this.tooltip({
+            $tooltipDOMElement: $this.next(),
+            uniqueTooltipClass : 't' + index
+    	});
+    });
+
+    <em>// tooltip built with HTML loaded via ajax</em>
+    $('.htmlAjaxTrigger').tooltip({
+    	'tooltipURL': 'assets/htmlAjaxTooltip.html',
+    	uniqueTooltipClass : 'ajaxHtml',
+        setToFixedPosition: true
+    });
+
+    <em>// tooltip built with Image loaded via ajax</em>
+    $('.imageTrigger').tooltip({
+        triggerEvent: 'click',
+        tooltipURL: 'assets/tooltip_image_sample.jpg',
+        ajaxLoadType: 'image',
+        uniqueTooltipClass: 'imageTooltip',
+        setToOverflow: false
+    });
+
+    <em>// tooltip built with JSON loaded via ajax and converted to HTML with external callback</em>
+    $('.jsonTrigger').tooltip({
+        tooltipURL: 'assets/jsonAjaxTooltip.json',
+        ajaxLoadType: 'json',
+        uniqueTooltipClass: 'jsonTooltip',
+        setToFixedPosition: true,
+        buildItemsFromJSON: function(data) {
+            var $content = $('&lt;div/&gt;', { html:'&lt;h3&gt;' + data.title + '&lt;/h3&gt;' });
+            $.each(data.items, function(index,item) {
+                $('&lt;label/&gt;', { text:item })
+                    .prepend( $('&lt;input/&gt;', { type:'checkbox' }) )
+                    .appendTo($content);
+            });
+            return $content.append(
+                $('&lt;button/&gt;', { type:'button', html:'Tell Me' })
+                    .click(function() {  alert('Thanks!'); })
+            );
+        }
+    });
+});
+</pre>
+
+<pre><strong>var settings = {</strong>
+<em>// configuration</em>
+triggerEvent : 'mouseenter',            <em>// 'click' or 'mouseenter'</em>
+$tooltipDOMElement: null,  	        <em>// HTML DOM element already loaded on page </em>
+tooltipURL: null,         	        <em>// -OR- Ajax URL for dynamically loaded content </em>
+ajaxLoadType: 'html',   	        <em>// required with tooltipURL set, 'html', 'JSON' or 'image' </em>
+buildItemsFromJSON : function(data) {}, <em>// required for JSON, must return HTML string or jQuery DOM Object </em>
+
+<em>// classes</em>
+commonTooltipClass: 'tooltip',	<em>// tooltip group that hides all other common tooltips on trigger event</em>
+uniqueTooltipClass : null, 	<em>// unqie class to style tooltips differently if part of same tooltip group </em>
+indicatorClass: 'loading',	<em>// apply class to trigger during its load delay  </em>
+
+<em>// position adjustments</em>
+addedHorizOffset: 10,	   <em>// Horizontal Distance Away(+) or Closer(-) to trigger </em>
+addedTopOffset: -15,	   <em>// Vertical distance Down (+) or Up (-) from top of trigger </em>
+topGutter : 15,		   <em>// Minimum space between tooltip and top of screen </em>
+bottomGutter: 10,	   <em>// Minimum space between tooltip and bottom of screen </em>
+horizGutter: 10,	   <em>// Minimum space between tooltip and L/R edge of screen </em>
+setToOverflow: true,	   <em>// sets max height of tooltip to max window height (minus top & bottom gutters)</em>
+setToFixedPosition: false, <em>// sets tooltip fixed on the screen (true) fixed on the page (false) </em>
+
+<em>// time values</em>
+loadDelay: 500,		   <em>// time between trigger event and tooltip getting loaded </em>
+displayTime: 1000,	   <em>// time tooltip gets displayed after the mouse leaves the trigger or tooltip</em>
+fadeOutSpeed: 300	   <em>// time to fade out tooltip</em>
+<strong>};</strong>
+</pre>
+
+
+<pre>To Do:
+- fix fixed position bug -  scroll offset used for absolute positioning not accounted for
+- work on fail conditions for ajax load types
+- add on state for trigger that has active tooltip open
+- give option of positioning tooltip above/below or left/right
+- make indicator element default to trigger, but can be overwritten to a parent element
+- create option to display tooltip relative to trigger or on top&left or top&right part of screen
+</pre>
+
+
+<a href="#" class="trigger t1">.trigger</a>
+<div style="display:none;">I'm a tooltip! I appear on the <strong>right</strong> of the trigger.</div>
+
+<a href="#" class="htmlAjaxTrigger t2">.htmlAjaxTrigger</a>
+
+<a href="#" class="trigger t3">.trigger</a>
+<div style="display:none">I'm a tooltip! I appear on the <strong>right</strong> of the trigger.<br/><br/>  I  would normally be positioned closer to the top of the my trigger, but my position was adjusted so i stay on the screen. <br/><br/> I have a property called <strong>bottomGutter</strong> which tells me how far i should stay away from the bottom.</div>
+
+<a href="#" class="trigger t4">.trigger</a>
+<div style="display:none">I'm a tooltip! I appear on the <strong>left</strong> of the trigger.<br/><br/>I get resized with scrollbars if I am taller than the screen.  <br/><br/>You can tell me to stop doing this by setting the property <strong>setToOverflow</strong> to false.<div style="height:1600px"></div> See. </div>
+
+<a href="#" class="imageTrigger">.imageTrigger <span>(CLICK!)</span></a>
+
+<a href="#" class="jsonTrigger">.jsonTrigger <span>(CLICK!)</span></a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="lib/jquery.ajaxmanager.js"></script>
+<script src="lib/ManagedAjax.js"></script>
+<script src="tooltip.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.trigger').each(function(index,item) {
+			var $this = $(this);
+			$this.tooltip({
+				$tooltipDOMElement: $this.next(),
+				uniqueTooltipClass : 't' + (index+1)
+			});
+		});
+
+		$('.htmlAjaxTrigger').tooltip({
+			'tooltipURL': 'assets/htmlAjaxTooltip.html',
+			uniqueTooltipClass : 'ajaxHtml',
+			setToFixedPosition: true
+		});
+
+		$('.imageTrigger').tooltip({
+		    triggerEvent: 'click',
+		    tooltipURL: 'assets/tooltip_image_sample.jpg',
+		    ajaxLoadType: 'image',
+		    uniqueTooltipClass: 'imageTooltip',
+		    setToOverflow: false
+		});
+
+		$('.jsonTrigger').tooltip({
+		    triggerEvent: 'click',
+		    tooltipURL: 'assets/jsonAjaxTooltip.json',
+		    ajaxLoadType: 'json',
+		    uniqueTooltipClass: 'jsonTooltip',
+		    setToFixedPosition: true,
+		    buildItemsFromJSON: function(data) {
+		        var $content = $('<div/>', { html:'<h3>' + data.title + '</h3>' });
+                $.each(data.items, function(index,item) {
+                    $('<label/>', { text:item })
+                        .prepend( $('<input/>', { type:'checkbox' }) )
+                        .appendTo($content);
+                });
+                return $content.append(
+                    $('<button/>', { type:'button', html:'Tell Me' })
+                        .click(function() {  alert('Thanks!'); })
+                );
+		    }
+		});
+	});
+</script>
+
+</body>
+</html>
+

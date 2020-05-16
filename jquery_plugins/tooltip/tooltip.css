@@ -1,0 +1,76 @@
+.borderRadius (@radius){
+	-moz-border-radius:@radius;
+	-webkit-border-radius:@radius;
+	border-radius:@radius;
+}
+
+/* -- Shadows ---------------------------------------------------------------*/
+.boxShadow(@dims:0 0 10px, @color:#999) {
+	box-shadow: @dims @color; // Opera, FFX4
+	-moz-box-shadow:@dims @color; // FFX3.5
+	-webkit-box-shadow:@dims @color; // Safari/Chrome/WebKit
+}
+
+/* -- Transition ---------------------------------------------------------------*/
+.transition(@time: .1s, @range: all, @ease: ease-in) {
+	-moz-transition: @range .2s @ease;
+	-webkit-transition: @range .1s @ease;
+	-o-transition: @range @time @ease;
+	transition: @range @time @ease;
+}
+
+.linearGradient(@deg, @col1, @col2) {
+	background: @col1;
+	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
+	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+}
+
+
+.tooltip { display:none; z-index:1000000; padding:15px; border:2px solid #789; width:300px; 
+	background:#fff; -moz-box-shadow:0 0 10px #666; 
+	font-size:14px; line-height:1.5; }
+
+
+
+/* unique page elements for demo */
+#tooltipDemo { padding-top:20px; 
+	pre { margin:0 auto 30px auto; width:880px; padding:25px 30px; border:1px solid #ccc; 
+		line-height:1.5; font-size:14px;
+		em { color:#55f; }
+	}
+
+	h2 { margin-bottom:20px; font-size:22px; width:910px; margin:0 auto 12px auto; padding:10px 10px 0 10px; }
+
+	.trigger,
+	.htmlAjaxTrigger,
+	.jsonTrigger,
+	.imageTrigger { display:block; position:absolute; z-index:20; padding:10px; font-size:14px; color:#05183b;
+		-moz-border-radius:4px; border:1px solid #78b; border-width:0 1px 1px 0;
+		.linearGradient(90deg,#abc,#def); text-decoration:none;
+		&:hover { text-decoration:none;
+			span { font-weight:bold; }
+		}
+	}
+
+	.trigger.t1 { left:10px; top:10px; }
+	.htmlAjaxTrigger { top:10px; right:10px; }
+	.trigger.t3 { bottom:10px; left:10px; }
+	.trigger.t4 { bottom:10px; right:10px; }
+
+	.imageTrigger { left:10px; top:45%; }
+	.jsonTrigger { right:10px; top:45%; }
+
+	.trigger.loading,
+	.imageTrigger.loading,
+	.jsonTrigger.loading,
+	.htmlAjaxTrigger.loading { .linearGradient(90deg,#0cb,#0fe); color:#000; font-weight:bold; }
+
+
+	.ajaxHtml { width:350px; }
+	.imageTooltip { width:auto; height:auto; }
+	.jsonTooltip  { 
+		label { display:block; } 
+	}
+	.tooltip.t3 { width:400px; }
+}
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/application.css">
+  </head>
+  <body ng-app="MOVE">
+    <bpm-counter bpm="115.8">
+      <looper id="bg-guy" count-per-beat="4"></looper>
+      <looper id="base-frame-left" elements-per-beat="4"></looper>
+      <looper id="base-frame-right" elements-per-beat="4"></looper>
+    <!--   <looper id="on-the-kick" elements-per-bar="4"></looper>
+      <looper id="down-beat" elements-per-bar="4" pattern-map="[[false], [true], [false], [true]]"></looper> -->
+    </bpm-counter>
+    <script type="text/ng-template" id="template-looper">
+
+      <div ng-if="!countPerBeat" class="frame">
+        <div ng-if="elementsPerBar" ng-repeat="element in getNumber(elementsPerBar) track by $index" data-active="{{counter.isActiveBeat($index, elementsPerBar, patternMap)}}" class="cell"></div>
+        <div ng-if="elementsPerBeat" ng-repeat="element in getNumber(elementsPerBeat) track by $index" data-active="{{counter.isActiveQuarterNote($index, elementsPerBeat, patternMap)}}" class="cell"></div>
+      </div>
+      <div ng-if="countPerBeat" data-count="{{counter.quarterNoteCount}}" class="frame"></div>
+
+    </script><script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
