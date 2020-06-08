@@ -1,0 +1,205 @@
+
+    				<!-- Options -->
+                    <div id="one_or_multiple_addr" class="options">
+                        <div class="instructions">
+                            Are you shipping to <strong>One</strong> or <strong>Multiple</strong> Addresses?
+                        </div>
+                        
+                        <label>
+                            <input type="radio" checked="checked" name="shipto_addresses" value="shipmeth_oneaddr" />
+                            Ship to One address.
+                        </label>
+                        <label>
+                            <input type="radio" name="shipto_addresses" value="shipmeth_multiple" />
+                            Ship To Multiple Addresses.
+                        </label>
+
+                    </div>  <!-- end options -->
+    
+                    <form id="shipmeth_oneaddr" class="form" method="" action="">
+                         
+                         <h3>Ship To One Address</h3>       
+                                                
+                        <fieldset class="shipto_location">
+                        
+                            <div class="instructions">Choose a shipping method for the following shipment destination.</div>
+                            
+                            <div class="selected_shipping">
+                                                        
+                                Enrico Palazzo<br />
+                                123 Address St. <br />
+                                Chicago, IL 60622
+                            
+                            </div> <!-- end selected_billing module -->
+        
+                        </fieldset>  <!-- ship to location -->
+                        
+                        <fieldset class="assign_shipmethod">
+                        
+                            <div class="formrow click">
+                            
+                                <input type="radio" checked="checked" name="assign_shipmethod" value="shipmeth1" id="shipmeth1" />
+                                
+                                 <label for="shipmeth1" class="ship_method">  
+                                   
+                                    <span class="type active">Standard (7-10 days) - $10.00</span>
+                                    <span class="confirmation_msg">Confirmation Message Goes Here</span><br />
+                                    <span class="description">Lorem ipsum dolor sit amet, consectetuer adipscing elit sed</span><br />
+                                    <span class="promo_msg">Standard: Promotional Message</span>
+                            
+                                 </label>
+                            
+                            </div> <!-- end formrow -->
+    
+                            <div class="formrow click">
+                            
+                                <input type="radio" name="assign_shipmethod" value="shipmeth2" id="shipmeth2" />
+                                
+                                 <label for="shipmeth2" class="ship_method">  
+                                   
+                                    <span class="type">Standard (7-10 days) - $10.00</span>
+                                    <span class="confirmation_msg">Confirmation Message Goes Here</span><br />
+                                    <span class="description">Lorem ipsum dolor sit amet, consectetuer adipscing elit sed</span><br />
+                                    <span class="promo_msg">Standard: Promotional Message</span>
+                            
+                                 </label>
+                            
+                            </div> <!-- end formrow -->
+    
+                            <div class="formrow click">
+                            
+                                <input type="radio" name="assign_shipmethod" value="shipmeth3" id="shipmeth3" />
+                                
+                                 <label for="shipmeth3" class="ship_method">  
+                                   
+                                    <span class="type">Standard (7-10 days) - $10.00</span>
+                                    <span class="confirmation_msg">Confirmation Message Goes Here</span><br />
+                                    <span class="description">Lorem ipsum dolor sit amet, consectetuer adipscing elit sed</span><br />
+                                    <span class="promo_msg">Standard: Promotional Message</span>
+                            
+                                 </label>
+                            
+                            </div> <!-- end formrow -->
+    
+                            <div class="formrow click">
+                            
+                                <input type="radio" name="assign_shipmethod" value="shipmeth4" id="shipmeth4" />
+                                
+                                 <label for="shipmeth4" class="ship_method">  
+                                   
+                                    <span class="type">Standard (7-10 days) - $10.00</span>
+                                    <span class="confirmation_msg">Confirmation Message Goes Here</span><br />
+                                    <span class="description">Lorem ipsum dolor sit amet, consectetuer adipscing elit sed</span><br />
+                                    <span class="promo_msg">Standard: Promotional Message</span>
+                            
+                                 </label>
+                            
+                            </div> <!-- end formrow -->
+                        
+                        </fieldset>  <!-- end assign ship meth -->
+                        
+                        <fieldset class="include_gift_msg options">
+                        
+                            <label><input type="checkbox" /> Include a gift message with this shipment. </label>
+                            
+                            <div class="enter_gift_msg">
+                                The gift message will be presented on the shipping slip included with the order. 
+                                <textarea></textarea>
+                                
+                            </div>                        
+                        
+                        </fieldset> <!-- end gift_msg -->
+    
+    
+                        <fieldset class="actions clearfix">
+                            <input type="submit" class="submit" value="continue" />
+                            <a href="" title="back" class="back">&lt; Back</a>
+                        </fieldset>  <!-- end actions -->
+                            
+                    </form> <!-- end div shipping method one addr -->    
+    
+    
+                    <form id="shipmeth_multiple" class="form off" method="" action="" >
+                        
+                        <h3>Ship To Multiple Addresses</h3>       
+                                                
+                        <div class="instructions">Choose shipping methods for the following shipment destinations.</div>
+                        
+						<div id="shipments">
+						
+                            <div class="shipment">
+                            
+                                <fieldset class="shipto_location">
+                                
+                                    <h4>SHIPMENT 1: JEFFERY LESKO</h4>
+                                 
+                                    <div class="selected_shipping">
+                                                                
+                                        Enrico Palazzo<br />
+                                        123 Address St. <br />
+                                        Chicago, IL 60622
+                                    
+                                    </div> <!-- end selected_billing module -->
+                            
+                                </fieldset>  <!-- end shipto location -->
+                                
+                                <fieldset class="shipping_options">
+                                
+                                    <div class="header clearfix">
+                                        <div class="items">Items</div>
+                                        <div class="shipping_method">Shipping Method</div>
+                                    
+                                    </div>
+                                    
+                                    <div class="items">
+                                    
+                                        <div class="item">
+                                            <div class="qty">1</div>
+                                            <div class="item_details"> Cameo Platinum - 5 Piece Placesetting <br /> HK301705 </div>
+                                        </div>
+                                        
+                                        <div class="item">
+                                            <div class="qty">1</div>
+                                            <div class="item_details"> Cameo Platinum - 5 Piece Placesetting <br /> HK301705 </div>
+                                        </div>
+                                        
+                                    </div> <!-- end items -->
+                                    
+                                    <div class="shipping_method">
+                                    
+                                            <span class="confirmation_msg">Confirmation Message Goes Here</span><br />
+                                            <select name="shipping_meth">
+                                                <option> - Select Shipping Method </option>
+                                                <option>Standard (7-10 days) - $10.00</option>
+                                                <option>Express (3-4 days) - $15.50</option>
+                                            </select><br />
+                                            <span class="promo_msg">Standard: Promotional Message</span>
+                            
+                                    </div>  <!-- end shipping method -->
+                                
+                                </fieldset>  <!-- end shipment_items -->
+                                                        
+                                <fieldset class="include_gift_msg options">
+                                
+                                    <label><input type="checkbox" /> Include a gift message with this shipment. </label>
+                                    
+                                    <div class="enter_gift_msg">
+                                        The gift message will be presented on the shipping slip included with the order. 
+                                        <textarea></textarea>
+                                        
+                                    </div>                        
+                                
+                                </fieldset> <!-- end gift_msg -->
+                            
+                            </div>  <!-- end shipment -->
+
+						</div> <!-- end shipments -->                        
+                        
+                        <fieldset class="actions clearfix">
+                            <input type="submit" class="submit" value="continue" />
+                            <a href="" title="back" class="back">&lt; Back</a>
+                        </fieldset>   <!-- end actions -->
+                        
+                    </form>  <!-- end div shipping method multiple addresses -->    
+
+

@@ -1,0 +1,208 @@
+
+	<script type="text/javascript">
+    
+        $(document).ready(function() {
+            $('#payment_method #billmelater .bml_terms').load('checkout_billmelater_terms.html');    
+        });
+    
+    </script>
+
+                                            
+                        <div id="redeem_giftcard">
+                            <h3>Redeem a Gift Card</h3>
+                            Click the button below to enter your gift card verification number(s).
+                            <a class="submit" href="#">Redeem Gift Card</a>
+                        </div> <!-- end gift card --> 
+
+
+
+
+                        <div id="payment_types" class="options">
+
+                            <div class="instructions">Choose a payment method below (required fields in bold).</div>
+                    
+                            <label>
+                                <input type="radio" name="shipto_multiple" value="creditcard" checked="checked" />
+                                Pay with a Credit Card.
+                            </label>
+                            <label>
+                                <input type="radio" name="shipto_multiple" value="billmelater" />
+                                Use LTS Bill Me Later Option. 
+                            </label>
+                        
+                        </div>  <!-- end options select -->
+
+                        <form id="creditcard" class="form" method="" action="" >
+                        
+                            <fieldset>
+                            
+                                <div class="instructions">Enter in your Credit Card info (all fields are required).</div>
+                                
+                                <div class="formrow">
+                                    <label class="required" for="cc_type">Card Type</label>
+                                    <input type="text" id="cc_type" />                            
+                                </div>
+                            
+                                <div class="formrow">
+                                    <label class="required" for="cc_number">Card Number</label>
+                                    <input type="text" id="cc_number" />
+                                    <div class="comment">Example: 4141414141414141</div>                            
+                                </div>
+    
+                                <div class="formrow cc_expire">
+                                    <label class="required">Expiration Date</label>
+                                    <select name="cc_exp_month">
+                                        <option>- Select Month -</option>
+                                        <option>Janaury</option>
+                                        <option>September</option>
+                                    </select>                          
+                                    <select name="cc_exp_year">
+                                        <option>- Select Year -</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                    </select>                          
+                                </div>
+                            
+                                <div class="formrow">
+                                    <label class="required" for="cc_name">Name On Card</label>
+                                    <input type="text" id="cc_name" />                            
+                                </div>
+                            
+                                <div class="formrow small">
+                                    <label class="required" for="cc_cv3">Verification Number</label>
+                                    <input type="text" id="cc_cv3" /> 
+                                    <div class="comment">
+                                        Last three digits displayed in the signature panel on the back of your card 
+                                        (<a href="" class="infolink">Why?</a>)<br />
+                                        <img src="images/icon_cc_cv3.gif" alt="cv3" />
+                                    </div>                      
+                                </div>
+                                
+                                <div class="instructions">Or Select your Preferred Credit Card</div>
+                                    
+                                <ul class="saved_creditcards clearfix">
+                                    <li class="firstrow firstcol">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                    <li class="firstrow">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                    <li class="firstrow lastcol">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                    <li class="lastrow firstcol">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                    <li class="lastrow">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                    <li class="lastrow lastcol">
+                                        <span class="card_name">Mastercard</span><br />
+                                        Jeffery Varnson<br />
+                                        **** **** **** 5454<br />
+                                        12.20.09<br />
+                                        <a href="" title="">Use this credit card</a>
+                                    </li>
+                                </ul>  <!-- saved credit cards -->
+                            
+                            </fieldset> 
+
+                            <fieldset class="actions clearfix">
+                                <input type="submit" class="submit" value="continue" />
+                                <a href="" title="back" class="back">&lt; Back</a>
+                            </fieldset>
+                            
+                        </form> <!-- end credit card -->   
+                                                 
+                        <form id="billmelater" class="form off" method="" action"">
+                            <fieldset>
+                            
+                                <h4>Bill Me Later&reg; Data Verification</h4>
+                                
+                                <div class="instructions">
+                                    For verification purposes, please provide your date of birth and the last four digits of your social security number.
+                                </div>
+                                
+                                <div class="formrow click">
+                                    <label>
+                                        <input type="checkbox" checked="checked" />
+                                        Yes, I'd like No Payments for 90 days on orders over $200!
+                                    </label>
+                                </div> <!-- end formrow -->
+                                
+                                <div class="formrow date">
+                                
+                                    <label class="required">Date Of Birth</label>
+                                    <select name="dob_month" class="month">
+                                        <option>- Month -</option>
+                                        <option>January</option>
+                                        <option>September</option>
+                                    </select>
+                                    <select name="dob_day" class="day">
+                                        <option>- Day -</option>
+                                        <option>01</option>
+                                        <option>31</option>
+                                    </select>
+                                    <select name="dob_year" class="year">
+                                        <option>- Year -</option>
+                                        <option>2009</option>
+                                        <option>2008</option>
+                                    </select>
+                                
+                                </div> <!-- end formrow -->
+                                
+                                <div class="formrow small">
+                                    <label for="ssn4" class="required">Last 4 Digits of your SSN</label>
+                                    <input type="text" id="ssn4" class="small" />
+                                </div>
+                                
+                                <h4>Bill Me Later&reg; E-sign Consent and Terms and Conditions</h4>
+                                
+                                <a href="">You must read the consent section of the Terms and Conditions
+                                    prior to checking the box below</a>
+                                    
+                                <div class="bml_terms">
+                                    <!-- BML terms and conditions loaded externally -->
+                                </div>
+                                
+                                <div class="formrow click">
+                                
+                                    <label class="required"><input type="checkbox" />
+                                        I agree to have read the Terms and Conditions presented electronically.
+                                    </label>
+                                
+                                </div>
+                            
+                            </fieldset> 
+
+                            <fieldset class="actions clearfix">
+                                <input type="submit" class="submit" value="continue" />
+                                <a href="" title="back" class="back">&lt; Back</a>
+                            </fieldset>
+                        
+
+                        </form>  <!-- end billmelater -->                            
+                        
+    
+                        
+                        

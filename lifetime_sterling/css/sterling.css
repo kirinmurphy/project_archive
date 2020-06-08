@@ -1,0 +1,641 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* GLOBAL RESET
+===================================================================================================================== */
+
+html, body, div, span, applet, object, iframe,
+h1, h3, h2, h4, h6, h5, h9, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; 
+/*font-size:100%; font-family:inherit;*/ vertical-align:baseline; }
+
+:focus {outline:0; }
+ol, ul {list-style:none; }
+table {border-collapse:separate; border-spacing:0; }
+body { line-height:1; }
+caption, th, td { text-align:left; font-weight:normal; }
+blockquote:before, blockquote:after, q:before, q:after { content:""; }
+blockquote, q { quotes:"" ""; }
+button { border:none; cursor:pointer; }
+
+
+
+
+/* COMMON CLASSES --------------------------------- */ 
+
+div.divider { height:1px; width:100%; background:#ccc; display:block; line-height:1px; overflow:hidden; clear:both; margin-bottom:5px; }
+
+hr { width:100%; margin:30px 0; }
+
+.align_left { text-align:left; }
+.align_right { text-align:right; } 
+
+.hidden { display:none !important; }
+.off { display:none; }
+
+.textreplace { display:block; text-indent:-9999px; }
+
+
+
+/* CLEARED FLOATS --------------------------------- */ 
+
+
+/* Used to clear floats instead of class="clear", applied to containing div (not empty div at end of floats) */
+.clearfix:after, .inner:after, .section:after, .tabs:after, .formrow:after,
+
+#header:after, #usermenu:after, #feature:after, #action_panel:after, #featured_brands:after, 
+
+#main:after, #brand_landing .brands:after,
+
+#shipping_method_multiple .items:after, #shipmeth_multiple .item:after,
+
+.enter_gift_msg:after,
+
+#footer:after, #footer #hotlinks:after, #footer.nav:after
+{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+
+
+/* IE6/7 fix */ 
+.clearfix, .inner, .section, .tabs, .formrow,
+
+#header, #usermenu, #feature, #action_panel, #featured_brands, 
+
+#main, #brand_landing .brands,
+
+#shipmeth_multiple .items, #shipmeth_multiple .item,
+
+.enter_gift_msg,
+
+#footer, #footer #hotlinks, #footer.nav
+{  zoom: 1; /* triggers hasLayout */ display: block; /* resets display for IE/Win */  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* STYLE - Typog and Backgrounds 
+===================================================================================================================================== */
+
+body { font: normal 62.5% Arial, Verdana, Geneva, sans-serif; letter-spacing:.3px; }
+
+#feature h2, #pricing, h4 { font-family: Times New Roman, Georgia, serif; /*font-variant: small-caps;*/ }
+
+a { text-decoration:none; }
+
+.navitem.top, .tab,
+#feature h3,
+#action_panel .by,
+#action_panel .name,
+#productCategories .subnav h4 { text-transform:uppercase; }
+
+.navitem.sub,
+#action_panel .items,
+#footer .navitem.top { text-transform:none; }
+
+#productCategories .subnav em { font-style:italic; }
+
+#product_description p { text-align:justify; }
+
+.required {  }
+
+
+
+
+/* Font Size, Letter Spacing & Line Height  ------------------- */
+
+#container { line-height:1.6; }
+
+h1 { font-size:1.9em; letter-spacing:2.5px; } 
+
+.nav { line-height:1; }
+
+#usermenu .nav,
+#breadcrumbs a { font-size:10px; }
+
+.subnav h4 { font-size:1.2em; }
+
+#feature #pricing { font-size:18px; line-height:1.3; }
+
+#action_panel label { font-size:1.1em;  }
+
+#action_panel .name { line-height:1.4; }
+
+#main { font-size:11px; }
+
+#product_actions { font-size:10px; line-height:1.2; }
+
+#product_description p { line-height:1.3; }
+
+h4 { font-size:18px; }
+.tagline { font-size:12px; }
+
+#footer { font-size:.8em; }
+
+
+
+/* Font Colors  ------------------------------------------------------------------ */
+
+body, a,
+#searchbar input[type="text"] { color:#777; }
+
+a:hover, a.active, 
+#action_panel .by, #action_panel label,
+#searchbar input[type="text"]:focus, { color:#000; }
+
+.input_note { color:#bbb; }
+
+h1 a,
+h3,
+.our_price,
+.rollover,
+#product_description p { color:#222; }
+
+.subnav h6, #breadcrumbs span { color:#444; }
+
+.sale_price, h4,
+.tagline { color:#c14a4c; }
+
+.required { color:#666; }
+
+
+
+/* Background Colors & Images, Border Style & Color  ----------------------------- */
+.imgwrap, 
+.navitem a, #usermenu .navitem div, #productCategories .navitem.sub a,
+#product_actions a, #product_description,
+#action_panel .name, #action_panel .items,
+.main_image,
+#brand_landing .brand, #brand_landing .brand h5,
+#footer #hotlinks, #footer #hotlinks .panel
+{ border-style:solid; border-color:#ccc; }
+
+
+body { background:#e5f1e1 url(../images/bg_main.jpg) repeat-x scroll 0 98px; }
+
+#header, #main { background-color:#fff; }
+
+#header div.divider { background:#eee; }		
+
+
+#feature #breadcrumbs a { background:transparent url(../images/arrow_breadcrumb.gif) no-repeat scroll right 2px; }
+
+
+#action_panel { background:url(../images/bg_clearblack.png) repeat fixed top left; }
+
+#action_panel .name { background:#fff url(../images/arrow_dropdown.gif) no-repeat top right;  }
+#action_panel .items { background-color:#fff; }
+
+#featured_brands { background:#000 url(../images/bg_featuredbrands.gif) repeat-x top left; }
+
+#featured_brands .brand  { border-color:#393939; border-style:solid; }
+
+#featured_brands .brand:hover  { color:#ddd; font-size:1.1em;  }
+
+
+
+/* main */
+
+
+
+/* STYLE  */
+
+/* BG THEME WITH DARK IMAGE BACKGROUNDS - add class .img to body tag */
+body.img {  background:#000 url(http://demandware.edgesuite.net/aaci_prd/on/demandware.static/Sites-LifetimeSterling-Site/Sites-sterling_catalog/default/v1264231234800/categoryimages/content/lts_special_offers_bg.jpg) repeat-x scroll 0 -150px; }
+body.img #feature { color:#fff; }
+body.img #action_panel .by { color:#fff; }
+body.img #main { background:#e5f1e1 url(../images/bg_main.jpg) repeat-x scroll top center;}
+body.img #footer { color:#ccc; }
+body.img #footer a { color:#fff }
+body.img #footer .navitem a { border-color:#ccc; }
+
+
+
+
+
+/*  -- Feature Overlay Images --  */																					/* add class to container for diff images ?? */
+#feature_img { background:transparent url(http://www.sportswatchinformant.com/wp-content/themes/sport/../images/forerunner/garmin-forerunner-405-transparent.png) 
+no-repeat scroll top center;  }
+
+
+
+
+
+
+/* inactive form elements */
+#searchbar input[type="text"],
+#email_signup input[type="text"] { height:12px; margin:1px 3px 0 0; }
+
+#searchbar input.searchbutton {  background:url(../images/btn_go.gif) no-repeat top left; width:26px; height:19px; border:1px solid transparent; }
+
+#add_to_cart label { display:block; }
+#add_to_cart input[type="text"] { width:30px; text-align:center;  }
+
+#email_signup input[type="submit"] { border:1px solid transparent; }
+
+
+
+
+
+
+/* NAVIGATION MENUS
+===================================================================================================================================== */
+.navitem.top { position:relative; display:block; float:left; }
+
+.navitem.top a { display:block; border-right-width:1px; }
+
+#usermenu div.navitem.top { border-right-width:1px; }  /* user menu uses .navitem on div (instead of li) because some items in li aren't anchor tags */
+
+#usermenu .navitem a,
+#usermenu .navitem div { padding:0 10px; border-right-width:1px; }
+
+.navitem.top.first a,
+#usermenu .navitem.first div { padding-left:0px !important; }
+
+.navitem.top.last a,
+#usermenu .navitem.last div { border-right-width:0px !important; padding-right:0px; }
+
+
+
+.subnav { position:absolute; z-index:1; display:none;  }
+.navitem:hover .subnav { display:block; }
+
+.navitem.sub a { border-width:0; }
+
+#productCategories {  }
+
+#productCategories .navitem a,  /* both top and sub nav items, and subnav header */
+#productCategories .subnav h6 { padding:0 12px;  } 
+#productCategories .subnav h6 { margin-bottom:5px; }
+
+#productCategories .navitem:hover .subnav { display:block; }
+
+#productCategories .subnav { top:12px; width:180px; padding:20px 2px 2px 2px;  background:#fff;/* same as above padding */ }
+
+
+#productCategories .subnav .navitem.sub a { padding-top:5px; padding-bottom:5px; border-top-width:0px }
+
+#productCategories .subnav .navitem.sub.last a { display:block; padding:8px 20px; }
+
+#productCategories .subnav .navitem.sub:hover a { background-color:#ddecd7; }
+
+
+
+
+
+
+
+
+
+/* TABS
+===================================================================================================================================== */
+
+
+.tabs, .tab a { border-style:solid; border-color:#ccc; }
+
+.tab a { font-size:10px; }
+
+.tab a:hover { color:#444; }
+
+.panes {  background:#fff; }
+
+.tab a.current, .tab a.current:hover, .tab.current a 
+{ background:#fff; background-position: -652px -62px; cursor:default !important;  color:#000 !important; }
+
+
+/* REQUIRED FIELDS for all TABS instances */
+.tabs {  margin:0 !important; padding:0; border-bottom-width:1px; }
+
+.tabs .tab {  float:left; margin:0 !important; }
+.tabs .tab.last { border-right-width:0px; }
+
+.tab a { display:block; position:relative; top:1px; text-align:center; height:15px; padding:10px 12px 6px 12px; border-right-width:1px; }
+.tab.last a { border-right-width:0px; }
+
+.panes {  }
+
+.panes .pane { display:none; }  /* initially all panes are hidden */ 
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+/* width 1 
+.tab a.w1 			{ background-position: -519px 0; width:220px; }
+.tab a.w1:hover 	{ background-position: -519px -31px; }
+.tab a.w1.current { background-position: -519px -62px; }  */
+
+
+/* RELATED ITEMS TABS */
+.related_items { background-color:#e5f1e1; padding:5px; margin-bottom:20px;
+border:3px solid #fff; outline:1px solid #ddd; }
+
+.related_items .panes {  }
+
+.related_items .pane { padding:20px 10px; }
+
+
+
+
+
+
+
+
+
+
+
+/* JCAROUSEL
+===================================================================================================================================== */
+/* REQUIRED FIELDS for all jcarousel instances */
+.jcarousel-container { position: relative; }
+
+.jcarousel-clip { z-index: 2; overflow: hidden;  position: relative; }
+
+.jcarousel-list { z-index: 1; overflow: hidden; position: relative; top: 0; left: 0; }
+
+.jcarousel-list li,
+.jcarousel-item { float: left; width: 75px; height: 75px; } /* Default widht/height must be set explicitly. No width/height causes infinite loops. */
+
+.jcarousel-next,
+.jcarousel-prev { z-index: 3;  display: none; }
+
+
+/* Main Scroller */
+.scroller { clear:both; margin-bottom:20px;  }
+
+.jcskin_1 .jcarousel-container { border-width:0 1px; border-style:solid; border-color:#ccc; }
+.jcskin_1 .jcarousel-container-horizontal {  padding: 0 34px; }
+
+.jcskin_1 .jcarousel-clip-horizontal {  width: 911px; height: 217px; }
+
+.jcskin_1 .jcarousel-item {  width: 165px; height: 215px; overflow:hidden; background-color:#fff; border-width:1px; border-style:solid; border-color:#ddd; }
+.jcskin_1 .jcarousel-item-horizontal { margin-right: 19px; }
+
+.jcskin_1 .jcarousel-item-placeholder { background: #fff; color: #000; }
+
+/*  Carousel Buttons */
+.jcskin_1 .jcarousel-next-horizontal,	
+.jcskin_1 .jcarousel-prev-horizontal { position: absolute; top: 86px;  width: 32px; height: 32px; cursor: pointer;  }
+
+.jcskin_1 .jcarousel-next-horizontal { right: 2px; background: transparent url(../images/next-horizontal.png) no-repeat 0 0; }
+.jcskin_1 .jcarousel-next-horizontal:hover { background-position: -32px 0; }									/* Merge these elements after adding image sprite */
+.jcskin_1 .jcarousel-next-horizontal:active {  background-position: -64px 0; }
+
+.jcskin_1 .jcarousel-next-disabled-horizontal,
+.jcskin_1 .jcarousel-next-disabled-horizontal:hover,
+.jcskin_1 .jcarousel-next-disabled-horizontal:active { cursor: default; background-position: -96px 0; }
+
+.jcskin_1 .jcarousel-prev-horizontal { left: 2px; background: transparent url(../images/prev-horizontal.png) no-repeat 0 0; }
+.jcskin_1 .jcarousel-prev-horizontal:hover {  background-position: -32px 0; }
+.jcskin_1 .jcarousel-prev-horizontal:active { background-position: -64px 0; }
+
+.jcskin_1 .jcarousel-prev-disabled-horizontal,
+.jcskin_1 .jcarousel-prev-disabled-horizontal:hover,
+.jcskin_1 .jcarousel-prev-disabled-horizontal:active { cursor: default;  background-position: -96px 0; }
+
+
+
+/* smaller scroller used in tabs */
+.scroller_sm {  }
+
+.jcskin_sm .jcarousel-container { }
+.jcskin_sm .jcarousel-container-horizontal {  padding: 0 18px;  }
+
+.jcskin_sm .jcarousel-clip-horizontal {  width: 914px; height: 210px; }
+
+.jcskin_sm .jcarousel-list-horizontal { height:210px; width:3000px !important;  }
+
+.jcskin_sm .jcarousel-item {  width: 137px; height: 207px; overflow:hidden; background-color:#fff; border-width:1px; border-style:solid; border-color:#ddd; }
+.jcskin_sm .jcarousel-item-horizontal { width:137px; height:207px; margin-right: 16px; }
+
+.jcskin_sm .jcarousel-item-placeholder { background: #fff; color: #000; }
+
+/*  Carousel Buttons */
+.jcskin_sm .jcarousel-next-horizontal,	
+.jcskin_sm .jcarousel-prev-horizontal { position: absolute; top: 86px;  width: 32px; height: 27px; cursor: pointer;  }
+
+.jcskin_sm .jcarousel-next-horizontal { right: 2px; background: transparent url(../images/next-horizontal.png) no-repeat 0 0; }
+.jcskin_sm .jcarousel-next-horizontal:hover { background-position: -32px 0; }	/* Merge these elements after adding image sprite */
+.jcskin_sm .jcarousel-next-horizontal:active {  background-position: -64px 0; }
+
+.jcskin_sm .jcarousel-next-disabled-horizontal,
+.jcskin_sm .jcarousel-next-disabled-horizontal:hover,
+.jcskin_sm .jcarousel-next-disabled-horizontal:active { cursor: default; background-position: -96px 0; }
+
+.jcskin_sm .jcarousel-prev-horizontal { left: 2px; background: transparent url(../images/prev-horizontal.png) no-repeat 0 0; }
+.jcskin_sm .jcarousel-prev-horizontal:hover {  background-position: -32px 0; }
+.jcskin_sm .jcarousel-prev-horizontal:active { background-position: -64px 0; }
+
+.jcskin_sm .jcarousel-prev-disabled-horizontal,
+.jcskin_sm .jcarousel-prev-disabled-horizontal:hover,
+.jcskin_sm .jcarousel-prev-disabled-horizontal:active { cursor: default;  background-position: -96px 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* POSITIONING
+===================================================================================================================================== */
+
+/* wrap types */
+.wrap {  width:96%; margin:0 auto; min-width:1000px; }
+.inner { position:relative;  /* default root for absolute positioning */
+width:980px !important; margin:0 auto; }
+
+
+
+.section { width:975px;  margin-bottom:40px; }
+
+
+/* Z index */
+#product_detail .detail_image { z-index:20; }
+#feature_img {  z-index:8; }
+#action_panel { z-index:5; }
+
+.jcarousel-next, 
+.jcarousel-prev { z-index: 3; }
+.jcarousel-clip { z-index: 2; }
+.jcarousel-list { z-index: 1; }
+
+
+
+
+
+/* Containers & Unique Elements */
+
+#header { padding-top:32px; height:66px; }
+
+#logo { float:left; margin-bottom:8px; }
+
+#usermenu { float:right; margin-top:9px; }
+
+#usermenu .link2cart { padding:0 5px 0 6px !important;  } /* padding to create same width for empty/full cart text options */
+
+
+#header div.divider { margin-bottom:6px;  }			
+
+#productCategories { float:left; margin-top:7px; }
+
+#searchbar { float:right; }
+
+
+
+
+#feature { position:relative; padding-top:20px; padding-bottom:30px; }
+
+#feature #content { float:left; width:640px; }
+
+#breadcrumbs { margin-bottom:24px; }
+
+#breadcrumbs a { margin-right:6px; padding-right:12px; }
+
+
+#feature h2 { padding:10px 0 20px 0; font-size:30px; color:#333; }
+
+#body_brand_landing #feature h2 { padding:110px 0 40px 0; }
+
+#feature #sidebar { float:right; width:320px; text-align:right; }
+
+#feature #pricing { padding-top:25px; }
+
+
+
+#feature_img { position:absolute; top:2px; right:20px; width:300px; height:280px; }
+
+
+
+#action_panel { position:relative; padding-top:14px; padding-bottom:14px; }
+
+#category_filter { display:none; }
+
+#action_panel .option { float:left; width:auto; margin-right:20px; }
+
+#action_panel label { display:block; float:none;  padding:0 2px; }
+
+#action_panel .type { position:relative; }
+
+#action_panel .type .name { display:block; width:150px; padding:2px 28px 2px 4px; border-width:1px; min-height:13px;  }
+
+#action_panel .type .items { position:absolute; display:none; width:182px; top:20px; border-width:0 1px 1px 1px; }
+#action_panel .type:hover .items { display:block; }
+
+#action_panel .type .items li a {  display:block; width:174px;  padding:2px 4px; }
+
+#action_panel .type .items li:hover a { background-color:#ddecd7; }
+
+
+#add_to_cart { display:none; float:right; width:470px; }
+
+#add_to_cart .formrow_atc { float:left; margin-right:15px; }
+#add_to_cart .formrow_atc.submit { float:right; margin-right:0px; }
+
+#add_to_cart input.submit { margin-top:13px; }
+
+#featured_brands  {  padding:7px 0; }
+
+#featured_brands .brand { display:block; float:left; width:162px; border-right-width:1px; height:76px; }
+#featured_brands .brand.last { border-right-width:0px; }
+
+
+
+
+
+#main { padding-top:50px; padding-bottom:30px; }
+
+
+
+
+
+
+
+
+
+/* -- PRODUCT DETAIL PAGE -------------------------------------------------------- */
+#product_detail { min-height:360px;  }
+
+.detail_image { position:absolute; top:-140px; height:457px; width:459px;  }
+
+.detail_image .imgwrap { overflow:hidden; height:437px; border-width:1px; }
+
+.detail_image .rollover { display:block; margin-top:6px; text-align:center; }
+
+
+#product_actions,
+#product_description {  width:474px; }
+
+#product_description { float:right; border-width:1px 0; padding:25px 0; }
+
+#product_description .tagline { display:block; margin-bottom:20px; }
+
+#product_description p { margin-bottom:20px; }
+
+
+#product_actions { position:absolute; top:-34px; right:0; } /* right value must match .inner padding */
+
+#product_actions a { float:left; padding:0 14px 0 13px; border-right-width:1px; }
+#product_actions a.send_email { padding-left:0px; }
+#product_actions a.add_giftregistry { float:right; padding-right:0px; border-right-width:0px; }
+
+
+
+/* -- BRAND LANDING PAGE ------------------------------------------------------- */
+#brand_landing .brands {  }
+
+#brand_landing .brand {  width:141px; padding:0px 10px 5px 10px; float:left; border-right-width:1px; padding:0 10px;  }
+#brand_landing .brand.first { padding-left:0px;  }
+#brand_landing .brand.last { padding-right:0px; border-right-width:0px;  }
+
+#brand_landing h5 { height:60px; text-align:center; border-bottom-width:1px; margin-bottom:30px; } 
+
+#brand_landing .collections { padding:0 10px; }
+
+#brand_landing .collection a { display:block; padding:5px 0; }
+
+
+
+
+/* -- FOOTER -------------------------------------------------------------------------------------------------------------------------- */
+#footer { padding-top:20px; padding-bottom:20px; }	
+
+#footer #hotlinks { overflow:hidden; margin-bottom:5px; padding:5px 0; border-top-width:1px; } /* bottom margin & top padding need to match */
+
+#footer #hotlinks .panel { float:left; width:23.4%; padding:18px 1% 100px 1%; margin-bottom:-92px; border-right-width:1px;  }
+#footer #hotlinks .panel.first { padding-left:0px; }
+#footer #hotlinks .panel#email_signup { border-right-width:0px; padding-right:0px; text-align:right;  }
+
+#footer .divider { margin-bottom:10px; }
+
+#footer .nav { float:right; margin-top:3px;  }
+
+#footer .nav .navitem {  }
+
+#footer .navitem a { padding:0 12px; }
+
+
+#footer .contact_info,
+#footer #copyright { float:left; clear:left; margin-bottom:4px; }
+
+
+
+
+

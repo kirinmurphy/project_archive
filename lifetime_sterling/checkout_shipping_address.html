@@ -1,0 +1,185 @@
+
+                <div id="shipto_locations" class="options">
+
+                    <div class="instructions">Select shipping location(s).</div>
+            
+                    <label>
+                        <input type="radio" name="shipto_locations" value="shipto_one" checked="checked" />
+                        Ship items to one location.
+                    </label>
+                    <label>
+                        <input type="radio" name="shipto_locations" value="shipto_multiple" />
+                        Ship items to multiple locations.
+                    </label>
+                
+                </div>  <!-- end shipto_locations -->
+
+            	<form id="shipto_one" class="form" method="" action="" >
+                
+                    <fieldset>
+                    
+                        <div class="formrow name">
+                            <label for="first_name"  class="required">Name</label>
+                            <input id="first_name" class="input_note" type="text" value="First" />                    
+                            <input id="last_name" class="input_note" type="text" value="Last" />                    
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label class="required">Address 1</label>
+                            <input type="text" id="" />
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label>Address 2</label>
+                            <input type="text" id="" />
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label  class="required">City</label>
+                            <input type="text" id="" />
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label  class="required">State</label>
+                            <select>
+                                <option> - Select A State - </option>
+                                <option>California</option>
+                                <option>Illinois</option>
+                            </select>
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label  class="required">Zip Code</label>
+                            <input type="text" id="" />
+                            <div class="comment">
+                                This is a description of the thing above
+                           </div> 
+                        </div>  <!-- end formrow -->                  
+    
+                        <div class="formrow">
+                            <label  class="required">Telephone</label>
+                            <input type="text" id="telephone" class="input_note" value="555-555-5555" />
+                            <a  href="" title="" class="why"></a>
+                            <div class="comment">
+                                This is a description of the thing above
+                           </div> 
+                        </div>  <!-- end formrow -->                  
+    
+                        <!--<div class="formrow">
+                            <label  class="required">Email Address</label>
+                            <input type="text" id="email_addr" class="input_note" value="bob@bob.com" />
+                            <a href="" title="" class="why"></a>
+                        </div>   end formrow -->                  
+                    
+                    <div class="guideline">
+                        Note to our Canadian customers: If you wish to ship to Canada, call our Customer Service Department (800-999-2811), who will be glad to assist you. Our website currently does not support shipments to Canada.	
+                    </div>
+                    
+                    </fieldset>  <!-- end main fieldset -->
+
+                    <fieldset class="actions clearfix">
+                        <input type="submit" class="submit" value="continue" />
+                        <a href="" title="back" class="back">Back</a>
+                    </fieldset>
+
+				</form>
+
+            	<form id="shipto_multiple" class="form off" method="" action="" >
+                                
+                    <fieldset>
+                    
+                        <div class="instructions">Enter shipping destinations for each of the items in your order.</div>
+                            
+                        <ul class="array_header clearfix">
+                        
+                            <li class="item_quantity">Qty</li>
+                            <li class="order_item">Item(s)</li>
+                            <li class="select_address">Ship To:</li>
+                        
+                        </ul>
+                    
+                    
+                        <ol id="shipping_addresses" class="array_items">
+                        
+                            <li class="array_item">
+                            
+                                    <ul class="clearfix">
+                                        
+                                        <li class="item_quantity">
+                                            2
+                                        </li>
+                                        
+                                        <li class="order_item">
+                                            Goblet Long Name Long Name Long Name Long Name
+                                        </li>
+                                        
+                                        <li class="select_address">
+                                            <select>
+                                                <option> - Select An Address -</option>
+                                                <option>Address1 Name, Street Address, City, State</option>
+                                                <option>Address1 Name, Street Address, City, State</option>
+                                            </select>
+                                            <a href="" title="">Enter Another Address</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    
+                                    <div class="addl_address">
+    
+                                        <h5>Enter another shipping address</h5>
+                                        <a class="close">Close</a>
+    
+                                        <div class="formrow name">
+                                            <label for="first_name"  class="required">Name</label>
+                                            <input id="first_name" class="input_note" type="text" value="First" />                    
+                                            <input id="last_name" class="input_note" type="text" value="Last" />                    
+                                        </div>  <!-- end formrow -->                  
+                                        
+                                        <div class="formrow">
+                                            <label class="required">Address 1</label>
+                                            <input type="text" id="" />
+                                        </div>  <!-- end formrow -->                  
+                                        
+                                        <div class="formrow">
+                                            <label>Address 2</label>
+                                            <input type="text" id="" />
+                                        </div>  <!-- end formrow -->                  
+                                        
+                                        <div class="formrow">
+                                            <label  class="required">City</label>
+                                            <input type="text" id="" />
+                                        </div>  <!-- end formrow -->                  
+                                        
+                                        <div class="formrow">
+                                            <label  class="required">State</label>
+                                            <select>
+                                                <option> - Select A State - </option>
+                                                <option>California</option>
+                                                <option>Illinois</option>
+                                            </select>
+                                        </div>  <!-- end formrow -->                  
+                                        
+                                        <div class="formrow">
+                                            <label  class="required">Zip Code</label>
+                                            <input type="text" id="" />
+                                        </div>  <!-- end formrow -->                  
+    
+                    
+    
+                                    
+                                    
+                                    </div>
+        
+                            </li> <!-- end shipto_multiple ship item --> 
+    
+                        </ol> 
+                    
+                    </fieldset>  <!-- end main fieldset -->
+
+                    <fieldset class="actions clearfix">
+                        <input type="submit" class="submit" value="continue" />
+                        <a href="" title="back" class="back">Back</a>
+                    </fieldset>
+
+				</form>    				                           
+            

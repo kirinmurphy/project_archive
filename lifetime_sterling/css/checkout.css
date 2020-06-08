@@ -1,0 +1,472 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+
+
+
+/* Stuff for global */
+
+
+.clearfix:after, #checkout_steps:after, .formrow:after, .array_item:after
+{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+/* IE6/7 fix */ .clearfix, #checkout_steps, .formrow, .array_item
+{  zoom: 1; /* triggers hasLayout */ display: block; /* resets display for IE/Win */  }  
+
+
+
+
+
+
+
+
+/* TABLE STYLED LIST ITEMS
+===================================================================================================================================== */
+
+.array_header { background:#D2E6CA; font-size:13px; font-weight:bold; color:#000; }
+
+.array_header li { float:left; padding:5px 15px; }
+
+.array_items { border-bottom:1px solid #ccc; }
+
+.array_item { border-bottom:1px solid #ddd; }  
+.array_item.last { border-bottom:0; }
+.array_item.odd { background-color:#fafafa; }
+
+.array_item li { float:left; padding:15px;   }
+
+
+
+
+
+
+
+/* GLOBAL FORM ELEMENTS
+===================================================================================================================================== */
+
+label, input, select, textarea, a.why { display:block; float:left;  }
+
+label { cursor:pointer; /*text-align:right;*/ }
+
+select {  }
+
+
+input[type="text"], input[type="password"],
+select, textarea {  border:1px solid #c5c5c5; padding:2px 3px; }
+
+textarea {  padding:5px; }
+
+input[type="text"],
+input[type="password"] {  font-size:10px; }
+
+
+
+input[type="submit"],
+input[type="button"] { text-align:center; padding:0 8px;  }
+
+input.submit, a.submit { border:1px solid #000; background-color:#484848; color:#fff; }
+
+a.submit  { padding:1px 8px; cursor:pointer; }
+
+
+
+
+input[type="radio"],
+input[type="checkbox"] { width:15px; height:15px; }
+
+input[type="text"]:focus, 
+input[type="password"]:focus,
+textarea:focus { background-color:#f4f4f4; color:#333; }
+
+
+
+
+
+
+
+/* Login and Checkout Form Elements: Use Class .form to distinguish between main forms and simpler forms (search, subscribe)
+===================================================================================================================================== */
+
+/* Checkout Nav */
+#checkout_steps { /*width:100%; margin:0 auto; clear:left;*/  padding:7px 0;
+background:#000 url(../images/bg_checkout_steps.gif) repeat-x top left; font-size:10px; }
+
+#checkout_steps a { display:block; float:left; width:138px; border-right-width:1px; height:14px; padding:19px 0; 
+text-align:center; border-color:#393939; border-style:solid; color:#848484; }
+
+#checkout_steps .step.last { border-right-width:0px; }
+
+#checkout_steps a:hover,
+#checkout_steps a.active { color:#ddd; font-size:1.1em;  }
+
+#checkout_steps a.active { color:#fff; font-weight:bold; }
+
+
+.checkout_page { width:600px;  margin-bottom:30px; font-size:11px; }
+
+.checkout_page { display:none; }
+.checkout_page#cart { display:block; } 
+
+.checkout_page .form { float:left; }
+
+a.close { display:block; position:absolute; top:0px; right:0px; padding:1px 8px; cursor:pointer; border:solid #ddd; 
+	background-color:#eaeaea; border-width:0 1px 1px 1px;  }
+
+.checkout_page .confirmation_msg,
+.checkout_page .promo_msg  { color:#c14a4c; font-size:11px; }
+
+
+
+
+
+
+/* Primary Form Elements */
+.formrow label { font-size:13px; }
+.formrow input,
+.formrow select { font-size:14px; }
+
+.form fieldset { font-size:12px; }
+
+
+.form .guideline { text-align:justify; }
+
+
+.form { width:100%;  } 
+
+.form fieldset {  margin-bottom:15px; }
+
+.formrow { padding:4px 0; }
+
+.formrow label { width:160px; padding-top:8px; padding:8px 10px 4px 0; }
+
+.formrow input,
+.formrow select { margin-bottom:4px; }
+
+.formrow input[type="text"],
+.formrow input[type="password"] { width:282px; height:16px; padding:4px; margin-bottom:4px; }
+
+.formrow select { min-width:292px; height:24px; }
+
+.formrow .comment { float:right; width:282px; padding-right:140px; }
+
+
+.form .guideline { padding:20px 30px 0 0; }
+
+
+
+.formrow a.why { width:16px; height:16px; margin:9px 0 0 9px; 
+	background:url(../images/question_tooltip.jpg) no-repeat scroll; }
+
+
+.form .actions { clear:both; padding:15px 10px; border:solid #ddd; border-width:1px 0; }
+
+fieldset.actions input.submit,
+fieldset#cart_actions input.submit { float:right; }
+
+fieldset.actions .back,
+fieldset#cart_actions .back { float:left; }
+
+
+/* Custom Form Fields */	
+.formrow.name input { width:132px; margin-right:8px; } /* 2 cols */
+
+.saved_address select { min-width:465px; margin-bottom:25px; }
+
+
+.formrow.small input { width:50px; margin-right:10px;  }
+.formrow.small .comment { float:left; width:240px; padding-right:10px; }
+.formrow.small img { margin-top:5px; }
+
+.formrow.date select { min-width:90px; width:90px; margin-right:9px; }
+.formrow.date select.month { width:120px; }
+
+
+.formrow.cc_expire select { min-width:140px; width:140px; margin-right:7px; }
+
+.form fieldset#shipto_billing  { border-top:1px solid #ddd; padding-top:20px; }
+
+
+.options {  padding-bottom:20px !important; margin-bottom:20px; font-size:12px; }
+div.options { border-bottom:1px solid #ddd;  }	
+		
+.options .formrow { padding:0 0 8px 0; }
+.options label { display:block; float:none; width:92%; padding:2px 0; }
+.options input { display:inline; float:none; margin-right:12px; }
+.instructions { padding-bottom:15px; font-size:13px; font-weight:bold; }
+
+
+
+.formrow.click label { float:left; width:90%; padding-top:4px;  }
+.formrow.click label input { position:relative; top:-4px; }
+.formrow.click input { float:left; width:3%; margin-right:3%;   }
+
+
+/* -- Checkout : Cart  ----------------------------------------- */
+
+
+
+/* SHOPPING CART
+===================================================================================================================================== */
+
+.error, .sale_price {  color:#c14a4c;  }
+
+#cart {  clear:both; width:100%; margin-bottom:30px; border:5px solid #D2E6CA; outline:1px solid #bbb;
+		-moz-border-radius:6px; -moz-outline-radius:6px; }
+		
+#cart .array_items { border-bottom:2px solid #eee; }
+
+#cart .item_details	{ width:380px; }
+#cart .item_price	{ width:150px; }
+#cart .item_qty		{ width:200px; }
+#cart .total_price 	{ width:100px; font-size:13px; font-weight:bold; }
+
+
+#cart .item_details img { float:left; border:1px solid #ddd; }
+
+#cart .item_details div { float:left; padding:4px 10px 10px 20px; }
+
+#cart .item_details span,
+#cart .item_details a { display:block; margin-bottom:5px; }
+
+#cart br  { display:none; } /* line breaks only included for pageload with no css */
+
+#cart .item_details .item_name { font-size:13px; color:#444; font-weight:bold; }
+#cart .item_details .catalog_number { margin-bottom:20px; }
+#cart .item_details .item_notices { color:#c14a4c; margin-bottom:35px; }
+#cart .item_details .remove_item { width:45px; }
+
+#cart .item_price span { display:block; margin-bottom:5px; }
+
+#cart .item_qty input { width:30px; text-align:center; }
+
+
+#cart #promotional_offers { float:left; width:560px; padding:22px 15px 20px 15px; }
+#cart #promotional_offers label { padding:4px 8px 0 0; }
+#cart #promotional_offers input { margin-right:8px; }
+#cart #promotional_offers .error { clear:both; padding-top:5px; }
+
+
+#cart #order_summary { float:left; }
+#cart #order_summary div { float:left; padding:15px 15px 12px 15px; }
+
+#cart #order_summary .update_qty { display:block; margin-bottom:5px; width:85px; }
+#cart #order_summary .total_price { font-size:15px; color:#000; }
+
+
+#cart_actions { clear:both; padding:12px 10px; border-top:2px solid #eee; }
+
+
+
+
+
+
+
+/* -- Checkout : Shipping Addresses Multiple  ----------------------------------------- */
+#shipto_multiple { position:relative; }
+
+#shipto_multiple .array_header li, 
+#shipto_multiple .array_item li { padding:10px; }
+
+#shipto_multiple .item_quantity 	{ width:25px; }
+#shipto_multiple .order_item 		{ width:130px; }
+#shipto_multiple .select_address 	{ width:245px; }
+
+#shipto_multiple .select_address select { float:none; max-width:255px; }
+#shipto_multiple .select_address a { display:block; margin:4px 0 0 4px; }
+
+#shipto_multiple .addl_address { display:none; position:relative; padding:20px; border-top:1px solid #eee; }
+
+#shipto_multiple h5 { margin-bottom:20px; font-size:14px; font-weight:bold; color:#000; 
+		font-family:Georgia, "Times New Roman", Times, serif; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shipping_method .option { float:left; }
+
+/* -- Checkout : Shipping Method One Address  ----------------------------------------- */
+#shipmeth_oneaddr fieldset.shipto_location,
+fieldset.assign_shipmethod { border-bottom:1px solid #ddd; }
+
+#shipmeth_oneaddr fieldset.shipto_location { padding-bottom:25px; margin-bottom:25px; }
+
+fieldset.shipto_location .selected_shipping { padding:5px 40px 0 40px; font-size:14px; line-height:1.3; letter-spacing:.04px; color:#222; }
+
+fieldset.assign_shipmethod { line-height:15px; }
+fieldset.assign_shipmethod h3 { margin-bottom:10px; }
+fieldset.assign_shipmethod .type { font-size:13px; font-weight:bold; margin-right:5px; }
+fieldset.assign_shipmethod .active { color:#444; }
+
+fieldset.include_gift_msg label { margin-bottom:5px; font-size:13px; font-weight:bold;  }
+fieldset.include_gift_msg input { position:relative; top:-1px; }
+fieldset.include_gift_msg .enter_gift_msg { display:none; }
+
+fieldset.include_gift_msg { margin-bottom:0px; }
+fieldset.include_gift_msg .enter_gift_msg { width:500px; padding:10px 0 10px 35px; }
+fieldset.include_gift_msg textarea { width:460px; height:80px; margin-top:5px; }
+
+
+
+
+/* -- Checkout : Shipping Method Multiple Address ------------------------------------- */
+#shipmeth_multiple {  }
+
+#shipmeth_multiple .shipment {  border:1px solid #ddd; margin-bottom:20px; margin-top:10px; }
+
+#shipmeth_multiple .shipto_location { padding-bottom:0px; margin-bottom:0px; }
+
+#shipmeth_multiple h4 {  padding:6px 10px; background-color:#d2e6ca; border:1px solid #fff; font-size:13px; color:#555; }
+
+#shipmeth_multiple .selected_shipping { padding:12px 20px; border:1px solid #fff; border-top-width:0px; background-color:#eff6ed;  }
+
+
+#shipmeth_multiple .shipping_options { padding:10px 15px; }
+#shipmeth_multiple .include_gift_msg { padding:15px; }
+
+#shipmeth_multiple .shipping_options { margin-bottom:0px; }
+
+#shipmeth_multiple .header { border:1px solid #fff; border-top:0; font-size:12px; color:#555; }
+
+#shipmeth_multiple .items,
+#shipmeth_multiple .shipping_method { float:left; padding:0 10px; }
+
+#shipmeth_multiple .header .items,
+#shipmeth_multiple .header .shipping_method { padding:7px 10px; font-size:12px; font-weight:bold; }
+
+#shipmeth_multiple .items { width:310px; }
+
+#shipmeth_multiple .shipping_method { width:210px; }
+
+#shipmeth_multiple .shipping_method select { margin:2px 0; }
+
+#shipmeth_multiple .item { padding-bottom:15px; }
+
+#shipmeth_multiple .item .qty,
+#shipmeth_multiple .item .item_details { float:left; }
+
+#shipmeth_multiple .item .qty { width:10px; margin-right:12px; }
+
+
+#shipmeth_multiple .include_gift_msg {   }
+#shipmeth_multiple .include_gift_msg .formrow { margin:10px 15px; padding-top:10px; border-top:1px solid #ddd; }
+
+
+
+
+
+
+/* -- PAYMENT OPTIONS ---------------------------------------------------------------- */
+#payment_method h4 { margin-bottom:2px; font-size:13px; font-weight:bold; color:#444; }
+
+#payment_method #payment_options { float:left; width:610px;  }
+
+#payment_method .tablinks {  }
+
+#payment_method .tablinks a { display:block; float:left; width:177px; padding:15px 0; height:10px; text-align:center; margin-right:3px; 			
+font-size:12px; font-weight:bold; background:#eaf3e6 url(../images/bg_payment_tablink.gif) no-repeat scroll top left; }
+
+#payment_method .tablinks a.active { color:#444; background:#d7e9d0 url(../images/bg_payment_tablink_active.gif) no-repeat scroll top left; }
+
+#payment_method .tab_section { padding:20px;  }
+#payment_method .tab_section.active { display:block; }
+
+
+#payment_method .formrow.small { margin-bottom:20px; }
+
+#payment_method .saved_creditcards { width:100%; margin-top:5px; margin-bottom:25px; }
+
+#payment_method .saved_creditcards li { float:left; width:142px; padding:25px; border:solid #ddd; border-width:0 1px 1px 0; }
+#payment_method .saved_creditcards li.firstrow { padding-top:0; }
+#payment_method .saved_creditcards li.firstcol { padding-left:0; }
+#payment_method .saved_creditcards li.lastcol { border-right:0; }
+#payment_method .saved_creditcards li.lastrow { padding-bottom:0; border-bottom:0; }
+
+#payment_method .saved_creditcards .card_name { font-weight:bold; color:#444; font-size:12px; }
+#payment_method .saved_creditcards a { color:#444; text-decoration:underline; }
+
+#payment_method #billmelater a { display:block; margin-bottom:10px; text-decoration:underline; }
+#payment_method #billmelater .instructions { font-weight:normal; font-size:11px;  }
+#payment_method #billmelater .bml_terms { width:97%; padding:5px 1.5%; margin:5px 0; height:120px; overflow:auto; border:1px solid #999; }
+
+
+#payment_method #redeem_giftcard { padding:14px; margin-bottom:20px; border:6px solid #bfceb7; background-color:#eff3ed; }
+#payment_method #redeem_giftcard a { display:block; width:95px; margin-top:14px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#checkout_modules { width:290px; float:right; clear:right;  }
+
+#checkout_modules .module { display:none; position:relative; float:right; clear:right; width:245px; padding:15px 15px 5px 15px; border:3px solid #fff; }
+
+#checkout_modules .module h3 { margin-bottom:10px; font-size:14px; color:#333; text-transform:uppercase; }
+
+#checkout_modules .module .edit { position:absolute; top:10px; right:10px;  }
+
+#checkout_modules .module dt,
+#checkout_modules .module dd { margin-bottom:8px; font-size:12px; }
+
+#checkout_modules .module dt { float:left; clear:left; width:100px; }
+
+#checkout_modules .module dd { float:right; clear:right; text-align:right; width:100px; }
+
+#checkout_modules .module dl .total { margin:10px 0 15px 0; font-weight:bold; }
+
+
+#order_summary.module {  margin-bottom:10px; border:3px solid #fff; outline:1px solid #7f8e77; 
+		background-color:#bfceb7; color:#fff; }
+
+#order_summary.module h3 { color:#444; margin-bottom:14px; }
+
+.free_shipping_notice { clear:both; color:#c14a4c; }
+
+
+
+
+
+
+
+
