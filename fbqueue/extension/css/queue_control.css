@@ -3,6 +3,10 @@
   background:#3B5998; border:1px solid #888;
 }
 
+.queue-control.comment-clip {
+  margin-top:.5rem;
+}
+
 .queue-control-in-intro button,
 .queue-control button { display:inline-block;
   padding:8px 5px; width:49%; height:38px;

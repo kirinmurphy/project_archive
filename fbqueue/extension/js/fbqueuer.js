@@ -72,15 +72,23 @@ window.FBQueuer = (function() {
       };
     },
 
+    getTitle: function ($link) {
+      var mainPostTitle = $link.find('[dir="auto"]:not([class])').text();
+      var commentPostTitle = $link.find('[data-html2canvas-ignore="true"]').text();
+      return mainPostTitle || commentPostTitle;
+    },
+
     checkIfValidLink: function ($link) {
       var href = $link.attr('href');
       var urlMatches = href.match(/youtube.com/gi) || href.match(/youtu.be/gi);
-      var hasTheRightKid = $link.find('.uiScaledImageContainer').length;
-      if ( urlMatches && hasTheRightKid ) { this.addQueueControlToFBLink($link); }
+      if ( urlMatches ) {
+        var title = this.getTitle($link);
+        if ( title ) { this.addQueueControlToFBLink($link, title); }      
+      } 
     },
 
-    addQueueControlToFBLink: function($link) {
-      var pageClip = new window.PageClip($link);
+    addQueueControlToFBLink: function($link, title) {
+      var pageClip = new window.PageClip($link, title);
       $link.data('pageClip', pageClip);
 
       if ( this.user.autoQueueAll ) { this.autoQueue(pageClip); }

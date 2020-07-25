@@ -1,7 +1,7 @@
 {
   "name":"FB Queue",
   "description":"Facebook youtube audio player",
-  "version":"0.3",
+  "version":"0.4",
   "manifest_version":2,
   "page_action": {
     "default_icon": "images/headphones-16.png",

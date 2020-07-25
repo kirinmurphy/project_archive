@@ -1,5 +1,5 @@
 window.PageClip = (function() {
-  function PageClip($link) { this.init($link); };
+  function PageClip($link, title) { this.init($link, title); };
 
   PageClip.prototype = {
     isQueued: false,
@@ -14,14 +14,12 @@ window.PageClip = (function() {
       'tube.com/attribution_links?a='
     ],
 
-    init: function($link) {
+    init: function($link, title) {
 
       this.$link = $link;
-      this.href = this.$link.attr('href');
+      this.title = title;
 
-      this.$post = this.$link.closest('._6m2');
-      this.$post = this.$post.length ? this.$post :
-        this.$link.closest('.UFIComment.UFIComponent')
+      this.href = this.$link.attr('href');
 
       this.addQueueControl();
     },
@@ -41,7 +39,11 @@ window.PageClip = (function() {
         'class':'already-queued', text: 'QUEUED'
       }).hide();
 
-      this.$queueControl = $('<div/>', { 'class':'queue-control' })
+      this.isCommentClip = !!this.$link.find('[data-html2canvas-ignore="true"]').length;
+
+      var commentClipClass = this.isCommentClip ? 'comment-clip' : '';
+
+      this.$queueControl = $('<div/>', { 'class':'queue-control ' + commentClipClass })
         .append(this.$playTrigger)
         .append(this.$queueTrigger)
         .append(this.$alreadyQueuedMessage)
@@ -76,10 +78,10 @@ window.PageClip = (function() {
     },
 
     jumpToPost: function () {
-      var hasStickyHeader = $('body').find('.stickyHeaderWrap').length
-      var dynamicSpace = hasStickyHeader ? 100 : 55;
-      var postOffset = this.$post.offset().top - dynamicSpace;
-      $('body').animate({ scrollTop: postOffset }, 300);
+      var headerHeight = 120;
+      var vidHeight = this.isCommentClip ? 60 : 260;
+      var postOffset = this.$link.offset().top - headerHeight - vidHeight;
+      window.scrollTo(0, postOffset);
     },
 
     disableQueueButtons: function() {
@@ -95,7 +97,6 @@ window.PageClip = (function() {
     populateLinkAttributes: function () {
       this.code = this.getYoutubeCode(this.href);
       this.cleanHref = 'https://www.youtube.com/watch?v=' + this.code;
-      this.title = this.$post.find('._6m6 a').text();
     },
 
     getYoutubeCode: function () {

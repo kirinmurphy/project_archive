@@ -13,14 +13,14 @@
 }
 
 .clip-container .cliplist .play-video { display:block;
-  position:relative; padding:9px 8px 8px 35px;
+  position:relative; padding:9px 8px 8px 38px;
   white-space:nowrap; text-overflow: ellipsis;
   color:#999; overflow: hidden;
 }
 
 .clip-container .cliplist .play-video:before { content:"\25b6";
-  display:none; position:absolute; top:9px; left:11px;
-  font-size:16px; color:#7b7;
+  display:none; position:absolute; top:2px; left:11px;
+  font-size:24px; color:#7b7;
 }
 
 .clip-container .cliplist .play-video:hover {
@@ -71,7 +71,7 @@
 
 /* -- ACTIVE -- */
 .clip-container .cliplist .active:not(.stopped) .play-video:before { content:"\25a0";
-  display:block; top:-1px; font-size:24px;
+  display:block; top:1px; font-size:24px;
   color:#eec6c6; font-weight:bold;
 }
 
