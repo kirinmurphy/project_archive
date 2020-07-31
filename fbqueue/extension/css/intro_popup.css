@@ -9,7 +9,7 @@
   -webkit-transform: translateX(-50%) translateY(-50%);
   width:640px; height:440px; padding:50px;
   box-shadow:0 0 5px #666; background:#fafafa; color:#555;
-  font-size:16px; border-radius:5px;
+  font-size:18px; border-radius:5px;
   box-shadow:0 0 15px #333; overflow:hidden;
   -webkit-transition:.4s all cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
@@ -40,7 +40,7 @@
 
 .intro-popup .frame .option button,
 .intro-popup .frame[data-frame="done"] button { padding:15px 25px 12px 25px;
-  border:1px solid #ddd; text-transform:uppercase; font-size:.75em;
+  border:1px solid #ddd; text-transform:uppercase; font-size:1em;
   background:#15569b; color:#fff; cursor:pointer;
   border-radius:4px; box-shadow:0 0 2px #aaa;
   letter-spacing:.5px;
@@ -66,5 +66,5 @@
 .intro-popup .frame[data-frame="auto-add-option"] .option [data-img] { margin-bottom:5px; }
 
 .intro-popup .frame[data-frame="done"] { text-align:center; }
-.intro-popup .frame[data-frame="done"] .refresh-message { margin-bottom:30px; font-size:1.1em; }
+.intro-popup .frame[data-frame="done"] .refresh-message { margin-bottom:30px; font-size:1.2rem; }
 .intro-popup .frame[data-frame="done"] button { width:120px; }

@@ -144,7 +144,7 @@ body:not(.mobile-device) .page-wrapper .content {
     width: 400px;
 }
 body:not(.mobile-device) .page-wrapper .content > *:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 body.mobile-device .page-wrapper {
     padding: 20px;

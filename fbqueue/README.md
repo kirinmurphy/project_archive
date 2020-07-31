@@ -9,7 +9,7 @@
 ## Run
 Currently available only with manual upload.  
 To manually install in Chrome, Brave or any other chrome based browser: 
-- Right click, download and unzip [fbqueue_v0.4.zip](https://github.com/kirinmurphy/project_archive/tree/master/fbqueue/fbqueue_v0.4.zip)
+- Right click, download and unzip [fbqueue_v0.4.zip](//projects.codethings.net/fbqueue/web/fbqueue_v0.4.zip)
 - Open `chrome://extensions/` (`brave://extensions/`, etc.)
 - Select **Developer Mode** in the toolbar
 - Select the **Load Unpacked** button 
