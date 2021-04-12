@@ -1,320 +1,81 @@
-.borderRadius (@radius){
-	-moz-border-radius:@radius;
-	-webkit-border-radius:@radius;
-	border-radius:@radius;
+body { 
+	padding:0; 
+	overflow:hidden; 
+	/* background: yellow; */
 }
 
-/* -- Shadows ---------------------------------------------------------------*/
-.boxShadow(@dims:0 0 10px, @color:#999) {
-	box-shadow: @dims @color; // Opera, FFX4
-	-moz-box-shadow:@dims @color; // FFX3.5
-	-webkit-box-shadow:@dims @color; // Safari/Chrome/WebKit
+#dotLayer { 
+	background:rgba(255,255,255, 1);
+	position:fixed;
+	/* top:50%;
+	left:50%;
+	transform:translate3d(-50%, -50%, 0); */
+	width:100%;
+	height:100%;
+	/* width:96vw;
+	height:92vh; */
+	/* margin: 4vh 2vw; */
+	overflow:hidden;
+	border: 1px solid #aaa;
+	box-shadow: 0 0 10px #444;
 }
 
-/* -- Transition ---------------------------------------------------------------*/
-.transition(@time: .1s, @range: all, @ease: ease-in) {
-	-moz-transition: @range .2s @ease;
-	-webkit-transition: @range .1s @ease;
-	-o-transition: @range @time @ease;
-	transition: @range @time @ease;
+#dotLayer .zoomer {
+	position:absolute;	
+	top:-50%;
+	left:-50%;
+	right:-50%;
+	bottom:-50%;
+	transform-origin: center;
+	animation: 30s zoomit infinite linear;
+	transform: scale(.5);
 }
 
-.setColumns(@count,@gap) {
-	-moz-column-count: @count;
-	-moz-column-gap: @gap;
-	-webkit-column-count: @count;
-	-webkit-column-gap: @gap;
-	column-count: @count;
-	column-gap: @gap;
+@keyframes zoomit {
+	from { transform: scale(1); }
+	50% { transform: scale(1.5); }
+	to { transform: scale(1); }
 }
 
-.linearGradient(@deg, @col1, @col2) {
-	background: @col1;
-	background: @col1 -moz-linear-gradient(@deg,@col1,@col2);
-	background: @col1 -webkit-linear-gradient(@deg,@col1,@col2);
+#dotLayer .rotate {
+	position: absolute; 
+	top:0;
+	left:0; 
+	bottom:0;
+	right:0;
+	/* top:-150%; 
+	left:-150%; 
+	bottom:-150%; 
+	right:-150%; 
+	top:-50%; 
+	left:-50%; 
+	bottom:-50%; 
+	right:-50%;  */
+	animation: 150s rotate infinite linear;
 }
 
-body { padding-top:30px; overflow:hidden; background: #fffff5; }
-
-#frame { position:relative; width:600px; height:520px; margin:0 auto; border:1px solid #ccc; }
-
-section { position:absolute; top:0; left:0; right:0; bottom:0; }
-
-.controls { position:absolute; bottom:10px; right:10px; z-index:100000;
-    .hideshow { display:block; }
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.dotLayer { 
-    .inner { position:relative; top:-213px; left:-600px; width:1700px;
-        -webkit-transform: rotate(14.4deg); -moz-transform: rotate(14.4deg);  }
-    em { background:#d11; float:left; border-radius:11px; .boxShadow(0 0 6px, #500);
-        background-image: -webkit-radial-gradient(center center, circle closest-corner, #e33, #e33, #d33, #a00, #a00 );
-        // background-image: -webkit-radial-gradient(center center, circle closest-corner, pink, orange, blue, white, red, purple );
-     }  
-} 
+#dotLayer em { 
+	background:#d11; 
+	float:left; 
+	border-radius:11px; 
+	box-shadow:0 0 6px #500;
+	background-image: -webkit-radial-gradient(center center, circle closest-corner, #e33, #e33, #d33, #a00, #a00 );
+	transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}  
 
-/* -- Z-INDEX LAYERING -------------------------------------------------- */
-#originalImage { z-index:0; }
-#imageBackground { z-index:0; }
-
-/* -- UNIQUE SECTIONS -------------------------------------------------- */
-#originalImage { background:url(images/royball.jpg) top left no-repeat; opacity:0; }
-#imageBackground {  }
-
-/* -- Brow ------------------------------------------------------------- */
-
-#brows {
-	overflow: hidden;
-	.brow1 {
-		background: rgba(30, 30, 30, 1);
-		width: 140px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 80px;
-		left: 0px;
-		-webkit-transform:scale(1) rotate(-14deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-		border-radius: 20px;
-	}
-	.brow2 {
-			clip:rect(0px 400px 65px 145px);
-			border-radius:300px 300px 0px 0;
-			height:300px;
-			width:600px;
-			background: rgba(30, 30, 30, 1);
-			position: absolute;
-			display: block;
-			top:6px;
-			left: -70px;
-			-webkit-transform:scale(1) rotate(13deg) translate(0px, 0px) skew(0deg, -13deg);
-
-			overflow: hidden;
-	}
-		.brow3 {
-			background: rgba(30, 30, 30, 1);
-			width: 140px;
-			height: 30px;
-			position: absolute;
-			display: block;
-			top: 70px;
-			left: 40px;
-			-webkit-transform:scale(1) rotate(-4deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-			border-radius: 20px;
-	}
-	.brow4 {
-		background: rgba(30, 30, 30, 1);
-		width: 70px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 52px;
-		left: 140px;
-		-webkit-transform:scale(1) rotate(10deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-		border-radius: 20px;
-	}
-	.brow5 {
-		background: rgba(30, 30, 30, 1);
-		width: 70px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 58px;
-		left: 230px;
-		-webkit-transform:scale(1) rotate(30deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-		border-radius: 20px;
-	}
-	.brow6 {
-		background: rgba(30, 30, 30, 1);
-		width: 90px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 25px;
-		left: 315px;
-		-webkit-transform:scale(1) rotate(28deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-		border-radius: 20px;
-	}
-	.brow7 {
-			background: rgba(30, 30, 30, 1);
-			width: 80px;
-			height: 48px;
-			position: absolute;
-			display: block;
-			top:25px;
-			left: 476px;
-			-webkit-transform:scale(1) rotate(20deg) translate(10px, -17px) skew(0deg, -25deg);
-			border-radius: 30px;
-	}
-	.brow8 {
-			clip:rect(0px 350px 50px 0);
-			border-radius:300px 150px 0 0;
-			height:300px;
-			width:550px;
-			background: rgba(30, 30, 30, 1);
-			position: absolute;
-			display: block;
-			top:-205px;
-			left: 150px;
-			-webkit-transform:scale(1) rotate(180deg) translate(0px, 0px) skew(0deg, 0deg);
-			
-			overflow: hidden;
-	}
-	.brow9 {
-		background: rgba(30, 30, 30, 1);
-		width: 200px;
-		height: 48px;
-		position: absolute;
-		display: block;
-		top:27px;
-		left: 306px;
-		-webkit-transform:scale(1) rotate(23deg) translate(14px, -17px) skew(0deg, -25deg);
-		border-radius: 30px;
-	}
-	.brow10 {
-				clip:rect(0px 550px 50px 200px);
-				border-radius:300px 350px 0 0;
-				height:300px;
-				width:550px;
-				background: rgba(30, 30, 30, 1);
-				position: absolute;
-				display: block;
-				top:-205px;
-				left: 63px;
-				-webkit-transform:scale(1) rotate(180deg) translate(0px, 0px) skew(0deg, 0deg);
-
-				overflow: hidden;
-	}
+#dotLayer em:hover {
+	transform: scale(1.5);
 }
 
-/* -- eye -------------------------------------------------------------- */
-
-#eye {
-	overflow: hidden;
-	.eye1 {
-		clip:rect(0px 305px 45px 205px);
-		border-radius:120px 120px 0px 0;
-		height:200px;
-		width:300px;
-		background: rgba(30, 30, 30, .5);
-		position: absolute;
-		display: block;
-		top:90px;
-		left: 10px;
-		-webkit-transform:scale(1) rotate(175deg) translate(0px, 0px) skew(0deg, -13deg);
-		overflow: hidden;
-	}
-	.eye2 {
-		//clip:rect(0px 400px 65px 145px);
-		border-radius: 30px;
-		height:20px;
-		width:60px;
-		background: rgba(30, 30, 30, .5);
-		position: absolute;
-		display: block;
-		top:272px;
-		left: 28px;
-		-webkit-transform:scale(1) rotate(15deg) translate(0px, 0px) skew(10deg, 13deg);
-		overflow: hidden;
-	}
-	.eye3 {
-		//clip:rect(0px 400px 65px 145px);
-		border-radius: 30px;
-		height:20px;
-		width:40px;
-		background: rgba(30, 30, 30, .5);
-		position: absolute;
-		display: block;
-		top:272px;
-		left: 48px;
-		-webkit-transform:scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, 5deg);
-		overflow: hidden;
-	}
-	.eye4 {
-		//clip:rect(0px 400px 65px 145px);
-		border-radius: 30px;
-		height:20px;
-		width:40px;
-		background: rgba(30, 30, 30, .5);
-		position: absolute;
-		display: block;
-		top:270px;
-		left: 58px;
-		-webkit-transform:scale(1) rotate(0deg) translate(0px, 0px) skew(0deg, -5deg);
-		overflow: hidden;
-	}
-	.eye5 {
-		background: rgba(30, 30, 30, .5);
-		width: 70px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 252px;
-		left: 110px;
-		-webkit-transform:scale(1) rotate(-10deg) translate(-19px, 0px) skew(-0.7deg, -15deg);
-		border-radius: 20px;
-	}
-	.eye6 {
-		background: rgba(30, 30, 30, .5);
-		width: 90px;
-		height: 30px;
-		position: absolute;
-		display: block;
-		top: 25px;
-		left: 315px;
-		-webkit-transform:scale(1) rotate(28deg) translate(-19px, 0px) skew(-0.7deg, -21deg);
-		border-radius: 20px;
-	}
-	.eye7 {
-			background: rgba(30, 30, 30, .5);
-			width: 80px;
-			height: 48px;
-			position: absolute;
-			display: block;
-			top:25px;
-			left: 476px;
-			-webkit-transform:scale(1) rotate(20deg) translate(10px, -17px) skew(0deg, -25deg);
-			border-radius: 30px;
-	}
-	.eye8 {
-			clip:rect(0px 350px 50px 0);
-			border-radius:300px 150px 0 0;
-			height:300px;
-			width:550px;
-			background: rgba(30, 30, 30, .5);
-			position: absolute;
-			display: block;
-			top:-205px;
-			left: 150px;
-			-webkit-transform:scale(1) rotate(180deg) translate(0px, 0px) skew(0deg, 0deg);
-			
-			overflow: hidden;
-	}
-	.eye9 {
-		background: rgba(30, 30, 30, .5);
-		width: 200px;
-		height: 48px;
-		position: absolute;
-		display: block;
-		top:27px;
-		left: 306px;
-		-webkit-transform:scale(1) rotate(23deg) translate(14px, -17px) skew(0deg, -25deg);
-		border-radius: 30px;
-	}
-	.eye10 {
-				clip:rect(0px 550px 50px 200px);
-				border-radius:300px 350px 0 0;
-				height:300px;
-				width:550px;
-				background: rgba(30, 30, 30, .5);
-				position: absolute;
-				display: block;
-				top:-205px;
-				left: 63px;
-				-webkit-transform:scale(1) rotate(180deg) translate(0px, 0px) skew(0deg, 0deg);
-
-				overflow: hidden;
-	}
+#dotLayer em.active {
+	/* transform: scale(1.5); */
+	background:none;
+	box-shadow:none;
+	border:none;
+	transform: scale(0);
 }
-
-
-#frame.imageOn #originalImage { opacity:.4; }

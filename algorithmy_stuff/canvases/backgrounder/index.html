@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    :root {
+      --bgColor: #000;
+      --sectionColor: #000;
+      --dotColor: #000;
+    }
+
+    body {
+      background:var(--bgColor);
+    }
+
+    section {
+      position:fixed;
+      top:5vw;
+      right:5vw;
+      bottom:5vw;
+      left:5vw;
+      /* border: 10px solid var(--sectionColor); */
+      background: var(--sectionColor);
+    }
+
+    .dot {
+      width:2rem;
+      height:2rem;
+      background: var(--dotColor);
+      position: absolute;
+      top:2rem;
+      left:2rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <section>
+    <div class="dot"></div>
+  </section>
+
+<script>
+    technicolorize('--bgColor', [[200, -1], [255, -1], [150, 1]]);
+    technicolorize('--sectionColor', [[50, 1], [100, -1], [100, -1]]);
+    technicolorize('--dotColor', [[100, 1], [150, -1], [150, 1]]);
+
+
+    function technicolorize (variable, rgbConfig) {
+      function step (timeStamp) {
+        const cssRgb = rgbConfig.map(color => color[0]).join(', ');
+        document.documentElement.style.setProperty(variable, `rgb(${cssRgb})`);
+        rgbConfig = getNewRgb(rgbConfig);
+        window.requestAnimationFrame(step);
+      }
+
+      window.requestAnimationFrame(step);
+    }
+
+    function getNewRgb (rgbConfig) {
+      return rgbConfig.map((color) => {
+        const incrementer = 1;
+        const directioner = color[1];
+        const newColor = color[0] + (incrementer * directioner);
+
+        const atZero = newColor <= 50;
+        const atTop = newColor >= 150;
+
+        const newDirectioner = atZero
+          ? 1 : atTop
+          ? -1 : directioner;
+
+        return [newColor, newDirectioner];        
+      });
+    }
+  </script>
+
+</body>
+</html>
