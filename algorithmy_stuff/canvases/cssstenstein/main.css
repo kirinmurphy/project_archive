@@ -29,6 +29,7 @@ body {
 	bottom:-50%;
 	transform-origin: center;
 	transform: scale(.5);
+	will-change: transform;
 	animation: 30s zoomit infinite linear;
 }
 
@@ -55,6 +56,7 @@ body {
 	left:-50%; 
 	bottom:-50%; 
 	right:-50%;  */
+	will-change: transform;
 	animation: 150s rotate infinite linear;
 }
 
@@ -69,7 +71,7 @@ body {
 	border-radius:11px; 
 	box-shadow:0 0 6px #500;
 	background-image: -webkit-radial-gradient(center center, circle closest-corner, #e33, #e33, #d33, #a00, #a00 );
-	transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	/* transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); */
 }  
 
 #dotLayer em:hover {
@@ -81,7 +83,7 @@ body {
 	/* background:none;
 	box-shadow:none;
 	border:none; */
-	transform: scale(5);
+	transform: scale(0) translate3d(0, 0, 0px);
 }
 
 #licht-lady {
