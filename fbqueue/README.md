@@ -15,9 +15,3 @@ To manually install in Chrome, Brave or any other chrome based browser:
 - Select the **Load Unpacked** button 
 - Select the `extension/` folder and upload
 - Go to facebook and find a page with youtube videos! 
-
-
-## Best places to use this plugin IMO
-https://www.facebook.com/groups/vinyldom    
-https://www.facebook.com/groups/WorldOfEchoes    
-https://www.facebook.com/groups/scoredust   
