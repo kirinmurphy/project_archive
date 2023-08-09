@@ -19,19 +19,33 @@ document.createElement("article");
 <link rel="stylesheet" href="../assets/lib/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/index.css" />
 <style>
-  .case-study-prompt {
+  body {
+    overflow: hidden;
+    position: fixed; 
+    top:0;
+    left:0;
+    right:0; 
+    bottom:0;
+  }
+
+  .case-study-prompt,
+  .view-asset {
     padding: 1rem 2rem; 
     background: #1A4C70;
     border-radius: 8px;
     font-size: 1.1rem;
   }
 
+  .view-asset,
+  .view-asset a,
+  .view-asset .fa,
   .case-study-prompt,
   .case-study-prompt a,
   .case-study-prompt .fa {
     color:#fff;
   }
 
+  .view-asset a,
   .case-study-prompt a {
     text-decoration: underline;
   }
@@ -43,7 +57,7 @@ document.createElement("article");
 <div id="mobile-warning">
   <h2>Oh, hey.</h2>
   <h3>Thanks for checking out my <strong>FestivalMode</strong> project overview.</h3> 
-  <div class="tagline">The overview looks way better on a slightly bigger screen, you should definitely check it out on one.</div>
+  <div class="tagline">The overview is a bit easier to follow on a slightly bigger screen, you should definitely check it out on one.</div>
   <div class="tagline mobile-demo-link">Here's <a href="/festivalmode">the demo</a> you can check out for now.</div>
 </div>
 
@@ -68,10 +82,10 @@ document.createElement("article");
       <a href="//projects.codethings.net/festivalmode">projects.codethings.net/festivalmode</a>.
     </p>
   </div>
-  <p class="case-study-prompt">You can also follow the product development process I took 
+  <p class="case-study-prompt">You can follow the product development process I took 
     <a href="#" data-go="next">in these slides</a> <i class="fa fa-chevron-right small"></i>
 
-    <span class="fine-print"><i class="fa fa-keyboard-o muted"></i> Use the navigation links below or left/right keys to navigate.</span>
+    <span class="fine-print"><i class="fa fa-keyboard-o muted"></i> Use the footer links below or left/right keys to navigate.</span>
   </p>
 </div>
 
@@ -289,7 +303,7 @@ document.createElement("article");
 
  <article data-view="design_prototype"><div class="article-content">
   <div class="inner split">
-    <div class="visual"><div class="iphone-wrapper"><iframe src="../index.html"></iframe></div></div><div class="description"><div class="inner"><h2>The Prototype</h2><p>I then put together a prototype to flesh out the initial ideas and provide an experience for user testing.</p><p>Try it out.  Or view on your phone at&nbsp;<a href="//projects.codethings.net/festivalmode">codethings.net/festivalmode.</a></p><div>I used a few new (for 2015) tools in the process:<ul class="bulleted"><li><a href="http://www.google.com/design/spec/material-design/">Material Design</a> inspired</li><li><a href="https://github.com/kirinmurphy/festivalmode/tree/master/harpserver/prototype/js/angular">Angular JS</a> to build much of the interactivity.</li><li><a href="http://harpjs.com/">Harp Server</a> to manage the dev enviornment.</li></ul></div><div class="github-link view-asset"><i class="fa fa-git-square muted"></i>View <a href="https://github.com/kirinmurphy/festivalmode">the code</a>.</div></div></div>
+    <div class="visual"><div class="iphone-wrapper"><iframe src="../index.html"></iframe></div></div><div class="description"><div class="inner"><h2>The Prototype</h2><p>I then put together a prototype to flesh out the initial ideas and provide an experience for user testing.</p><p>Try it out.  Or view on your phone at&nbsp;<a href="//projects.codethings.net/festivalmode">codethings.net/festivalmode.</a></p><div>I used a few new (for 2015) tools in the process:<ul class="bulleted"><li><a href="http://www.google.com/design/spec/material-design/">Material Design</a> inspired</li><li><a href="https://github.com/kirinmurphy/festivalmode/tree/master/harpserver/prototype/js/angular">Angular JS</a> to build much of the interactivity.</li><li><a href="http://harpjs.com/">Harp Server</a> to manage the dev enviornment.</li></ul></div><div class="github-link view-asset"><i class="fa fa-git-square muted"></i>View <a href="https://github.com/kirinmurphy/project_archive/tree/master/festivalmode">the code</a>.</div></div></div>
   </div>
 </div></article>
 
