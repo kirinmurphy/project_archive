@@ -19,22 +19,18 @@
 <link rel="stylesheet/less" href="css/main.less" type="text/css" />
 <script src="lib/js/less-2.3.1.min.js"></script>
 <!-- <script src="lib/js/knockout-2.0.0.js"></script> -->
+
 </head>
 <body>
 
 <div class="page-wrapper" style="display:none;">
   <div data-frame="intro"><div class="inner">
 
-    <div class="slideshow-container">
-      <div class="slideshow">
-        <div class="ss_images_wrap">
-          <div class="ss_images">
-            <img src="images/fbqueue_introslide3.png" />
-            <img src="images/fbqueue_introslide1.png" />
-            <img src="images/fbqueue_introslide2.png" />
-          </div>
-        </div>
-      </div>
+    <div class="slideshow-container" style="padding-bottom: -66%">
+      <img src="images/fbqueue_introslide3.png" />
+
+      <!-- Play Button -->
+      <div class="play-button"><span>&#9658;</span></div>
     </div>
 
     <div class="content">
@@ -56,19 +52,7 @@
 
       <div class="not-on-chrome-desktop">
         This application is currently only available for the Chrome desktop browser.
-
-        <!-- <div>View page on the
-          <a href="https://chrome.google.com/webstore/detail/fb-queue/mekhjigedlabfnndhmkbbjcebfinkbae">
-            Chrome Web Store</a>.
-        </div> -->
       </div>
-
-      <!-- <div class="download-info">
-        <a class="download-link" href="https://chrome.google.com/webstore/detail/fb-queue/mekhjigedlabfnndhmkbbjcebfinkbae">
-          <span class="chrome-store-logo"></span>
-          <span>View On Chrome Store</span>
-        </a>
-      </div> -->
 
       <div class="download-info">
         Currently available as a manual install (chrome store appliction pending).
@@ -85,10 +69,51 @@
     </div>
   </div></div>
 
+  <div id="responsive-iframe" class="iframe-container">
+    <iframe src="https://portfolio.codethings.net/fbqueue" frameborder="0" scrolling="no"></iframe>
+  </div>
+  
 </div>
+
+
 
 <script src="lib/js/jquery-1.7.1.min.js"></script>
 <script src="lib/js/slideshow.js"></script>
 <script src="main.js"></script>
+
+<script>
+  function setIframeHeight() {
+    var iframe = document.getElementById('responsive-iframe');
+    var aspectRatio = 10.8 / 16; // For a 16:9 aspect ratio; adjust as needed.
+    var width = iframe.offsetWidth;
+    var height = width * aspectRatio;
+    iframe.style.height = height + 'px';
+  }
+
+  // Set initial height
+  setIframeHeight();
+
+  // Adjust the height on window resize
+  window.onresize = setIframeHeight;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Replace '.your-selector' with the class or ID of the clickable element
+    var clickableElement = document.querySelector('.slideshow-container');
+
+    clickableElement.addEventListener('click', function() {
+      // Replace '#target-element' with the ID of the element you want to scroll to
+      var targetElement = document.querySelector('#responsive-iframe');
+
+      if (targetElement) {
+          targetElement.scrollIntoView({
+              behavior: 'smooth',  // This enables smooth scrolling
+              block: 'start'       // Aligns the target element to the top of the screen
+          });
+      }
+  });
+});
+
+
+  </script>
 </body>
 </html>

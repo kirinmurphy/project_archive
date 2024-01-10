@@ -12,8 +12,8 @@
   $pageWrapper.show();
 
   function setFrameHeights() {
-    var windowHeight = $(window).height()
-    $('[data-frame]').css('height', windowHeight);
+    // var windowHeight = $(window).height()
+    // $('[data-frame]').css('height', windowHeight);
   };
 
   function checkForUserAgent () {
