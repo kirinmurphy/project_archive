@@ -125,13 +125,13 @@ body:not(.mobile-device) {
     background-image: radial-gradient(#7094cc, #1e3252 100%);
     background-repeat: no-repeat;
 }
-body:not(.mobile-device) .page-wrapper [data-frame] .inner {
+/* body:not(.mobile-device) .page-wrapper [data-frame] .inner {
     left: 50%;
     position: absolute;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 100%;
-}
+} */
 body:not(.mobile-device) .page-wrapper .inner {
     padding-right: 400px;
     position: relative;
