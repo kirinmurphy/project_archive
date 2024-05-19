@@ -48,8 +48,10 @@ body { overflow:hidden; }
   --translate-cross-outer: -50%;
   --translate3d-center-middle: -39.68253968%;
   --perspective-common: 100px;
-  --position-center-outer-outer: 9.8%;
-  --position-outer-middle-outer: 4.28%;
+  /* --position-center-outer-outer: 9.8%;
+  --position-outer-middle-outer: 4.28%; */
+  --position-center-outer-outer: 10.9%;
+  --position-outer-middle-outer: 5.98%;
 
   --slides-cell-center-middle-transform: scale(var(--scale-special)) translate3d(var(--translate3d-center-middle), var(--translate3d-center-middle), 0);
   --slides-cell-left-top-transform: scale(var(--scale-common)) rotateX(var(--rotateX-common)) rotateY(calc(var(--rotateY-common) * -1)) skewX(calc(var(--skewX-common) * -1));
